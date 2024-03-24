@@ -1,0 +1,171 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.left{
+    padding-right: 10px;
+}
+.left a{
+    font-size: 18px;
+    margin-right: 30px;
+    margin-left: 30px ;
+    font-weight:  bold;
+    color:#666;
+    text-decoration: none;
+
+    
+}
+.right a{
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 18px;
+
+}
+.right #sign{
+    color: grey;
+
+}
+.left a i, .right a i {
+margin-right: 5px; 
+}
+
+
+nav {
+display: flex;
+justify-content: space-between; 
+align-items: center; 
+padding: 20px;
+}
+
+
+.left-nav {
+padding-top: 20px;
+width: 150px; 
+}
+
+.left-nav img {
+max-width: 100%; 
+height: auto; 
+}
+
+.left-nav a {
+text-decoration: none;
+color: black; 
+font-size: 18px; 
+font-weight: grey;
+}
+
+.left-nav a:hover {
+color: blue; 
+cursor: pointer;
+}
+.middle-nav li:hover{
+color: blue; 
+cursor: pointer;
+
+}
+
+
+.middle-nav ul,
+.right-nav ul {
+display: flex; 
+list-style-type: none; 
+margin: 0;
+padding: 0;
+}
+
+.middle-nav ul li {
+margin-right: 20px;
+}
+
+.right-nav ul li {
+margin-right: 20px;
+}
+.middle-nav ul li {
+margin-right: 60px; 
+margin-left: 40px; 
+font-size: 20px;
+font-weight: bold;
+}
+
+.middle-nav ul li:last-child {
+margin-right: 0; 
+}
+
+#ap {
+background-color: red;
+padding: 12px;
+border-radius: 20px;
+color: white;
+width: 120px;
+text-align: center;
+cursor: pointer; 
+transition: all .3s ease;
+margin-right: 90px;
+}
+.container{
+position: relative;
+margin-left: 300px;
+margin-top: 100px;
+
+}
+.container h1 {
+font-size: 40px;
+}
+.container a {
+background-color: red;
+padding: 12px;
+border-radius:12px;
+color: white;
+width: 150px;
+display: inline-block;
+text-decoration: none;
+text-align: center;
+margin-top: 20px;
+}
+.desc h3, .highlight {
+color: red;
+}
+.slider-container {
+width: 600px;
+height: 300px;
+position: relative;
+overflow: hidden;
+float: right;
+margin-top: 10px;
+bottom: 273px;
+margin-right: 100px;
+}
+
+.slider {
+display: flex;
+transition: transform 0.5s ease;
+position: relative;
+
+}
+
+.slide {
+min-width: 600px; 
+}
+
+.slider img {
+width: 100%;
+height: auto;
+}
+
+.card{
+margin-left: 150px;
+margin-top: 100px;
+
+
+}
+
+.card p {
+color:red;
+font-size: 35px;
+text-align: center;
+}
