@@ -1,0 +1,25 @@
+-- NIHER CREATE DATABASEN
+
+CREATE DATABASE signup
+
+
+
+--
+
+CREATE TABLE `login` (
+  `Id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`Id`);
+
+
+ALTER TABLE `login`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+COMMIT;
+
