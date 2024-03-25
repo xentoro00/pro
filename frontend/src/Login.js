@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import Validation from './LoginValidation';
 import axios from 'axios'
 import './Login.css';
-
+import Header from './Header'; 
+import Navbar from './Navbar'; 
 
 
 
@@ -29,7 +30,7 @@ function Login() {
             axios.post('http://localhost:8081/login', values)
             .then(res => {
                 if(res.data === "Succes"){
-                    navigate('/home');
+                    navigate('/');
 
                 } else {
                     alert("No record existed");
@@ -42,7 +43,10 @@ function Login() {
     }
 
   return (
-    <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
+    <div>
+    <Header />
+    <Navbar />
+    <div className='d-flex justify-content-center align-items-center bg-danger vh-100'>
         <div className='bg-white p-3 rounded w-25'>
             <h2>Sign-in</h2>
 
@@ -72,7 +76,7 @@ function Login() {
             
         </div>
 
-
+</div>
     </div>
   )
 }

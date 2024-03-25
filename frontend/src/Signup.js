@@ -2,6 +2,9 @@ import React, {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Validation from './SignupValidation';
 import axios from 'axios'
+import './Login.css';
+import Header from './Header'; 
+import Navbar from './Navbar'; 
 
 
 
@@ -24,7 +27,7 @@ function Signup() {
         if(errors.name === "" && errors.email === "" && errors.password === "" ){
             axios.post('http://localhost:8081/signup', values)
             .then(res => {
-                navigate('/');
+                navigate('/login');
 
             })
             .catch(err => console.log(err));
@@ -32,7 +35,13 @@ function Signup() {
     }
 
   return (
-    <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
+
+   
+        <div>
+      <Header />
+      <Navbar />
+  
+    <div className='d-flex justify-content-center align-items-center bg-danger vh-100'>
         <div className='bg-white p-3 rounded w-25'>
             <h2>Sign-up</h2>
 
@@ -68,7 +77,7 @@ function Signup() {
             
         </div>
 
-
+        </div>
     </div>
   )
 }
