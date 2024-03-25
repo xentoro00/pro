@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Validation from './ALoginValidation';
+import Validation from './AloginValidation';
 import axios from 'axios';
-import '../Login.css';
+import './Login.css';
 
 function Login() {
     const [values, setValues] = useState({
@@ -20,7 +20,7 @@ function Login() {
         event.preventDefault();
         setErrors(Validation(values));
         if(errors.email === "" && errors.password === "") {
-            axios.post('http://localhost:8081/admin/ALogin', values)
+            axios.post('http://localhost:8081/Alogin', values)
             .then(res => {
                 if(res.data === "Succes") {
                     navigate('/dashboard');
