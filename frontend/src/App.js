@@ -6,6 +6,8 @@ import { Page1 } from './Page1';
 import { Dashboard } from './admin/Dashboard';
 import Login from './Login'
 import Signup from './Signup'
+import ALogin from './admin/ALogin'
+
 
 
 
@@ -20,6 +22,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
 
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/alogin" element={<ALogin />} />
+
 
 
       </Routes>

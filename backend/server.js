@@ -46,6 +46,24 @@ app.post('/login', (req, res) => {
     })
 })
 
+app.post('/', (req, res) => {
+    const sql = "SELECT * FROM admin WHERE `email` = ?  AND  `password` = ?";
+   
+     
+    db.query(sql,[req.body.email,  req.body.password], (err,data) => {
+        if(err){
+            return res.json("Error");
+        }
+        if(data.length > 0){
+            return res.json("Succes");
+
+
+        } else {
+            return res.json("faile");
+        }
+    })
+})
+
 
 app.listen(8081, () => {
     console.log("Server is runninf");
