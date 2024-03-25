@@ -1,44 +1,15 @@
 import React from 'react';
+import Header from './Header'; 
+import Navbar from './Navbar'; 
+
 
 export const Page1 = () => {
   return (
     <div>
-      <header>
-        <div className="left">
-          <a href="/"><i className="fas fa-building"></i> Business</a>
-          <a href="/dashboard"><i className="fas fa-user"></i> Personal(dashboard)</a>
-        </div>
 
-        <div className="right">
-          <a href="/"><i className="fas fa-phone-alt"></i> 045963828</a>
-          <a id="sign" href="/login"><i className="fas fa-sign-in-alt"></i> Signup/Login</a>
-        </div>
-      </header>
-
-      <nav>
-        <div className="left-nav">
-          <a href="/">
-            <img src="imgs/e-banking-favicon-black.png" alt="logo" width="300px" height="200px" />
-          </a>
-        </div>
-        <div className="middle-nav">
-          <ul>
-            <li>Home</li>
-            <li>Loans</li>
-            <li>About Us</li>
-            <li>Services</li>
-            <li>Pages</li>
-            <li>Blog</li>
-          </ul>
-        </div>
-
-        <div className="right-nav">
-          <ul>
-            <li id="ap">Apply Now</li>
-          </ul>
-        </div>
-
-      </nav>
+<Header />
+    <Navbar />
+      
 
       <div className="container">
 
