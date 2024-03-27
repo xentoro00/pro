@@ -5,7 +5,7 @@ export default function Sidebar() {
     <div>
       {/* Sidebar */}
       <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{ width: '300px', height: '100%' }}>
-        <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        <a href="/" className="d-flex align-items-center mb-3  link-dark text-decoration-none">
           <svg className="bi me-2" width="16" height="16"><i className="fas fa-university"></i></svg>
           <span className="fs-4">E-Banking</span>
         </a>
