@@ -12,6 +12,7 @@ import Alogin from './Alogin'
 import Stafflogin from './Stafflogin'
 import AddClient from './admin/AddClient';
 import Addstaff from './admin/Addstaff';
+import AddStaffForm from './admin/AddStaffForm';
 
 
 
@@ -35,6 +36,8 @@ function App() {
         <Route path="/stafflogin" element={<Stafflogin />} />
         <Route path="/addclient" element={<AddClient />} />
         <Route path="/addstaff" element={<Addstaff />} />
+        <Route path="/addstaffform" element={<AddStaffForm />} />
+
 
 
         

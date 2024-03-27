@@ -46,7 +46,10 @@ export const Staff = () => {
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Emri</th>
-                                        <th scope="col">Email</th>
+                                        <th scope="col">Staff Number</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">email</th>
+                                        <th scope="col">Created</th>
                                         <th scope="col">Edit</th> 
                                     </tr>
                                 </thead>
@@ -55,7 +58,10 @@ export const Staff = () => {
         <tr key={item.Id}>
             <th scope="row">{item.Id}</th>
             <td>{item.name}</td>
+            <td>{item.staff_number}</td>
+            <td>{item.gender}</td>
             <td>{item.email}</td>
+            <td>{item.created_at}</td>
             <td>
                 <button onClick={() => handleEdit(item.Id)} className="btn btn-primary mr-2">Edit</button>
                 <button onClick={() => handleDelete(item.Id)} className="btn btn-danger">Delete</button>

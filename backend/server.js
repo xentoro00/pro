@@ -64,13 +64,18 @@ app.post('/Alogin', (req, res) => {
     })
 })
 app.post('/Stafflogin', (req, res) => {
-    const sql = "INSERT INTO staff (`name`,`email`,`password`)  VALUES (?)";
+    const sql = "INSERT INTO staffi (`name`, `email`, `staff_number`, `gender`, `phone_number`, `password`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, ?)";
     const values = [
         req.body.name,
         req.body.email,
-        req.body.password
-    ]
-    db.query(sql,[values], (err,data) => {
+        req.body.staff_number,
+        req.body.gender,
+        req.body.phonenumber, 
+        req.body.password,
+        new Date() 
+    ];
+    
+    db.query(sql, values, (err, data) => { 
         if(err){
             return res.json("Error");
         }
@@ -78,8 +83,9 @@ app.post('/Stafflogin', (req, res) => {
     })
 })
 
+
 app.post('/getStaff', (req, res) => {
-    const sql = "SELECT Id, name, email FROM staff";
+    const sql = "SELECT * FROM staffi";
 
 
     db.query(sql, (err, data) => {
