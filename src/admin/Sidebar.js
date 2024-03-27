@@ -82,7 +82,7 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="#" className="nav-link link-dark">
+            <a href="/Alogin" className="nav-link link-dark">
               <i className=" bi me-2 fas fa-sign-out-alt fa-1x text-gray-300" ></i>
 
               Log Out

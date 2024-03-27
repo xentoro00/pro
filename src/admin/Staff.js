@@ -5,6 +5,8 @@ import Sidebar from './Sidebar';
 
 export const Staff = () => {
     const [staff, setStaff] = useState([]);
+    const [numStaff, setNumStaff] = useState(0); 
+
 
     useEffect(() => {
         getStaff();
@@ -15,6 +17,8 @@ export const Staff = () => {
             .then(res => {
                 const fetchedStaff = res.data;
                 setStaff(fetchedStaff);
+                setNumStaff(fetchedStaff.length); 
+
             })
             .catch(err => console.log(err));
     };
@@ -51,6 +55,8 @@ export const Staff = () => {
                             }
                         </tbody>
                     </table>
+                    <div>Total Clients: {numStaff}</div> 
+
                 </div>
             </div>
             </div>

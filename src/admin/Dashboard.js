@@ -1,6 +1,33 @@
-import React from 'react';
 import Sidebar from './Sidebar';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Client } from './Client'; 
+import { Staff } from './Staff';
+
 export const Dashboard = () => {
+
+  const [numClients, setNumClients] = useState(0);
+  const [numStaff, setNumStaff] = useState(0); 
+
+  useEffect(() => {
+      axios.post('http://localhost:8080/getUsers')
+          .then(res => {
+              const fetchedUsers = res.data;
+              setNumClients(fetchedUsers.length);
+          })
+          .catch(err => console.log(err));
+
+      axios.post('http://localhost:8080/getStaff')
+          .then(res => {
+              const fetchedStaff = res.data;
+              setNumStaff(fetchedStaff.length);
+          })
+          .catch(err => console.log(err));
+  },
+   []);
+  
+
+
   return (
     <div>
       <main style={{ display: 'flex', minHeight: '100vh' }}>
@@ -20,7 +47,7 @@ export const Dashboard = () => {
                         <div className=" font-weight-bold text-success text-uppercase mb-1">
                           Client
                         </div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800">40</div>
+                        <div className="h5 mb-0 font-weight-bold text-gray-800">{numClients}</div>
                       </div>
                       <div className="col-auto">
                         <i className="fas fa-users fa-2x text-gray-300"></i>
@@ -38,7 +65,7 @@ export const Dashboard = () => {
                         <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
                           Staffs
                         </div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                        <div className="h5 mb-0 font-weight-bold text-gray-800">{numStaff}</div>
                       </div>
                       <div className="col-auto">
                         <i className="fas fa-user fa-2x text-gray-300"></i>
