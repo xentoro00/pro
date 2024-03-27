@@ -64,6 +64,21 @@ app.post('/Alogin', (req, res) => {
     })
 })
 
-app.listen(8081, () => {
+app.post('/getUsers', (req, res) => {
+    const sql = "SELECT Id, name, email FROM login";
+
+
+    db.query(sql, (err, data) => {
+        if (err) {
+            return res.json("Error");
+        }
+        if (data.length > 0) {
+            return res.json(data);
+        } else {
+            return res.json("faile");
+        }
+    })
+})
+app.listen(8080, () => {
     console.log("Server is runninf");
     });

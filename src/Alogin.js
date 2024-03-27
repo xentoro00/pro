@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Validation from './AloginValidation';
 import axios from 'axios';
 import './Login.css';
 
@@ -10,27 +9,25 @@ function Login() {
         password: ''
     });
     const navigate = useNavigate();
-    const [errors, setErrors] = useState({});
 
     const handleInput = (event) => {
-        setValues(prev => ({...prev, [event.target.name]: event.target.value}));
+        setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setErrors(Validation(values));
-        if(errors.email === "" && errors.password === "") {
-            axios.post('http://localhost:8081/Alogin', values)
+
+        axios.post('http://localhost:8080/Alogin', values)
             .then(res => {
-                if(res.data === "Succes") {
+                if (res.data === "Succes") {
                     navigate('/dashboard');
                 } else {
                     alert("No record existed");
                 }
             })
             .catch(err => console.log(err));
-        }
     }
+
 
     return (
         <div>
@@ -40,14 +37,14 @@ function Login() {
                     <form action="" onSubmit={handleSubmit}>
                         <div className='mb-3'>
                             <label htmlFor="email"> Email</label>
-                            <input type="email" placeholder='Email Address' name='email' onChange={handleInput} className='form-control roundend-0'/>
-                            {errors.email && <span className='text-danger'> {errors.email}</span>}
+                            <input type="email" placeholder='Email Address' name='email' onChange={handleInput} className='form-control roundend-0' />
+                            <span className='text-danger'> </span>
                         </div>
                         <div className='mb-3'>
                             <label htmlFor="Password"> Password</label>
-                            <input type="password" placeholder='Password' name='password' onChange={handleInput} className='form-control roundend-0'/>
-                            {errors.password && <span className='text-danger'> {errors.password}</span>}
-                            <br/>
+                            <input type="password" placeholder='Password' name='password' onChange={handleInput} className='form-control roundend-0' />
+                            <span className='text-danger'></span>
+                            <br />
                         </div>
                         <button type='submit' className='btn btn-success w-100 roundend-0' ><strong> Log in </strong></button>
                     </form>
