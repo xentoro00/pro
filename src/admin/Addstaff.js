@@ -22,7 +22,7 @@ function Addstaff
     const [errors, setErrors] = useState({})
     const navigate = useNavigate();
     const handeInput = (event) => {
-        setValues(prev => ({ ...prev, [event.target.name]: [event.target.value] }))
+        setValues(prev => ({ ...prev, [event.target.name]: event.target.value }))
     }
     const handleSubmit = (event) => {
         event.preventDefault();

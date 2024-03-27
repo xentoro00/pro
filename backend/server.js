@@ -83,6 +83,28 @@ app.post('/Stafflogin', (req, res) => {
     })
 })
 
+app.post('/Userslogin', (req, res) => {
+    const sql = "INSERT INTO login (`name`, `email`, `staff_number`, `gender`, `phone_number`, `password`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    const values = [
+        req.body.name,
+        req.body.email,
+        req.body.staff_number,
+        req.body.gender,
+        req.body.phonenumber, 
+        req.body.password,
+        new Date() 
+    ];
+    
+    db.query(sql, values, (err, data) => { 
+        if(err){
+            return res.json("Error");
+        }
+        return res.json(data);
+    })
+})
+
+
+
 
 app.post('/getStaff', (req, res) => {
     const sql = "SELECT * FROM staffi";
@@ -100,9 +122,25 @@ app.post('/getStaff', (req, res) => {
     })
 })
 
+app.post('/getUsers', (req, res) => {
+    const sql = "SELECT * FROM login";
+
+
+    db.query(sql, (err, data) => {
+        if (err) {
+            return res.json("Error");
+        }
+        if (data.length > 0) {
+            return res.json(data);
+        } else {
+            return res.json("faile");
+        }
+    })
+})
+
 app.delete("/deleteStaff/:id", (req, res) => {
     const id = req.params.id;
-    const sqlDelete = "DELETE FROM staff WHERE id = ?";
+    const sqlDelete = "DELETE FROM staffi WHERE id = ?";
   
     db.query(sqlDelete, id, (err, result) => {
         if (err) {
@@ -110,9 +148,11 @@ app.delete("/deleteStaff/:id", (req, res) => {
             return res.status(500).json({ error: "Internal server error" });
         }
 
-        return res.status(200).json({ message: "Staff deleted successfully" });
+        return res.status(200).json({ message: "User deleted successfully" });
     });
 });
+
+
 
 
 app.delete("/deleteUsers/:id", (req, res) => {
