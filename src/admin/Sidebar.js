@@ -18,7 +18,7 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="#" className="nav-link link-dark">
+            <a href="./client" className="nav-link link-dark">
               <svg className="bi me-2" width="16" height="16"><i className="fas fa-user"></i></svg>
               Clients
             </a>

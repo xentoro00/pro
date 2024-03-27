@@ -21,7 +21,7 @@ export const Client = () => {
             <main style={{ display: 'flex', minHeight: '100vh' }}>
                 <Sidebar />
 
-                <table class="table">
+                <table class="table table-hover table-bordered table-striped dataTable no-footer">
                     <caption>List of users</caption>
                     <thead>
                         <tr>
