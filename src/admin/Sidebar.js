@@ -21,21 +21,29 @@ export default function Sidebar() {
           </li>
           <li>
             <Dropdown>
-              <Dropdown.Toggle variant="link" id="dropdown-clients">
+              
+              <Dropdown.Toggle variant="link" id="dropdown-clients" className="nav-link link-dark">
               <i className=" bi me-2 fas fa-user fa-1x text-gray-300 bg-light" ></i>
                 Clients
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item href="/add-client">Add Client</Dropdown.Item>
+                <Dropdown.Item href="/addclient">Add Client</Dropdown.Item>
                 <Dropdown.Item href="/client">Manage Clients</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </li>
           <li>
-            <a href="#" className="nav-link link-dark">
-            <i className=" bi me-2 fas fa-users fa-1x text-gray-300" ></i>
-              Staff
-            </a>
+            <Dropdown>
+              
+              <Dropdown.Toggle variant="link" id="dropdown-clients" className="nav-link link-dark">
+              <i className=" bi me-2 fas fa-user fa-1x text-gray-300 bg-light" ></i>
+                Staff
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="/addstaff">Add Staff</Dropdown.Item>
+                <Dropdown.Item href="/staff">Manage Staff</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </li>
           <li>
             <a href="#" className="nav-link link-dark">
@@ -84,7 +92,7 @@ export default function Sidebar() {
         <hr />
      
         <Dropdown>
-              <Dropdown.Toggle variant="link" id="dropdown-clients">
+              <Dropdown.Toggle variant="link" id="dropdown-clients" className="nav-link link-dark">
                 <svg className="bi me-2" width="16" height="16"><i className="fas fa-user"></i></svg>
                 Clients
               </Dropdown.Toggle>

@@ -8,6 +8,8 @@ const Header = () => {
         <a href="/"><i className="fas fa-building"></i> Business</a>
         <a href="/"><i className="fas fa-user"></i> Personal</a>
         <a href="/Alogin"><i className="fas fa-user"></i> Admin Login</a>
+        <a href="/Stafflogin"><i className="fas fa-user"></i> Staff Login</a>
+
 
       </div>
 
