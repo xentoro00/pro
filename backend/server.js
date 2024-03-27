@@ -94,7 +94,34 @@ app.post('/getStaff', (req, res) => {
     })
 })
 
+app.delete("/deleteStaff/:id", (req, res) => {
+    const id = req.params.id;
+    const sqlDelete = "DELETE FROM staff WHERE id = ?";
+  
+    db.query(sqlDelete, id, (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
 
+        return res.status(200).json({ message: "Staff deleted successfully" });
+    });
+});
+
+
+app.delete("/deleteUsers/:id", (req, res) => {
+    const id = req.params.id;
+    const sqlDelete = "DELETE FROM login WHERE id = ?";
+  
+    db.query(sqlDelete, id, (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+
+        return res.status(200).json({ message: "User deleted successfully" });
+    });
+});
 
 
 app.post('/getUsers', (req, res) => {
@@ -112,6 +139,8 @@ app.post('/getUsers', (req, res) => {
         }
     })
 })
+
+
 
 
 app.listen(8080, () => {

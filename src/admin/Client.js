@@ -19,6 +19,16 @@ export const Client = () => {
             })
             .catch(err => console.log(err));
     };
+    const handleDelete = (id) => {
+        axios.delete(`http://localhost:8080/deleteUsers/${id}`)
+            .then(res => {
+                getUsers();
+            })
+            .catch(err => console.log(err));
+    };
+
+    const handleEdit = (id) => {
+    };
 
     return (
         <div> 
@@ -37,16 +47,18 @@ export const Client = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
-                                        users.map((item, index) => (
-                                            <tr key={item.Id}>
-                                                <th scope="row">{item.Id}</th>
-                                                <td>{item.name}</td>
-                                                <td>{item.email}</td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
+    {Array.isArray(users) && users.map((item, index) => (
+        <tr key={item.Id}>
+            <th scope="row">{item.Id}</th>
+            <td>{item.name}</td>
+            <td>{item.email}</td>
+            <td>
+                <button onClick={() => handleEdit(item.Id)} className="btn btn-primary mr-2">Edit</button>
+                <button onClick={() => handleDelete(item.Id)} className="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+    ))}
+</tbody>
                             </table>
                             <div>Total Clients: {numClients}</div> 
                         </div>
