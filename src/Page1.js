@@ -116,7 +116,7 @@ export const Page1 = () => {
             <div className="input-box message-box">
                 <input type="text" name="message" placeholder="Enter your message"/> 
             </div>
-            <button className="send-btn" type="submit">Send now</button>
+            {/* <button className="send-btn" type="submit">Send now</button> */}
         </form>
     </div>
 </div>
