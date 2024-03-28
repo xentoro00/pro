@@ -187,3 +187,49 @@ text-align: center;
 #sh{
     color: red;
 }
+
+.contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.right-side {
+    max-width: 400px; 
+  }
+  
+  .topic-text {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .input-box {
+    margin-bottom: 15px; 
+  }
+  
+  .input-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .message-box input {
+    height: 100px; 
+  }
+  
+  #but {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+#but:hover {
+    background-color: #0056b3;
+  }
+  
