@@ -59,15 +59,15 @@ export const Page1 = () => {
           <div className="container">
             <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
               <div className="col-12 col-lg-6 col-xl-5">
-                <img className="img-fluid rounded" src="imgs/11.jfif" alt="foto" />
+                <img className="img-fluid rounded"  style={{ width: '300%',height: '%', fontSize: '100px' }} src="imgs/happy card.png" alt="foto" />
 
               </div>
               <div className="col-12 col-lg-6 col-xl-7">
                 <div className="row justify-content-xl-center">
                   <div className="col-12 col-xl-11">
-                    <h2 className="h1 mb-3">Who Are We?</h2>
-                    <p className="lead fs-4 text-secondary mb-3">We help people to build incredible brands and superior products. Our perspective is to furnish outstanding captivating services.</p>
-                    <p className="mb-5">Nullam gravida orci ac luctus molestie. Fusce finibus congue erat, non aliquam magna tincidunt at. Aenean lacinia arcu ex, sed pharetra nibh porta a. Curabitur vel consequat nibh, ac interdum nisl. Nunc pulvinar nec massa vitae sollicitudin.</p>
+                    <h2 id="e" className="h1 mb-3">Who Are We?</h2>
+                    <p className="lead fs-4 text-secondary mb-3">You don't run a business hoping you don't have a recession</p>
+                    <p className="mb-5">E-banking is a financial institution dedicated to providing a wide range of financial services to individuals, businesses, and institutions. With a focus on fostering financial well-being and facilitating economic growth, E-Banking offers various banking products and services tailored to meet the diverse needs of its customers.</p>
                     <div className="row gy-4 gy-md-0 gx-xxl-5X">
                       <div className="col-12 col-md-6">
                         <div className="d-flex">
@@ -75,7 +75,7 @@ export const Page1 = () => {
 
                           </div>
                           <div>
-                            <h4 className="mb-3">Versatile Brand</h4>
+                            <h4 id="b" className="mb-3">Versatile Brand</h4>
                             <p className="text-secondary mb-0">We are crafting a digital method that subsists life across all mediums.</p>
                           </div>
                         </div>
@@ -88,7 +88,7 @@ export const Page1 = () => {
                             </svg>
                           </div>
                           <div>
-                            <h4 className="mb-3">Digital Agency</h4>
+                            <h4 id="a" className="mb-3">Digital Agency</h4>
                             <p className="text-secondary mb-0">We believe in innovation by merging primary with elaborate ideas.</p>
                           </div>
                         </div>
