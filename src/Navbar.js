@@ -6,7 +6,7 @@ const Navbar = () => {
     <nav>
       <div className="left-nav">
         <a href="/">
-          <img src="imgs/e-banking-favicon-black.png" alt="logo" width="300px" height="200px" />
+          <img src="imgs/e-banking-favicon-black.png" alt="logo" width="250px" height="200px" />
         </a>
       </div>
       <div className="middle-nav">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Sidebar from './Sidebar';
+import { useNavigate } from 'react-router-dom';
+
 
 export const Staff = () => {
     const [staff, setStaff] = useState([]);
@@ -9,6 +11,10 @@ export const Staff = () => {
     useEffect(() => {
         getStaff();
     }, []);
+
+    const navigate = useNavigate();
+
+
 
     const getStaff = () => {
         axios.post('http://localhost:8080/getStaff')
@@ -29,8 +35,13 @@ export const Staff = () => {
             })
             .catch(err => console.log(err));
     };
-    const handleEdit = (id) => {
-    };
+
+    const redirectToEditPage = (itemId) => {
+        const editUrl = `/EditStaff/${itemId}`;
+        window.location.href = editUrl;
+      };
+   
+    
 
     return (
         <div> 
@@ -63,8 +74,8 @@ export const Staff = () => {
                 <td>{item.email}</td>
                 <td>{item.created_at}</td>
                 <td>
-                    <button onClick={() => handleEdit(item.Id)} className="btn btn-primary mr-2">Edit</button>
-                    <button onClick={() => handleDelete(item.id)} className="btn btn-danger">Delete</button>
+                <button onClick={() => redirectToEditPage(item.id)} className="btn btn-primary mr-2">Edit</button>
+                <button onClick={() => handleDelete(item.id)} className="btn btn-danger">Delete</button>
                 </td>
             </tr>
         ))}

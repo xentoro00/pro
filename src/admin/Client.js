@@ -43,7 +43,7 @@ export const Client = () => {
         <tr>
             <th scope="col">#</th>
             <th scope="col">Emri</th>
-            <th scope="col">Staff Number</th>
+            <th scope="col">Client Number</th>
             <th scope="col">Gender</th>
             <th scope="col">email</th>
             <th scope="col">Created</th>

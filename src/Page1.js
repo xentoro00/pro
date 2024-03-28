@@ -2,40 +2,39 @@ import React from 'react';
 import Header from './Header'; 
 import Navbar from './Navbar'; 
 
-
 export const Page1 = () => {
   return (
-    <div>
-
-<Header />
-    <Navbar />
-      
+    <><div>
+      <Header />
+      <Navbar />
 
       <div className="container">
-
         <div className="desc">
           <h3><i className="fas fa-globe"></i> Welcome to E-Banking</h3>
-
-
-          <h1 >Stay in Control Your <br /><span className="highlight">Finances</span> With E-Banking</h1>
-          <p>pershkrim</p>
-
+          <h1>Stay in Control Your <br /><span className="highlight">Finances</span> With E-Banking</h1>
+          {/* <p>pershkrim</p> */}
           <a href="/">Create Account</a>
         </div>
+        <img className="float-end m-5 ml-3" style={{ width: '60%',height: '40rem', fontSize: '100px' }} src="imgs/11.jfif" alt="foto" />
       </div>
+    </div>
+    
+    
+   <center> <h1 id='sh'>Sherbimet tona</h1></center>
 
-
-
-      <div className="row justify-content-between">
+    <div className="row justify-content-between">
         <div className="col">
           <div className="card" style={{ width: '18rem', fontSize: '100px' }}>
             <a style={{ textAlign: 'center', color: 'red' }} href="/"><i className="fas fa-exchange-alt"></i></a>
+
+
 
             <div className="card-body">
               <p className="card-text">Money Transfer</p>
             </div>
           </div>
         </div>
+
 
         <div className="col">
           <div className="card" style={{ width: '18rem', fontSize: '100px' }}>
@@ -55,14 +54,7 @@ export const Page1 = () => {
           </div>
         </div>
 
-        <div className="col">
-          <div className="card" style={{ width: '18rem', fontSize: '100px' }}>
-            <a style={{ textAlign: 'center', color: 'red' }} href="/"><i className="fas fa-credit-card"></i></a>
-            <div className="card-body">
-              <p className="card-text">Online Payment</p>
-            </div>
-          </div>
-        </div>
+       
         <section className="py-3 py-md-5 py-xl-8">
           <div className="container">
             <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
@@ -229,14 +221,16 @@ export const Page1 = () => {
 
 
 
-      </div>
+      </div></>
+       
 
 
 
 
 
 
-    </div>
+
+   
 
   );
 }
