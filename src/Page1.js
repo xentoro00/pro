@@ -102,23 +102,28 @@ export const Page1 = () => {
         </section>
 
        <center> <h2>Contact Us</h2></center>
-
        <div className='contact'>
-    <div className="right-side">
+       <div className="right-side">
+       
         <p>If you have any work from me or any types of queries related to my tutorial, you can send me a message from here. It's my pleasure to help you.</p>
         <form action="/" method="post">
             <div className="input-box">
-                <input type="text" name="name" placeholder="Enter your name"/>
+             <input type="text" name="name" placeholder="Enter your name"/>
             </div>
             <div className="input-box">
-                <input type="text" name="email" placeholder="Enter your email"/>
+             <input type="text" name="email" placeholder="Enter your email"/>
             </div>
-            <div className="input-box message-box">
+                <div className="input-box message-box">
+           
                 <input type="text" name="message" placeholder="Enter your message"/> 
-            </div>
-            <button className="send-btn" type="submit">Send now</button>
+                <button id="l" >Send</button>
+      
+                 </div>
+                
         </form>
+        
     </div>
+   
 </div>
 
 
