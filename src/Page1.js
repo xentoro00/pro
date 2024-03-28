@@ -15,14 +15,9 @@ export const Page1 = () => {
           {/* <p>pershkrim</p> */}
           <a href="/">Create Account</a>
         </div>
-        <img className="float-end m-5 ml-3" style={{ width: '60%',height: '40rem', fontSize: '100px' }} src="imgs/11.jfif" alt="foto" />
+        <img className="float-end m-5 ml-3" style={{ width: '60%', height: '40rem', fontSize: '100px' }} src="imgs/11.jfif" alt="foto" />
       </div>
-    </div>
-    
-    
-   <center> <h1 id='sh'>Sherbimet tona</h1></center>
-
-    <div className="row justify-content-between">
+    </div><center> <h1 id='sh'>Sherbimet tona</h1></center><div className="row justify-content-between">
         <div className="col">
           <div className="card" style={{ width: '18rem', fontSize: '100px' }}>
             <a style={{ textAlign: 'center', color: 'red' }} href="/"><i className="fas fa-exchange-alt"></i></a>
@@ -54,12 +49,12 @@ export const Page1 = () => {
           </div>
         </div>
 
-       
+
         <section className="py-3 py-md-5 py-xl-8">
           <div className="container">
             <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
               <div className="col-12 col-lg-6 col-xl-5">
-                <img className="img-fluid rounded"  style={{ width: '300%',height: '%', fontSize: '100px' }} src="imgs/happy card.png" alt="foto" />
+                <img className="img-fluid rounded" style={{ width: '300%', height: '%', fontSize: '100px' }} src="imgs/happy card.png" alt="foto" />
 
               </div>
               <div className="col-12 col-lg-6 col-xl-7">
@@ -101,40 +96,37 @@ export const Page1 = () => {
           </div>
         </section>
 
-       <center> <h2>Contact Us</h2></center>
-       <div className='contact'>
-       <div className="right-side">
-       
-        <p>If you have any work from me or any types of queries related to my tutorial, you can send me a message from here. It's my pleasure to help you.</p>
-        <form action="/" method="post">
-            <div className="input-box">
-             <input type="text" name="name" placeholder="Enter your name"/>
-            </div>
-            <div className="input-box">
-             <input type="text" name="email" placeholder="Enter your email"/>
-            </div>
-                <div className="input-box message-box">
-           
-                <input type="text" name="message" placeholder="Enter your message"/> 
-<<<<<<< HEAD
-                <button id="l" >Send</button>
-      
-                 </div>
-                
-=======
-            </div>
-            {/* <button className="send-btn" type="submit">Send now</button> */}
->>>>>>> 3b3047c42f601378a624d9f68507abecd070b7f4
-        </form>
-        
+        <center> <h2>Contact Us</h2></center>
+        <div className='contact'>
+          <div className="right-side">
+
+            <p>If you have any work from me or any types of queries related to my tutorial, you can send me a message from here. It's my pleasure to help you.</p>
+            <form action="/" method="post">
+              <div className="input-box">
+                <input type="text" name="name" placeholder="Enter your name" />
+              </div>
+              <div className="input-box">
+                <input type="text" name="email" placeholder="Enter your email" />
+              </div>
+              <div className="input-box message-box">
+
+                <input type="text" name="message" placeholder="Enter your message" />
+
+                <button id="l">Send</button>
+
+              </div>
+            </form>
+
+
+
     </div>
-   
+
 </div>
 
 
 
-       
-        
+
+
 
       </div></>
        
@@ -149,5 +141,4 @@ export const Page1 = () => {
 
   );
 }
-
 
