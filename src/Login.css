@@ -80,3 +80,17 @@ body {
 .form-container .create-account-btn:hover {
   background-color: #e9e9e9;
 }
+
+
+#bie{
+  margin-top: 110px;
+  align-items: center;
+  justify-content: center;
+}
+
+#biee{
+  margin-top: 290px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
