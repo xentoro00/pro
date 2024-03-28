@@ -65,7 +65,7 @@ function Login() {
                             <br />
                         </div>
 
-                        <button id="biee" type='submit' className='btn btn-success mx-auto w-60'><strong> Log in </strong></button>
+                        <button type='submit' className='btn btn-success w-100'><strong> Log in </strong></button>
                         <p> You are agree to your terms and policies</p>
                         <Link to="/signup" className='btn btn-default w-100 border w-100 bg-light roundend-0 text-decoration-none'> Create Account </Link>
 

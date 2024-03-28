@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header'; 
 import Navbar from './Navbar'; 
+import './page1.css'
 
 export const Page1 = () => {
   return (
@@ -12,7 +13,6 @@ export const Page1 = () => {
         <div className="desc">
           <h3><i className="fas fa-globe"></i> Welcome to E-Banking</h3>
           <h1>Stay in Control Your <br /><span className="highlight">Finances</span> With E-Banking</h1>
-          {/* <p>pershkrim</p> */}
           <a href="/">Create Account</a>
         </div>
         <img className="float-end m-5 ml-3" style={{ width: '60%', height: '40rem', fontSize: '100px' }} src="imgs/11.jfif" alt="foto" />

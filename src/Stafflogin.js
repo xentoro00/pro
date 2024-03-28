@@ -46,7 +46,7 @@ function Login() {
                             <span className='text-danger'></span>
                             <br />
                         </div>
-                        <button id="bie" type='submit' className='btn btn-success mx-auto w-60'><strong> Log in </strong></button>
+                        <button type='submit' className='btn btn-success w-100'><strong> Log in </strong></button>
                     </form>
                 </div>
             </div>
