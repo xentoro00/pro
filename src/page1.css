@@ -164,51 +164,50 @@ text-align: center;
   color: red;
 }
 
-.contact{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.contact {
+  display: flex;
+  margin-right: 20px;
+  align-items: center;
+  background-image: url(fotoo.png);
+  background-attachment: fixed;
+  background-size: 100% 100%;
 }
 
-
 .right-side {
-    max-width: 400px; 
-  }
-  
-  .topic-text {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .input-box {
-    margin-bottom: 15px; 
-  }
-  
-  .input-box input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .message-box input {
-    height: 100px; 
-  }
-  
+  max-width: 400px;
+  margin-left: 20%; /* Vendos pjesën e djathtë në fund */
+}
 
-  #l{
-    background-color: red;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    position: relative;
-    margin-top: 50px;
-  }
-  
-#but:hover {
-    background-color: #0056b3;
-  }
-  
+.topic-text {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.input-box {
+  margin-bottom: 15px;
+  margin-right: auto; /* Vendos pjesën e majtë në fund */
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.message-box input {
+  height: 100px; 
+}
+
+#l {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  margin-top: 50px;
+}
+

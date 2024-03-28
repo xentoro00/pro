@@ -96,10 +96,9 @@ export const Page1 = () => {
           </div>
         </section>
 
-        <center> <h2>Contact Us</h2></center>
         <div className='contact'>
           <div className="right-side">
-
+          <h2>Contact Us</h2>
             <p>If you have any work from me or any types of queries related to my tutorial, you can send me a message from here. It's my pleasure to help you.</p>
             <form action="/" method="post">
               <div className="input-box">
@@ -122,6 +121,7 @@ export const Page1 = () => {
     </div>
 
 </div>
+
 
 
 
