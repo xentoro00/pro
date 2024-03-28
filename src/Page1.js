@@ -101,125 +101,30 @@ export const Page1 = () => {
           </div>
         </section>
 
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-12">
-              <div className="section-title text-center mb-4 pb-2">
-                <h4 className="title mb-4">Our Features</h4>
-                <p className="text-muted para-desc mx-auto mb-0">There is now an abundance of readable dummy texts. These are usually used when a text is required purely to fill a space.</p>
-              </div>
+       <center> <h2>Contact Us</h2></center>
+
+       <div className='contact'>
+    <div className="right-side">
+        <p>If you have any work from me or any types of queries related to my tutorial, you can send me a message from here. It's my pleasure to help you.</p>
+        <form action="/" method="post">
+            <div className="input-box">
+                <input type="text" name="name" placeholder="Enter your name"/>
             </div>
-          </div>
-
-          <div className="row">
-            <div className="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-              <div className="card service-wrapper rounded border-0 shadow p-4">
-                <div className="icon text-center text-custom h1 shadow rounded bg-white">
-                  <i className="fas fa-mobile-alt"></i>
-                </div>
-                <div className="content mt-4">
-                  <h5 className="title">Mobile Banking </h5>
-                  <p className="text-muted mt-3 mb-0">It is </p>
-                  <div className="mt-3">
-                    <a href="javascript:void(0)" className="text-custom">Read More <i className="mdi mdi-chevron-right"></i></a>
-                  </div>
-                </div>
-                <div className="big-icon h1 text-custom">
-                </div>
-              </div>
+            <div className="input-box">
+                <input type="text" name="email" placeholder="Enter your email"/>
             </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-              <div className="card service-wrapper rounded border-0 shadow p-4">
-                <div className="icon text-center text-custom h1 shadow rounded bg-white">
-                  <i className="fas fa-desktop"></i>
-                </div>
-                <div className="content mt-4">
-                  <h5 className="title">Online Business</h5>
-                  <p className="text-muted mt-3 mb-0">It is </p>
-                  <div className="mt-3">
-                    <a href="javascript:void(0)" className="text-custom">Read More <i className="mdi mdi-chevron-right"></i></a>
-                  </div>
-                </div>
-                <div className="big-icon h1 text-custom">
-                </div>
-              </div>
+            <div className="input-box message-box">
+                <input type="text" name="message" placeholder="Enter your message"/> 
             </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-              <div className="card service-wrapper rounded border-0 shadow p-4">
-                <div className="icon text-center text-custom h1 shadow rounded bg-white">
-                  <i className="fas fa-home"></i>
-                </div>
-                <div className="content mt-4">
-                  <h5 className="title">Home Loan</h5>
-                  <p className="text-muted mt-3 mb-0">It is </p>
-                  <div className="mt-3">
-                    <a href="javascript:void(0)" className="text-custom">Read More <i className="mdi mdi-chevron-right"></i></a>
-                  </div>
-                </div>
-                <div className="big-icon h1 text-custom">
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-              <div className="card service-wrapper rounded border-0 shadow p-4">
-                <div className="icon text-center text-custom h1 shadow rounded bg-white">
-                  <i className="fab fa-cc-mastercard"></i>
-                </div>
-                <div className="content mt-4">
-                  <h5 className="title">Your mastercard</h5>
-                  <p className="text-muted mt-3 mb-0">It is </p>
-                  <div className="mt-3">
-                    <a href="javascript:void(0)" className="text-custom">Read More <i className="mdi mdi-chevron-right"></i></a>
-                  </div>
-                </div>
-                <div className="big-icon h1 text-custom">
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-              <div className="card service-wrapper rounded border-0 shadow p-4">
-                <div className="icon text-center text-custom h1 shadow rounded bg-white">
-                  <i className="fas fa-exchange-alt"></i>
-                </div>
-                <div className="content mt-4">
-                  <h5 className="title">Money Exchange</h5>
-                  <p className="text-muted mt-3 mb-0">It is </p>
-                  <div className="mt-3">
-                    <a href="javascript:void(0)" className="text-custom">Read More <i className="mdi mdi-chevron-right"></i></a>
-                  </div>
-                </div>
-                <div className="big-icon h1 text-custom">
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-              <div className="card service-wrapper rounded border-0 shadow p-4">
-                <div className="icon text-center text-custom h1 shadow rounded bg-white">
-                  <i className="fas fa-hands-helping"></i>
-                </div>
-                <div className="content mt-4">
-                  <h5 className="title">Support 24/7</h5>
-                  <p className="text-muted mt-3 mb-0">It is </p>
-                  <div className="mt-3">
-                    <a href="javascript:void(0)" className="text-custom">Read More <i className="mdi mdi-chevron-right"></i></a>
-                  </div>
-                </div>
-                <div className="big-icon h1 text-custom">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            <button className="send-btn" type="submit">Send now</button>
+        </form>
+    </div>
+</div>
 
 
 
-
-
+       
+        
 
       </div></>
        
