@@ -11,12 +11,12 @@ const Navbar = () => {
       </div>
       <div className="middle-nav">
         <ul>
-          <li>Home</li>
-          <li>Loans</li>
-          <li>About Us</li>
-          <li>Services</li>
-          <li>Pages</li>
-          <li>Blog</li>
+        <li><a className="hoverable" href="#">Home</a></li>
+      <li><a className="hoverable" href="#">Loans</a></li>
+      <li><a className="hoverable" href="#">About Us</a></li>
+      <li><a className="hoverable" href="#">Services</a></li>
+      <li><a className="hoverable" href="#">Pages</a></li>
+      <li><a className="hoverable" href="#">Blog</a></li>
         </ul>
       </div>
 

@@ -1,7 +1,13 @@
 import React from 'react';
 import Header from './Header'; 
 import Navbar from './Navbar'; 
+import Carousel from 'react-bootstrap/Carousel';
+import img1 from './imgs/Designer.png';
+import img2 from './imgs/Designerr.png';
+import img3 from './imgs/Designer3.png';
 import './page1.css'
+        {/* <img className="float-end m-5 ml-3" style={{ width: '60%', height: '40rem', fontSize: '100px' }} src="imgs/11.jfif" alt="foto" /> */}
+
 
 export const Page1 = () => {
   return (
@@ -9,14 +15,44 @@ export const Page1 = () => {
       <Header />
       <Navbar />
 
-      <div className="container">
+    <div>
+      {/* <div className="container">
         <div className="desc">
           <h3><i className="fas fa-globe"></i> Welcome to E-Banking</h3>
           <h1>Stay in Control Your <br /><span className="highlight">Finances</span> With E-Banking</h1>
           <a href="/">Create Account</a>
         </div>
-        <img className="float-end m-5 ml-3" style={{ width: '60%', height: '40rem', fontSize: '100px' }} src="imgs/11.jfif" alt="foto" />
+      </div> */}
+      <Carousel>
+        
+        <Carousel.Item>
+          <img style={{ height:'90vh'}} className="d-block w-100" src={img1} alt="First slide" />
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img style={{height:'90vh'}} className="d-block w-100" src={img2} alt="Second slide" />
+          <Carousel.Caption>
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img style={{height:'90vh'}} className="d-block w-100" src={img3} alt="Third slide" />
+          <Carousel.Caption>
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
       </div>
+
+
+    
+
+
     </div><center> <h1 id='sh'>Sherbimet tona</h1></center><div className="row justify-content-between">
         <div className="col">
           <div className="card" style={{ width: '18rem', fontSize: '100px' }}>

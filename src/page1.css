@@ -168,7 +168,7 @@ text-align: center;
   display: flex;
   margin-right: 20px;
   align-items: center;
-  background-image: url(fotoo.png);
+  /* background-image: url(Desinger.png); */
   background-attachment: fixed;
   background-size: 100% 100%;
 }
@@ -210,4 +210,6 @@ text-align: center;
   position: relative;
   margin-top: 50px;
 }
+
+
 

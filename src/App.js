@@ -6,6 +6,7 @@ import { Dashboard } from './admin/Dashboard';
 import { Client } from './admin/Client';
 import { Staff } from './admin/Staff';
 
+
 import Login from './Login'
 import Signup from './Signup'
 import Alogin from './Alogin'
@@ -13,6 +14,8 @@ import Stafflogin from './Stafflogin'
 import AddClient from './admin/AddClient';
 import Addstaff from './admin/Addstaff';
 import EditStaff from './admin/EditStaff';
+import CarouselPage from './CarouselPage'
+
 
 
 
@@ -37,6 +40,9 @@ function App() {
         <Route path="/addclient" element={<AddClient />} />
         <Route path="/addstaff" element={<Addstaff />} />
         <Route path="/editstaff" element={<EditStaff />} />
+        <Route path="/CarouselPage" element={<CarouselPage />} />
+
+
 
 
 
