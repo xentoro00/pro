@@ -33,6 +33,7 @@ const Navbar = () => {
   const handleClick = (id) => {
     setActiveLink(id);
   };
+  
 
   return (
     <nav>
