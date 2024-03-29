@@ -21,9 +21,13 @@ const Navbar = () => {
       </div>
 
       <div className="right-nav">
-        <ul>
-          <li id="ap">Apply Now</li>
-        </ul>
+        <div>
+            <a href="#" class="btn yellow">
+                <span>Apply Now</span>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </a>
+        </div>
+    
       </div>
     </nav>
   );

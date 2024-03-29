@@ -39,6 +39,9 @@ display: flex;
 justify-content: space-between; 
 align-items: center; 
 padding: 20px;
+list-style-type: none; 
+
+
 /* border: 1px solid red; */
 }
 
@@ -77,6 +80,7 @@ display: flex;
 list-style-type: none; 
 margin: 0;
 padding: 0;
+
 }
 
 .middle-nav ul li {
@@ -210,6 +214,76 @@ text-align: center;
   position: relative;
   margin-top: 50px;
 }
+div {
+  position: relative;
+}
 
 
 
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width:220.52px;
+  min-height: 56px;
+  font-family: calibri;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.5s linear;
+}
+
+span {
+  font-size: 30px;
+  font-weight: 700;
+  padding: 0 10px;
+}
+
+ion-icon {
+  font-size: 2em;
+  transition: all 0.5s linear;
+}
+
+.btn:hover ion-icon {
+  transform: rotate(-90deg);
+
+}
+
+
+
+.yellow {
+  background: none;
+  color: black;
+}
+
+.yellow::before {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 100%;
+  background-color:#d61212;
+  position: absolute;
+  border-radius: 100px;
+  left: 1em;
+  z-index: -1;
+  transition: all 600ms ease;
+}
+
+.yellow:hover::before {
+  width: 100%;
+}
+
+.yellow:hover ion-icon {
+  transform: translateX(10px);
+}
+.middle-nav ul li a {
+  text-decoration: none; 
+  color: #000; 
+  transition: color 0.3s ease; 
+}
+
+.middle-nav ul li a:hover {
+  color: #ff4500; 
+}
