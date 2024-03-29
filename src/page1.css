@@ -315,3 +315,10 @@ ion-icon {
 }
 
 
+
+
+
+.middle-nav a:active {
+  color: red;
+}
+
