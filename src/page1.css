@@ -1,3 +1,4 @@
+
 header{
     display: flex;
     justify-content: space-between;
@@ -172,7 +173,7 @@ text-align: center;
   display: flex;
   margin-right: 20px;
   align-items: center;
-  /* background-image: url(Desinger.png); */
+  background-image: url(fotoo.png); 
   background-attachment: fixed;
   background-size: 100% 100%;
 }
@@ -324,3 +325,34 @@ ion-icon {
 }
 
 
+.footer {
+  background-color: #ff0000; /* Ngjyra e kuqe */
+  color: #ffffff; /* Teksti bëhet i bardhë */
+  padding: 10px 0; /* Pak padding për lart dhe poshtë */
+  text-align: center;
+}
+
+.containr {
+  max-width: 1200px; /* Ndryshoni gjërësinë e kontejnerit sipas nevojës */
+  margin: 0 auto; /* Qendroj kontejnerin */
+}
+
+.footer-content {
+  display: flex; /* Përdorim fleksibilitetin për të vendosur ikonat dhe përshkrimin në një rresht */
+  align-items: center; /* Qendroj përmbajtjen në mes */
+  justify-content: space-between; /* Vendos ikonat dhe përshkrimin në të dy anët e footer-it */
+}
+
+.social-icons {
+  font-size: 24px; /* Madhësia e ikonave */
+}
+
+.social-icon {
+  color: #ffffff; /* Ngjyra e ikonave */
+  text-decoration: none; /* Hiq dekorimin e tekstit */
+  margin-right: 10px; /* Pak hapësirë midis ikonave */
+}
+
+.footer-description {
+  margin: 0; /* Fshij margjinin parazgjedhur për paragrafin */
+}
