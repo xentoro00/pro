@@ -100,6 +100,7 @@ export default function Sidebar() {
                 <Dropdown.Item href="/settings">Settings</Dropdown.Item>
                 <Dropdown.Item href="/profile">Profile</Dropdown.Item>
                 <Dropdown.Item href="/signout">Sign Out</Dropdown.Item>
+                <Dropdown.Item href="/ContactUs">ContactUs</Dropdown.Item>
 
               </Dropdown.Menu>
             </Dropdown>

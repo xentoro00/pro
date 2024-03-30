@@ -5,6 +5,8 @@ import { Page1 } from './Page1';
 import { Dashboard } from './admin/Dashboard';
 import { Client } from './admin/Client';
 import { Staff } from './admin/Staff';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 import Login from './Login'

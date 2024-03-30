@@ -192,3 +192,11 @@ app.post('/getUsers', (req, res) => {
 app.listen(8080, () => {
     console.log("Server is runninf");
     });
+
+    app.get('/',(req,res)=>{
+        const sql ="SELECT * FROM `contact`";
+        db.query(sql,(err,result)=>{
+            if(err) return res.json({Message: "Error inside server "});
+            return res.json(result);
+        })
+    })

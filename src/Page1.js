@@ -5,6 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import img1 from './imgs/Designer.png';
 import img2 from './imgs/Designerr.png';
 import img3 from './imgs/Designer3.png';
+
 import './page1.css'
         {/* <img className="float-end m-5 ml-3" style={{ width: '60%', height: '40rem', fontSize: '100px' }} src="imgs/11.jfif" alt="foto" /> */}
 
@@ -131,7 +132,7 @@ export const Page1 = () => {
             </div>
           </div>
         </section>
-
+        
         <div className='contact'>
           <div className="right-side">
           <h2>Contact Us</h2>
@@ -147,19 +148,32 @@ export const Page1 = () => {
 
                 <input type="text" name="message" placeholder="Enter your message" />
 
-                <button id="l">Send</button>
-
+                <form action="ContactUs">
+               <button id="l">Log In</button>
+        </form>  
+          
               </div>
             </form>
 
 
-
+      
     </div>
-
+   
+    
 </div>
 
-
-
+<footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="social-icons">
+          <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="footer-description">E-banking</p>
+      </div>
+    </div>
+  </footer>
 
 
 
