@@ -285,7 +285,7 @@ ion-icon {
 }
 
 .middle-nav ul li a:hover {
-  color: #ff4500; 
+  /* color: #ff4500;  */
 }
 
 
@@ -318,7 +318,9 @@ ion-icon {
 
 
 
-.middle-nav a:active {
-  color: red;
+.middle-nav a:hover, a:active {
+  background-color: red;
+  color: black;
 }
+
 
