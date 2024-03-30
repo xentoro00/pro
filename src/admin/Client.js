@@ -46,6 +46,7 @@ export const Client = () => {
             <th scope="col">Emri</th>
             <th scope="col">Email</th>
             <th scope="col">Birthday</th>
+            <th scope="col">banknumber</th>
             <th scope="col">Gender</th>
             <th scope="col">PhoneNumber</th>
             <th scope="col">Edit</th> 
@@ -59,6 +60,7 @@ export const Client = () => {
                 <td>{item.name + ' ' + item.lastname}</td>
                 <td>{item.email}</td>
                 <td>{item.dateb}</td>
+                <td>{item.banknumber}</td>
                 <td>{item.gender}</td>
                 <td>{item.phonenumber}</td>
                 <td>
