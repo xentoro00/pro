@@ -46,10 +46,10 @@ export default function Sidebar() {
             </Dropdown>
           </li>
           <li>
-            <a href="#" className="nav-link link-dark">
+            <a href="/ContactUs" className="nav-link link-dark">
               <i className=" bi me-2 fas fa-user fa-1x text-gray-300" ></i>
 
-              Accounts
+              ContactUs
             </a>
           </li>
           <li>

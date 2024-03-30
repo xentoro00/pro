@@ -14,7 +14,7 @@ import Stafflogin from './Stafflogin'
 import AddClient from './admin/AddClient';
 import Addstaff from './admin/Addstaff';
 import EditStaff from './admin/EditStaff';
-import CarouselPage from './CarouselPage'
+import ContactUs from './admin/ContactUs'
 
 
 
@@ -40,7 +40,7 @@ function App() {
         <Route path="/addclient" element={<AddClient />} />
         <Route path="/addstaff" element={<Addstaff />} />
         <Route path="/editstaff" element={<EditStaff />} />
-        <Route path="/CarouselPage" element={<CarouselPage />} />
+        <Route path="/ContactUs" element={<ContactUs />} />
 
 
 

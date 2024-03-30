@@ -220,7 +220,7 @@ div {
 
 
 
-.btn {
+/* .btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -233,7 +233,7 @@ div {
   font-weight: 400;
   text-decoration: none;
   transition: all 0.5s linear;
-}
+} */
 
 span {
   font-size: 30px;
