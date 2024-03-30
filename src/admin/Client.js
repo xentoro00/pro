@@ -19,6 +19,7 @@ export const Client = () => {
             })
             .catch(err => console.log(err));
     };
+ 
     const handleDelete = (id) => {
         axios.delete(`http://localhost:8080/deleteUsers/${id}`)
             .then(res => {
@@ -43,10 +44,10 @@ export const Client = () => {
         <tr>
             <th scope="col">#</th>
             <th scope="col">Emri</th>
-            <th scope="col">Client Number</th>
+            <th scope="col">Email</th>
+            <th scope="col">Birthday</th>
             <th scope="col">Gender</th>
-            <th scope="col">email</th>
-            <th scope="col">Created</th>
+            <th scope="col">PhoneNumber</th>
             <th scope="col">Edit</th> 
         </tr>
     </thead>
@@ -55,14 +56,14 @@ export const Client = () => {
             <tr key={item.id}>
                 <th scope="row">
                 {item.Id}</th> 
-                <td>{item.name}</td>
-                <td>{item.staff_number}</td>
-                <td>{item.gender}</td>
+                <td>{item.name + ' ' + item.lastname}</td>
                 <td>{item.email}</td>
-                <td>{item.created_at}</td>
+                <td>{item.dateb}</td>
+                <td>{item.gender}</td>
+                <td>{item.phonenumber}</td>
                 <td>
-                    <button onClick={() => handleEdit(item.Id)} className="btn btn-primary mr-2">Edit</button>
-                    <button onClick={() => handleDelete(item.Id)} className="btn btn-danger">Delete</button>
+                    <button onClick={() => handleEdit(item.id)} className="btn btn-primary mr-2">Edit</button>
+                    <button onClick={() => handleDelete(item.id)} className="btn btn-danger">Delete</button>
                 </td>
             </tr>
         ))}

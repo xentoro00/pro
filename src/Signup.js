@@ -69,20 +69,20 @@ function Signup() {
 
 
 
-              <div className="form-outline mb-4">
+              <div className="form-outline mb-4 ">
                 <input type="email" id="form3Example3" name='email' className="form-control form-control-lg" style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }} placeholder="Enter a valid email address" 
                    onChange={handeInput}  />
                    {errors.email && <span className='text-danger'> {errors.email}</span>} 
                   
               </div>
               <div className="form-outline mb-3">
-                <input type="password" id="form3Example4" name='password' className="form-control form-control-lg" placeholder="Enter password" 
+                <input type="password"  name='password' className="form-control form-control-lg" placeholder="Enter password" 
                 
                 onChange={handeInput}  />
                    {errors.password && <span className='text-danger'> {errors.password}</span>} 
               </div>
               <div className="form-outline mb-3">
-                <input type="date" id="form3Example4" name='dateb' className="form-control form-control-lg" placeholder="Enter Birthdate" />
+                <input type="date"  name='dateb' className="form-control form-control-lg" placeholder="Enter Birthdate" onChange={handeInput} />
               </div>
               <div className="form-outline mb-4 d-flex">
                                           <select name="gender" className="form-control form-control-lg" onChange={handeInput} value={values.gender} >
@@ -96,7 +96,7 @@ function Signup() {
                                                 <input type="text" placeholder='Phone Number' name='phonenumber' onChange={handeInput} className="form-control form-control-lg" />
                                             </div>
               <div className="text-center text-lg-start mt-4 pt-2">
-                <button type="button" className="btn btn-primary btn-lg " style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem', justifyContent:'center' }}>Register</button>
+              <button type="submit" className="btn btn-primary btn-lg" style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem', justifyContent: 'center' }}>Register</button>
                 <p className="small fw-bold mt-2 pt-1 mb-0">Have an account? <a href="" className="link-danger">Log in</a></p>
               </div>
               <div className="divider d-flex align-items-center my-4">

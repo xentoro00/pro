@@ -12,11 +12,12 @@ function AddClient
 () {
     const [values, setValues] = useState({
         name: '',
-        staff_number: '',
-        gender:'',
-        phonenumber:'',
-        email: '',
-        password: ''
+        lastname: '',
+        email:'',
+        password:'',
+        dateb: '',
+        gender: '',
+        phonenumber :''
 
     })
     const [errors, setErrors] = useState({})
@@ -34,7 +35,7 @@ function AddClient
         console.log(errors);
 
         if (errors.name === "" && errors.email === "" && errors.password === "") {
-            axios.post('http://localhost:8080/Userslogin', values)
+            axios.post('http://localhost:8080/signup', values)
                 .then(res => {
                     navigate('/dashboard');
                 })
@@ -67,13 +68,27 @@ function AddClient
                                                 <input type="text" placeholder='Enter name' name='name' onChange={handeInput} className='form-control roundend-0' /> {errors.name && <span className='text-danger'> {errors.name}</span>}
                                             </div>
                                             <div className="col-md-6 form-group">
-                                                <label htmlFor="name">Client Number</label>
-                                                <input type="text" placeholder='Enter name' name='staff_number' onChange={handeInput} className='form-control roundend-0' /> {errors.name && <span className='text-danger'> {errors.name}</span>}
+                                                <label htmlFor="name">Lastname</label>
+                                                <input type="text" placeholder='Enter name' name='lastname' onChange={handeInput} className='form-control roundend-0' /> {errors.name && <span className='text-danger'> {errors.name}</span>}
+                                            </div>
+
+                                            <div className="col-md-6 form-group">
+                                                <label htmlFor="name">Client Email</label>
+                                                <input type="email" placeholder='Enter name' name='email' onChange={handeInput} className='form-control roundend-0' /> {errors.name && <span className='text-danger'> {errors.name}</span>}
+                                            </div>
+
+                                            <div className="col-md-6 form-group">
+                                                <label htmlFor="name">Client Password</label>
+                                                <input type="password" placeholder='Enter name' name='password' onChange={handeInput} className='form-control roundend-0' /> {errors.name && <span className='text-danger'> {errors.name}</span>}
                                             </div>
                                             <div className="col-md-6 form-group">
-                                                <label htmlFor="name">Staff Phone Number</label>
-                                                <input type="text" placeholder='Enter staff number' name='staff_number' onChange={handeInput} className='form-control roundend-0' />
+                                                <input type="date"  name='dateb' className="form-control form-control-lg" placeholder="Enter Birthdate" onChange={handeInput}  />
+                                                      </div>
+                                            <div className="col-md-6 form-group">
+                                                <label htmlFor="name">Client Bank Number</label>
+                                                <input type="text" placeholder='Enter name' name='staff_number' onChange={handeInput} className='form-control roundend-0' /> {errors.name && <span className='text-danger'> {errors.name}</span>}
                                             </div>
+                                            
                                             <div className="col-md-6 form-group">
                                                 <label htmlFor="gender">Client Gender</label>
                                           <select name="gender" onChange={handeInput} value={values.gender} className="form-control rounded-0">
@@ -84,13 +99,11 @@ function AddClient
                                              {errors.gender && <span className="text-danger">{errors.gender}</span>}
                                             </div>
                                             <div className="col-md-6 form-group">
-                                                <label htmlFor="name">Client Email</label>
-                                                <input type="email" placeholder='Enter name' name='email' onChange={handeInput} className='form-control roundend-0' /> {errors.name && <span className='text-danger'> {errors.name}</span>}
+                                                <label htmlFor="name">client Phone Number</label>
+                                                <input type="text" placeholder='Enter staff number' name='phonenumber' onChange={handeInput} className='form-control roundend-0' />
                                             </div>
-                                            <div className="col-md-6 form-group">
-                                                <label htmlFor="name">Client Password</label>
-                                                <input type="password" placeholder='Enter name' name='password' onChange={handeInput} className='form-control roundend-0' /> {errors.name && <span className='text-danger'> {errors.name}</span>}
-                                            </div>
+                                           
+                                           
                                         </div>
                                     </div> <center>
                                     <div className="card-footer">
