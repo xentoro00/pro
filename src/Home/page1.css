@@ -173,7 +173,7 @@ text-align: center;
   display: flex;
   margin-right: 20px;
   align-items: center;
-  background-image: url(fotoo.png); 
+  /* background-image: url(fotoo.png);  */
   background-attachment: fixed;
   background-size: 100% 100%;
 }

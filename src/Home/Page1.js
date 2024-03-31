@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from './Header'; 
-import Navbar from './Navbar'; 
+import Header from '../HeaderNav/Header'; 
+import Navbar from '../HeaderNav/Navbar'; 
 import Carousel from 'react-bootstrap/Carousel';
-import img1 from './imgs/Designer.png';
-import img2 from './imgs/Designerr.png';
-import img3 from './imgs/Designer3.png';
+import img1 from '../imgs/Designer.png';
+import img2 from '../imgs/Designerr.png';
+import img3 from '../imgs/Designer3.png';
 
 import './page1.css'
         {/* <img className="float-end m-5 ml-3" style={{ width: '60%', height: '40rem', fontSize: '100px' }} src="imgs/11.jfif" alt="foto" /> */}

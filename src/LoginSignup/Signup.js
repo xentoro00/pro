@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Validation from './SignupValidation';
 import axios from 'axios'
-// import './Login.css';
-import Header from './Header';
-import Navbar from './Navbar';
+import Header from '../HeaderNav/Header';
+import Navbar from '../HeaderNav/Navbar';
 
 
 

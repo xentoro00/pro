@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Sidebar from './Sidebar';
+import Sidebar from '../Dashboard/Sidebar';
 import { useNavigate } from 'react-router-dom';
 
 

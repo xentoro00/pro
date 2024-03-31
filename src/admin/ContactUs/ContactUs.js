@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Sidebar from './Sidebar'; // Make sure the file path is correct
+import Sidebar from '../Dashboard/Sidebar'; // Make sure the file path is correct
 
 export default function ContactUs() {
     const [data, setData] = useState([]);
