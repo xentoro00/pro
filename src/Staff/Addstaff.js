@@ -68,7 +68,7 @@ function Addstaff
                                             </div>
                                             <div className="col-md-6 form-group">
                                                 <label htmlFor="name">Staff Number</label>
-                                                <input type="text" placeholder='Enter name' name='staff_number' onChange={handeInput} className='form-control roundend-0' /> {errors.name && <span className='text-danger'> {errors.name}</span>}
+                                                <input type="text" placeholder='2223****' name='staff_number' onChange={handeInput} className='form-control roundend-0' readOnly /> {errors.name && <span className='text-danger'> {errors.name}</span>}
                                             </div>
                                             <div className="col-md-6 form-group">
                                                 <label htmlFor="name">Staff Phone Number</label>

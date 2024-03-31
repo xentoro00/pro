@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Sidebar from '../admin/Dashboard/Sidebar';
 import { useNavigate } from 'react-router-dom';
+import EditStaff from './EditStaff'; 
+
 
 
 export const Staff = () => {
     const [staff, setStaff] = useState([]);
     const [numStaff, setNumStaff] = useState(0); 
+    const [editStaffId, setEditStaffId] = useState(null); 
+
 
     useEffect(() => {
         getStaff();
@@ -36,12 +40,12 @@ export const Staff = () => {
             .catch(err => console.log(err));
     };
 
-    const redirectToEditPage = (itemId) => {
-        const editUrl = `/EditStaff/${itemId}`;
-        window.location.href = editUrl;
-      };
-   
-    
+    const handleEdit = (id) => {
+        setEditStaffId(id); 
+    };
+       const handleCloseEditModal = () => {
+        setEditStaffId(null); 
+    };
 
     return (
         <div> 
@@ -74,7 +78,7 @@ export const Staff = () => {
                 <td>{item.email}</td>
                 <td>{item.created_at}</td>
                 <td>
-                <button onClick={() => redirectToEditPage(item.id)} className="btn btn-primary mr-2">Edit</button>
+                <button onClick={() => handleEdit(item.id)} className="btn btn-primary mr-2">Edit</button>
                 <button onClick={() => handleDelete(item.id)} className="btn btn-danger">Delete</button>
                 </td>
             </tr>
@@ -87,6 +91,8 @@ export const Staff = () => {
                     </div>
                 </div>
             </main>
+            {editStaffId !== null && <EditStaff id={editStaffId} onClose={handleCloseEditModal} />}
+
         </div>
     )
 }
