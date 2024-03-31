@@ -17,6 +17,9 @@ import AddClient from './admin/AddClient';
 import Addstaff from './admin/Addstaff';
 import EditStaff from './admin/EditStaff';
 import ContactUs from './admin/ContactUs'
+import  Test  from './admin/Test';
+import EditClient from './admin/EditClient';
+
 
 
 
@@ -43,6 +46,10 @@ function App() {
         <Route path="/addstaff" element={<Addstaff />} />
         <Route path="/editstaff" element={<EditStaff />} />
         <Route path="/ContactUs" element={<ContactUs />} />
+        <Route path="/Test" element={<Test />} />
+        <Route path="/editclient" element={<EditClient />} />
+
+
 
 
 

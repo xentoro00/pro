@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Sidebar from './Sidebar';
+import EditClient from './EditClient'; 
 
 export const Client = () => {
     const [users, setUsers] = useState([]);
-    const [numClients, setNumClients] = useState(0); 
+    const [numClients, setNumClients] = useState(0);
+    const [editClientId, setEditClientId] = useState(null); 
 
     useEffect(() => {
         getUsers();
@@ -15,11 +17,11 @@ export const Client = () => {
             .then(res => {
                 const fetchedUsers = res.data;
                 setUsers(fetchedUsers);
-                setNumClients(fetchedUsers.length); 
+                setNumClients(fetchedUsers.length);
             })
             .catch(err => console.log(err));
     };
- 
+
     const handleDelete = (id) => {
         axios.delete(`http://localhost:8080/deleteUsers/${id}`)
             .then(res => {
@@ -29,53 +31,58 @@ export const Client = () => {
     };
 
     const handleEdit = (id) => {
+        setEditClientId(id); 
+    };
+
+    const handleCloseEditModal = () => {
+        setEditClientId(null); 
     };
 
     return (
-        <div> 
+        <div>
             <main style={{ display: 'flex', minHeight: '100vh' }}>
                 <Sidebar />
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-9 d-flex justify-content-center align-items-center">
-                        <table className="table table-hover table-bordered table-striped dataTable no-footer">
-    <caption>List of staff</caption>
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Emri</th>
-            <th scope="col">Email</th>
-            <th scope="col">Birthday</th>
-            <th scope="col">banknumber</th>
-            <th scope="col">Gender</th>
-            <th scope="col">PhoneNumber</th>
-            <th scope="col">Edit</th> 
-        </tr>
-    </thead>
-    <tbody>
-        {Array.isArray(users) && users.map((item, index) => (
-            <tr key={item.id}>
-                <th scope="row">
-                {item.Id}</th> 
-                <td>{item.name + ' ' + item.lastname}</td>
-                <td>{item.email}</td>
-                <td>{item.dateb}</td>
-                <td>{item.banknumber}</td>
-                <td>{item.gender}</td>
-                <td>{item.phonenumber}</td>
-                <td>
-                    <button onClick={() => handleEdit(item.id)} className="btn btn-primary mr-2">Edit</button>
-                    <button onClick={() => handleDelete(item.id)} className="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-        ))}
-    </tbody>
-</table>
-
+                            <table className="table table-hover table-bordered table-striped dataTable no-footer">
+                                <caption>List of staff</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Emri</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Birthday</th>
+                                        <th scope="col">banknumber</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">PhoneNumber</th>
+                                        <th scope="col">Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {Array.isArray(users) && users.map((item, index) => (
+                                        <tr key={item.id}>
+                                            <th scope="row">
+                                                {item.id}</th>
+                                            <td>{item.name + ' ' + item.lastname}</td>
+                                            <td>{item.email}</td>
+                                            <td>{item.dateb}</td>
+                                            <td>{item.banknumber}</td>
+                                            <td>{item.gender}</td>
+                                            <td>{item.phonenumber}</td>
+                                            <td>
+                                                <button onClick={() => handleEdit(item.id)} className="btn btn-primary mr-2">Edit</button>
+                                                <button onClick={() => handleDelete(item.id)} className="btn btn-danger">Delete</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </main>
+            {editClientId !== null && <EditClient id={editClientId} onClose={handleCloseEditModal} />}
         </div>
     )
 }

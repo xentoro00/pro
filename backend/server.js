@@ -14,12 +14,15 @@ const db = mysql.createConnection({
 })
 
 
-app.post('/signup', (req, res) => {
+
+  app.post('/signup', (req, res) => {
+    const banknumber = "2223" + Math.floor(1000 + Math.random() * 9000);
+
     const sql = "INSERT INTO loginRegister (`name`,`lastname`,`banknumber`,`email`,`password`,`dateb`,`gender`,`phonenumber`)  VALUES (?, ?, ?, ?, ?, ?, ?,?)";
     const values = [
         req.body.name,
         req.body.lastname,
-        req.body.banknumber,
+        banknumber, 
         req.body.email,
         req.body.password,
         req.body.dateb,  
@@ -48,6 +51,22 @@ app.post('/getUsers', (req, res) => {
         }
     })
 })
+app.get('/getUsers/:id', (req, res) => {
+    const userId = req.params.id;
+    const sql = "SELECT * FROM loginRegister WHERE id = ?";
+
+    db.query(sql, [userId], (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+        if (data.length > 0) {
+            return res.json(data[0]); 
+        } else {
+            return res.status(404).json({ error: "User not found" });
+        }
+    });
+});
 
 
 
@@ -107,26 +126,6 @@ app.post('/Stafflogin', (req, res) => {
     })
 })
 
-// app.post('/Userslogin', (req, res) => {
-//     const sql = "INSERT INTO login (`name`, `email`, `staff_number`, `gender`, `phone_number`, `password`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, ?)";
-//     const values = [
-//         req.body.name,
-//         req.body.email,
-//         req.body.staff_number,
-//         req.body.gender,
-//         req.body.phonenumber, 
-//         req.body.password,
-//         new Date() 
-//     ];
-    
-//     db.query(sql, values, (err, data) => { 
-//         if(err){
-//             return res.json("Error");
-//         }
-//         return res.json(data);
-//     })
-// })
-
 
 
 
@@ -149,21 +148,6 @@ app.post('/getStaff', (req, res) => {
     })
 })
 
-// app.post('/getUsers', (req, res) => {
-//     const sql = "SELECT * FROM login";
-
-
-//     db.query(sql, (err, data) => {
-//         if (err) {
-//             return res.json("Error");
-//         }
-//         if (data.length > 0) {
-//             return res.json(data);
-//         } else {
-//             return res.json("faile");
-//         }
-//     })
-// })
 
 
 app.delete("/deleteStaff/:id", (req, res) => {
@@ -197,22 +181,21 @@ app.delete("/deleteUsers/:id", (req, res) => {
     });
 });
 
+app.put('/updateUsers/:id', (req, res) => {
+    const userId = req.params.id;
+    const { name, lastname, email, password, dateb, gender, phonenumber } = req.body;
+    const sqlUpdate =  "UPDATE loginRegister SET name=?, lastname=?, email=?, password=?, dateb=?, gender=?, phonenumber=? WHERE id=?"
 
-// app.post('/getUsers', (req, res) => {
-//     const sql = "SELECT Id, name, email FROM loginRegister";
+    db.query(sqlUpdate, [name, lastname, email, password, dateb, gender, phonenumber, userId], (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
 
+        return res.status(200).json({ message: "User updated successfully" });
+    });
+});
 
-//     db.query(sql, (err, data) => {
-//         if (err) {
-//             return res.json("Error");
-//         }
-//         if (data.length > 0) {
-//             return res.json(data);
-//         } else {
-//             return res.json("faile");
-//         }
-//     })
-// })
 
 
 
@@ -221,10 +204,3 @@ app.listen(8080, () => {
     console.log("Server is runninf");
     });
 
-    app.get('/',(req,res)=>{
-        const sql ="SELECT * FROM `contact`";
-        db.query(sql,(err,result)=>{
-            if(err) return res.json({Message: "Error inside server "});
-            return res.json(result);
-        })
-    })

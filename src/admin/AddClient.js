@@ -18,11 +18,9 @@ function AddClient() {
     });
 
     const [errors, setErrors] = useState({});
-    const [randomNumber, setRandomNumber] = useState('');
 
    
     useEffect(() => {
-        setRandomNumber(generateRandomNumber());
     }, []);
 
     const handeInput = (event) => {
@@ -30,10 +28,6 @@ function AddClient() {
     };
 
    
-    const generateRandomNumber = () => {
-        let randomNumber = '2223' + Math.floor(1000000 + Math.random() * 9000000).toString();
-        return randomNumber;    
-    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -79,7 +73,7 @@ function AddClient() {
                                                     </div>
                                                     <div className="col-md-6 form-group">
                                                         <label htmlFor="name">Client Bank Number</label>
-                                                        <input type="text" placeholder='Enter name' name='banknumber' onChange={handeInput} className='form-control roundend-0' value={randomNumber} />
+                                                        <input type="text" placeholder='Enter name' name='banknumber' onChange={handeInput} className='form-control roundend-0' readOnly/>
                                                     </div>
                                                     <div className="col-md-6 form-group">
                                                         <label htmlFor="name">Client Email</label>
