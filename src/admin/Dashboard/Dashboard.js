@@ -2,7 +2,7 @@ import Sidebar from './Sidebar';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Client } from '../Client/Client'; 
-import { Staff } from '../Staff/Staff';
+import { Staff } from '../../Staff/Staff';
 
 export const Dashboard = () => {
 

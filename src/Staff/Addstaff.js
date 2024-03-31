@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Validation from '../../LoginSignup/SignupValidation';
+import Validation from '../LoginSignup/SignupValidation';
 import axios from 'axios'
-import Sidebar from '../Dashboard/Sidebar';
+import Sidebar from '../admin/Dashboard/Sidebar';
 
 
 

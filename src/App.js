@@ -4,17 +4,17 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Page1 } from './Home/Page1';
 import { Dashboard } from './admin/Dashboard/Dashboard';
 import { Client } from './admin/Client/Client';
-import { Staff } from './admin/Staff/Staff';
+import { Staff } from './Staff/Staff';
 
 
 
 import Login from './LoginSignup/Login'
 import Signup from './LoginSignup/Signup'
 import Alogin from './admin/Alogin'
-import Stafflogin from './admin/Staff/Stafflogin'
+import Stafflogin from './Staff/Stafflogin'
 import AddClient from './admin/Client/AddClient';
-import Addstaff from './admin/Staff/Addstaff';
-import EditStaff from './admin/Staff/EditStaff';
+import Addstaff from './Staff/Addstaff';
+import EditStaff from './Staff/EditStaff';
 import ContactUs from './admin/ContactUs/ContactUs'
 import EditClient from './admin/Client/EditClient';
 
