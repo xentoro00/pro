@@ -53,7 +53,7 @@ export const Staff = () => {
                 <Sidebar />
 
                 <div className="container-fluid" style={{  marginTop: '100px' }} >
-                                        <h1 className=''>MANAGE Client</h1>
+                                        <h1 className=''>MANAGE Staff</h1>
 
                     <div className="row">
                     <caption>List of staff</caption>
