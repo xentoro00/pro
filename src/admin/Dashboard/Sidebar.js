@@ -53,6 +53,21 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
+            <Dropdown>
+              
+              <Dropdown.Toggle variant="link" id="dropdown-clients" className="nav-link link-dark">
+              <i className=" bi me-2 fas fa-user-secret fa-1x text-gray-300 bg-light" ></i>
+                Accounts
+            
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="/addacc">Add Acc</Dropdown.Item>
+                <Dropdown.Item href="/acc">Manage Acc</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </li>
+         
+          <li>
             <a href="#" className="nav-link link-dark">
               <i className=" bi me-2 fas fa-money-bill-wave fa-1x text-gray-300" ></i>
 

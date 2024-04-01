@@ -18,6 +18,8 @@ import EditStaff from './Staff/EditStaff';
 import ContactUs from './ContactUs/ContactUs'
 import EditClient from './admin/Client/EditClient';
 import ContactForm from './ContactUs/ContactForm'
+import AddAcc from './admin/Accounts/AddAcc';
+import Acc from './admin/Accounts/Acc';
 
 
 
@@ -49,6 +51,15 @@ function App() {
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/editclient" element={<EditClient />} />
         <Route path="/ContactForm" element={<ContactForm />} />
+        <Route path="/AddAcc" element={<AddAcc />} />
+        <Route path="/acc" element={<Acc />} />
+
+
+        
+
+
+
+
 
 
 

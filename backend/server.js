@@ -51,6 +51,25 @@ app.post('/getUsers', (req, res) => {
         }
     })
 })
+app.post('/getAcc', (req, res) => {
+    const sql = "SELECT * FROM accountcategories";
+
+
+    db.query(sql, (err, data) => {
+        if (err) {
+            return res.json("Error");
+        }
+        if (data.length > 0) {
+            return res.json(data);
+        } else {
+            return res.json("faile");
+        }
+    })
+})
+
+
+
+
 
 app.post('/getContactUs', (req, res) => {
     const sql = "SELECT * FROM contactus";
@@ -261,6 +280,22 @@ app.put('/updateStaff/:id', (req, res) => {
     });
 });
 
+
+app.put('/updateAcc/:id', (req, res) => {
+    const accId = req.params.id;
+    const { name,  ratings,  description } = req.body;
+    const sqlUpdate =  "UPDATE accountcategories SET name=?,  ratings=?, description=? WHERE id=?"
+
+    db.query(sqlUpdate, [name,  ratings, description, accId], (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+
+        return res.status(200).json({ message: "User updated successfully" });
+    });
+});
+
 app.post('/contactUs', (req, res) => {
 
     const sql = "INSERT INTO contactus (`name`,`email`,`message`)  VALUES (?, ?, ?)";
@@ -290,9 +325,43 @@ app.delete("/deleteContacts/:id", (req, res) => {
         return res.status(200).json({ message: "User deleted successfully" });
     });
 });
+app.delete("/deleteAcc/:id", (req, res) => {
+    const id = req.params.id;
+    const sqlDelete = "DELETE FROM accountcategories WHERE id = ?";
+  
+    db.query(sqlDelete, id, (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+
+        return res.status(200).json({ message: "User deleted successfully" });
+    });
+});
 
 
 
+app.post('/accountsacc', (req, res) => {
+    const randomCode = Math.random().toString(36).substring(2, 6).toUpperCase();
+    
+    const code = "ACC-CAT-" + randomCode;
+
+    const sql = "INSERT INTO accountcategories (`name`, `ratings`, `code`, `description`)  VALUES (?, ?, ?, ?)";
+    const values = [
+        req.body.name,
+        req.body.ratings,
+        code,
+        req.body.description
+    ];
+
+    db.query(sql, values, (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.json("Error");
+        }
+        return res.json(data);
+    });
+});
 
 
 
