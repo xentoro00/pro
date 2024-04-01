@@ -155,7 +155,7 @@ app.post('/Stafflogin', (req, res) => {
         req.body.email,
         staff_number,
         req.body.gender,
-        req.body.phonenumber, 
+        req.body.phone_number, 
         req.body.password,
         new Date() 
     ];
@@ -226,6 +226,8 @@ app.delete("/deleteStaff/:id", (req, res) => {
 
 
 
+
+
 app.delete("/deleteUsers/:id", (req, res) => {
     const id = req.params.id;
     const sqlDelete = "DELETE FROM loginRegister WHERE id = ?";
@@ -240,6 +242,19 @@ app.delete("/deleteUsers/:id", (req, res) => {
     });
 });
 
+app.delete("/deleteAccount/:id", (req, res) => {
+    const id = req.params.id;
+    const sqlDelete = "DELETE FROM loginRegister WHERE id = ?"; 
+
+    db.query(sqlDelete, id, (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+
+        return res.status(200).json({ message: "Account deleted successfully" });
+    });
+});
 
 
 

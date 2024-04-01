@@ -23,7 +23,7 @@ export const Acc = () => {
     };
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:8080/deleteAcc/${id}`)
+        axios.delete(`http://localhost:8080/deleteAccu/${id}`)
             .then(res => {
                 getAcc();
             })

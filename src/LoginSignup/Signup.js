@@ -13,6 +13,7 @@ function Signup() {
         lastname: '',
         email: '',
         password: '',
+        account:'',
         dateb: '',
         gender:'',
         phonenumber: ''

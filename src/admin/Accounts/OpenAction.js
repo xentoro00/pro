@@ -42,6 +42,16 @@ function OpenAction({ id, onClose }) {
         }
     };
 
+    const handleDelete = async (accountId) => {
+        try {
+            const response = await axios.delete(`http://localhost:8080/deleteAccount/${id}`);
+            setAccounts(accounts.filter(account => account.id !== accountId));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    
+
     return (
         <div className="modal fade show" style={{ display: 'block' }} aria-modal="true">
             <div className="modal-dialog">
@@ -66,6 +76,7 @@ function OpenAction({ id, onClose }) {
                                 </div>
                             </div>
                             <div className="modal-footer">
+                                <button type="button" className="btn btn-danger" onClick={() => handleDelete(values.account)}>Delete Acc</button>
                                 <button type="button" className="btn btn-secondary" onClick={onClose}>Close</button>
                                 <button type="submit" className="btn btn-primary">Save changes</button>
                             </div>

@@ -14,7 +14,7 @@ function Addstaff
         name: '',
         staff_number: '',
         gender:'',
-        phonenumber:'',
+        phone_number:'',
         email: '',
         password: ''
 
@@ -72,7 +72,7 @@ function Addstaff
                                             </div>
                                             <div className="col-md-6 form-group">
                                                 <label htmlFor="name">Staff Phone Number</label>
-                                                <input type="text" placeholder='Enter staff number' name='staff_number' onChange={handeInput} className='form-control roundend-0' />
+                                                <input type="text" placeholder='Enter staff number' name='phone_number' onChange={handeInput} className='form-control roundend-0' />
                                             </div>
                                             <div className="col-md-6 form-group">
                                                 <label htmlFor="gender">Staff Gender</label>
