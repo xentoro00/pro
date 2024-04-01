@@ -22,7 +22,7 @@ const Navbar = () => {
 
       <div className="right-nav">
         <div>
-            <a href="#" class="btn yellow">
+            <a href="/login" class="btn yellow">
                 <span>Apply Now</span>
                 <ion-icon name="arrow-forward"></ion-icon>
             </a>
