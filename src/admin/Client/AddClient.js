@@ -10,6 +10,7 @@ function AddClient() {
         name: '',
         lastname: '',
         banknumber: '',
+        account: '',
         email: '',
         password: '',
         dateb: '',
@@ -74,6 +75,10 @@ function AddClient() {
                                                     <div className="col-md-6 form-group">
                                                         <label htmlFor="name">Client Bank Number</label>
                                                         <input type="text" placeholder='2223****' name='banknumber' onChange={handeInput} className='form-control roundend-0' readOnly/>
+                                                    </div>
+                                                    <div className="col-md-6 form-group">
+                                                        <label htmlFor="name">Account type</label>
+                                                        <input type="text" placeholder='*****' name='account' onChange={handeInput} className='form-control roundend-0' readOnly/>
                                                     </div>
                                                     <div className="col-md-6 form-group">
                                                         <label htmlFor="name">Client Email</label>

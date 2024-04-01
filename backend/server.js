@@ -18,11 +18,12 @@ const db = mysql.createConnection({
   app.post('/signup', (req, res) => {
     const banknumber = "2223" + Math.floor(1000 + Math.random() * 9000);
 
-    const sql = "INSERT INTO loginRegister (`name`,`lastname`,`banknumber`,`email`,`password`,`dateb`,`gender`,`phonenumber`)  VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+    const sql = "INSERT INTO loginRegister (`name`,`lastname`,`banknumber`,`account`,`email`,`password`,`dateb`,`gender`,`phonenumber`)  VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
     const values = [
         req.body.name,
         req.body.lastname,
         banknumber, 
+        req.body.account,
         req.body.email,
         req.body.password,
         req.body.dateb,  
@@ -250,12 +251,15 @@ app.delete("/deleteUsers/:id", (req, res) => {
     });
 });
 
+
+
+
 app.put('/updateUsers/:id', (req, res) => {
     const userId = req.params.id;
-    const { name, lastname, email, password, dateb, gender, phonenumber } = req.body;
-    const sqlUpdate =  "UPDATE loginRegister SET name=?, lastname=?, email=?, password=?, dateb=?, gender=?, phonenumber=? WHERE id=?"
+    const { name, lastname, email, account, password, dateb, gender, phonenumber } = req.body;
+    const sqlUpdate =  "UPDATE loginRegister SET name=?, lastname=?, email=?, account=?, password=?, dateb=?, gender=?, phonenumber=? WHERE id=?"
 
-    db.query(sqlUpdate, [name, lastname, email, password, dateb, gender, phonenumber, userId], (err, result) => {
+    db.query(sqlUpdate, [name, lastname, email, account, password, dateb, gender, phonenumber, userId], (err, result) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ error: "Internal server error" });
@@ -264,6 +268,10 @@ app.put('/updateUsers/:id', (req, res) => {
         return res.status(200).json({ message: "User updated successfully" });
     });
 });
+
+
+
+
 
 app.put('/updateStaff/:id', (req, res) => {
     const userId = req.params.id;

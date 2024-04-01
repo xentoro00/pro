@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Sidebar from '../Dashboard/Sidebar';
-// import EditClient from './EditClient'; 
+import OpenAction from './OpenAction'; 
 
 export const OpenAcc = () => {
     const [users, setUsers] = useState([]);
@@ -58,9 +58,10 @@ export const OpenAcc = () => {
                                         <th scope="col">Email</th>
                                         <th scope="col">Birthday</th>
                                         <th scope="col">banknumber</th>
+                                        <th scope="col">Account</th>
                                         <th scope="col">Gender</th>
                                         <th scope="col">PhoneNumber</th>
-                                        <th scope="col">Edit</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,6 +73,7 @@ export const OpenAcc = () => {
                                             <td>{item.email}</td>
                                             <td>{item.dateb}</td>
                                             <td>{item.banknumber}</td>
+                                            <td>{item.account}</td>
                                             <td>{item.gender}</td>
                                             <td>{item.phonenumber}</td>
                                             <td>
@@ -87,7 +89,7 @@ export const OpenAcc = () => {
                     </div><div>Total Client: {numClients}</div> 
                 </div>
             </main>
-            {/* {editClientId !== null && <EditClient id={editClientId} onClose={handleCloseEditModal} />} */}
+            {editClientId !== null && <OpenAction id={editClientId} onClose={handleCloseEditModal} />}
         </div>
     )
 }
