@@ -36,6 +36,7 @@ export const Client = () => {
 
     const handleCloseEditModal = () => {
         setEditClientId(null); 
+        getUsers(); 
     };
 
     return (
@@ -86,7 +87,7 @@ export const Client = () => {
                     </div><div>Total Client: {numClients}</div> 
                 </div>
             </main>
-            {editClientId !== null && <EditClient id={editClientId} onClose={handleCloseEditModal} />}
+            {editClientId !== null && <EditClient id={editClientId} onClose={handleCloseEditModal} getUsers={getUsers} />}
         </div>
     )
 }

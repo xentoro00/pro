@@ -186,17 +186,7 @@ app.get('/getStaff/:id', (req, res) => {
     });
 });
 
-app.get('/getStaff', (req, res) => {
-    const sql = "SELECT * FROM staffi";
 
-    db.query(sql, (err, data) => {
-        if (err) {
-            console.log(err);
-            return res.status(500).json({ error: "Internal server error" });
-        }
-        return res.json(data);
-    });
-});
 
 
 
@@ -204,18 +194,17 @@ app.get('/getStaff', (req, res) => {
 app.post('/getStaff', (req, res) => {
     const sql = "SELECT * FROM staffi";
 
-
     db.query(sql, (err, data) => {
         if (err) {
-            return res.json("Error");
+            return res.status(500).json("Error"); 
         }
         if (data.length > 0) {
             return res.json(data);
         } else {
             return res.json("faile");
         }
-    })
-})
+    });
+});
 
 
 
