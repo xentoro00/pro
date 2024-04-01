@@ -33,14 +33,14 @@ export const Dashboard = () => {
       <main style={{ display: 'flex', minHeight: '100vh' }}>
         <Sidebar />
 
-        <div className="container-fluid  ">
+        <div className="container-fluid  " style={{  marginRight: '120px' }}>
           <div className="row justify-content-center">
             <header>
               <h1>Dashboard</h1>
             </header>
             <div className="row">
               <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-primary shadow h-70 py-2">
+                <div className="card border-left-primary shadow h-80 py-2">
                   <div className="card-body">
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
@@ -58,11 +58,11 @@ export const Dashboard = () => {
               </div>
 
               <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-primary shadow h-60 py-2">
+                <div className="card border-left-primary shadow h-80 py-4">
                   <div className="card-body">
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        <div className=" font-weight-bold text-primary text-uppercase mb-1">
                           Staffs
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">{numStaff}</div>
@@ -92,12 +92,12 @@ export const Dashboard = () => {
                 </div>
               </div>
               <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-primary shadow h-60 py-2">
+                <div className="card border-left-primary shadow h-70 py-1">
                   <div className="card-body">
                     <div className="row no-gutters align-items-center">
-                      <div className="col mr-2">
+                      <div className="col">
                         <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          Withdrawals
+                          Withdrawal
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">$1,000</div>
                       </div>
@@ -109,11 +109,11 @@ export const Dashboard = () => {
                 </div>
               </div>
               <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-primary shadow h-60 py-2">
+                <div className="card border-left-primary shadow h-80 py-3">
                   <div className="card-body">
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        <div className="text-xs font-weight-bold text-primary text-uppercase mb-3">
                           Transfers
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">$90,000</div>
@@ -160,11 +160,11 @@ export const Dashboard = () => {
                 </div>
               </div>
               <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-primary shadow h-60 py-2">
+                <div className="card border-left-primary shadow h-80 py-3">
                   <div className="card-body">
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        <div className="text-xs font-weight-bold text-primary text-uppercase mb-3">
                           Accounts
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">5</div>

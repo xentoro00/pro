@@ -50,17 +50,17 @@ function Addstaff
   <Sidebar />
 
 
-  <div className="content-wrapper">
-            <section className="content">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-12">
+  <div className="content-wrapper" style={{ marginRight: '100px' }}>
+            <section className="content" >
+                <div className="container-fluid" >
+                    <div className="row" >
+                        <div className="col-md-12" >
                             <div className="card card-purple">
                                 <div className="card-header">
                                     <h3 className="card-title">Fill All Fields</h3>
                                 </div>
                                 <form action="" onSubmit={handleSubmit}>
-                                    <div className="card-body">
+                                    <div className="card-body" >
                                         <div className="row">
                                             <div className="col-md-6 form-group">
                                                 <label htmlFor="name">Staff Name</label>

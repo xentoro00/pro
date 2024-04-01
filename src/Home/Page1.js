@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../HeaderNav/Header'; 
 import Navbar from '../HeaderNav/Navbar'; 
+import ContactForm from '../ContactUs/ContactForm';
 import Carousel from 'react-bootstrap/Carousel';
 import img1 from '../imgs/Designer.png';
 import img2 from '../imgs/Designerr.png';
@@ -133,34 +134,8 @@ export const Page1 = () => {
           </div>
         </section>
         
-        <div className='contact'>
-          <div className="right-side">
-          <h2>Contact Us</h2>
-            <p>If you have any work from me or any types of queries related to my tutorial, you can send me a message from here. It's my pleasure to help you.</p>
-            <form action="/" method="post">
-              <div className="input-box">
-                <input type="text" name="name" placeholder="Enter your name" />
-              </div>
-              <div className="input-box">
-                <input type="text" name="email" placeholder="Enter your email" />
-              </div>
-              <div className="input-box message-box">
-
-                <input type="text" name="message" placeholder="Enter your message" />
-
-                <form action="ContactUs">
-               <button id="l">Log In</button>
-        </form>  
-          
-              </div>
-            </form>
-
-
-      
-    </div>
-   
-    
-</div>
+     
+          < ContactForm />
 
 <footer class="footer">
     <div class="container">

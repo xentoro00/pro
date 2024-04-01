@@ -49,7 +49,7 @@ function AddClient() {
         <div>
             <main style={{ display: 'flex', minHeight: '100vh' }}>
                 <Sidebar />
-                <div className="content-wrapper">
+                <div className="content-wrapper" style={{ marginRight: '100px' }}>
                     <section className="content">
                         <div className="container-fluid">
                             <div className="row">

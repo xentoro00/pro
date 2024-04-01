@@ -42,11 +42,15 @@ export const Client = () => {
         <div>
             <main style={{ display: 'flex', minHeight: '100vh' }}>
                 <Sidebar />
-                <div className="container-fluid">
+                <div className="container-fluid" style={{  marginTop: '100px' }} >
+
+                    <h1 className=''>MANAGE Client</h1>
+
                     <div className="row">
-                        <div className="col-md-9 d-flex justify-content-center align-items-center">
-                            <table className="table table-hover table-bordered table-striped dataTable no-footer">
-                                <caption>List of staff</caption>
+                    <caption>List of client</caption>
+
+                        <div className="col-md-12 d-flex justify-content-center align-items-center">
+                        <table className="table table-hover table-bordered table-striped dataTable no-footer" style={{ width: '100%' }}>
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -79,7 +83,7 @@ export const Client = () => {
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div><div>Total Client: {numClients}</div> 
                 </div>
             </main>
             {editClientId !== null && <EditClient id={editClientId} onClose={handleCloseEditModal} />}

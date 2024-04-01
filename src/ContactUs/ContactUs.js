@@ -2,30 +2,28 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Sidebar from '../admin/Dashboard/Sidebar';
 import { useNavigate } from 'react-router-dom';
-import EditStaff from './EditStaff'; 
 
 
 
-export const Staff = () => {
-    const [staff, setStaff] = useState([]);
-    const [numStaff, setNumStaff] = useState(0); 
-    const [editStaffId, setEditStaffId] = useState(null); 
+export const ContactsUs = () => {
+    const [mess, setMess] = useState([]);
+    const [numMess, setNumMess] = useState(0); 
 
 
     useEffect(() => {
-        getStaff();
+        getMess();
     }, []);
 
     const navigate = useNavigate();
 
 
 
-    const getStaff = () => {
-        axios.post('http://localhost:8080/getStaff')
+    const getMess = () => {
+        axios.post('http://localhost:8080/getContactUs')
             .then(res => {
-                const fetchedStaff = res.data;
-                setStaff(fetchedStaff);
-                setNumStaff(fetchedStaff.length); 
+                const fetchedMess = res.data;
+                setMess(fetchedMess);
+                setNumMess(fetchedMess.length); 
             })
             .catch(err => console.log(err));
 
@@ -33,19 +31,14 @@ export const Staff = () => {
 
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:8080/deleteStaff/${id}`)
+        axios.delete(`http://localhost:8080/deleteContacts/${id}`)
             .then(res => {
-                getStaff();
+                getMess();
             })
             .catch(err => console.log(err));
     };
 
-    const handleEdit = (id) => {
-        setEditStaffId(id); 
-    };
-       const handleCloseEditModal = () => {
-        setEditStaffId(null); 
-    };
+  
 
     return (
         <div> 
@@ -53,10 +46,10 @@ export const Staff = () => {
                 <Sidebar />
 
                 <div className="container-fluid" style={{  marginTop: '100px' }} >
-                                        <h1 className=''>MANAGE Client</h1>
+                                        <h1 className=''>MANAGE Message</h1>
 
                     <div className="row">
-                    <caption>List of staff</caption>
+                    <caption>List of Messages</caption>
                         <div className="col-md-12 d-flex justify-content-center align-items-center">
                        
                         <table className="table table-hover table-bordered table-striped dataTable no-footer" style={{ width: '100%' }}>
@@ -65,25 +58,20 @@ export const Staff = () => {
         <tr>
             <th scope="col">#</th>
             <th scope="col">Emri</th>
-            <th scope="col">Staff Number</th>
-            <th scope="col">Gender</th>
-            <th scope="col">email</th>
-            <th scope="col">Created</th>
+            <th scope="col">Email</th>
+            <th scope="col">Message</th>
             <th scope="col">Edit</th> 
         </tr>
     </thead>
     <tbody>
-        {Array.isArray(staff) && staff.map((item, index) => (
+        {Array.isArray(mess) && mess.map((item, index) => (
             <tr key={item.id}>
                 <th scope="row">
                 {item.Id}</th> 
                 <td>{item.name}</td>
-                <td>{item.staff_number}</td>
-                <td>{item.gender}</td>
                 <td>{item.email}</td>
-                <td>{item.created_at}</td>
+                <td>{item.message}</td>
                 <td>
-                <button onClick={() => handleEdit(item.id)} className="btn btn-primary mr-2">Edit</button>
                 <button onClick={() => handleDelete(item.id)} className="btn btn-danger">Delete</button>
                 </td>
             </tr>
@@ -93,11 +81,11 @@ export const Staff = () => {
 
                            
                         </div>
-                    </div> <div>Total Staff: {numStaff}</div> 
+                    </div> <div>Total message: {numMess}</div> 
                 </div>
             </main>
-            {editStaffId !== null && <EditStaff id={editStaffId} onClose={handleCloseEditModal} />}
 
         </div>
     )
 }
+export default ContactsUs

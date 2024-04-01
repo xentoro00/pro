@@ -51,6 +51,26 @@ app.post('/getUsers', (req, res) => {
         }
     })
 })
+
+app.post('/getContactUs', (req, res) => {
+    const sql = "SELECT * FROM contactus";
+
+
+    db.query(sql, (err, data) => {
+        if (err) {
+            return res.json("Error");
+        }
+        if (data.length > 0) {
+            return res.json(data);
+        } else {
+            return res.json("faile");
+        }
+    })
+})
+
+
+
+
 app.get('/getUsers/:id', (req, res) => {
     const userId = req.params.id;
     const sql = "SELECT * FROM loginRegister WHERE id = ?";
@@ -72,7 +92,7 @@ app.get('/getUsers/:id', (req, res) => {
 
 
 app.post('/login', (req, res) => {
-    const sql = "SELECT * FROM login WHERE `email` = ?  AND  `password` = ?";
+    const sql = "SELECT * FROM loginRegister WHERE `email` = ?  AND  `password` = ?";
    
      
     db.query(sql,[req.body.email,  req.body.password], (err,data) => {
@@ -240,6 +260,37 @@ app.put('/updateStaff/:id', (req, res) => {
         return res.status(200).json({ message: "User updated successfully" });
     });
 });
+
+app.post('/contactUs', (req, res) => {
+
+    const sql = "INSERT INTO contactus (`name`,`email`,`message`)  VALUES (?, ?, ?)";
+    const values = [
+        req.body.name,
+        req.body.email,
+        req.body.message,
+    ];
+    db.query(sql, values, (err, data) => {
+        if (err) {
+            return res.json("Error");
+        }
+        return res.json(data);
+    });
+});
+
+app.delete("/deleteContacts/:id", (req, res) => {
+    const id = req.params.id;
+    const sqlDelete = "DELETE FROM contactus WHERE id = ?";
+  
+    db.query(sqlDelete, id, (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+
+        return res.status(200).json({ message: "User deleted successfully" });
+    });
+});
+
 
 
 

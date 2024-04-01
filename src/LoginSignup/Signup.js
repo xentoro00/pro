@@ -96,7 +96,7 @@ function Signup() {
                                             </div>
               <div className="text-center text-lg-start mt-4 pt-2">
               <button type="submit" className="btn btn-primary btn-lg" style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem', justifyContent: 'center' }}>Register</button>
-                <p className="small fw-bold mt-2 pt-1 mb-0">Have an account? <a href="" className="link-danger">Log in</a></p>
+                <p className="small fw-bold mt-2 pt-1 mb-0">Have an account? <a href="/login" className="link-danger">Log in</a></p>
               </div>
               <div className="divider d-flex align-items-center my-4">
                 <p className="text-center fw-bold mx-3 mb-0">Or</p>

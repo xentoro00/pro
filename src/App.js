@@ -15,8 +15,11 @@ import Stafflogin from './Staff/Stafflogin'
 import AddClient from './admin/Client/AddClient';
 import Addstaff from './Staff/Addstaff';
 import EditStaff from './Staff/EditStaff';
-import ContactUs from './admin/ContactUs/ContactUs'
+import ContactUs from './ContactUs/ContactUs'
 import EditClient from './admin/Client/EditClient';
+import ContactForm from './ContactUs/ContactForm'
+
+
 
 
 
@@ -45,6 +48,9 @@ function App() {
         <Route path="/editstaff" element={<EditStaff />} />
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/editclient" element={<EditClient />} />
+        <Route path="/ContactForm" element={<ContactForm />} />
+
+
 
 
 
