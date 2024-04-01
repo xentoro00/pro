@@ -63,6 +63,8 @@ export default function Sidebar() {
               <Dropdown.Menu>
                 <Dropdown.Item href="/addacc">Add Acc</Dropdown.Item>
                 <Dropdown.Item href="/acc">Manage Acc</Dropdown.Item>
+                <Dropdown.Item href="/openacc">Open acc</Dropdown.Item>
+
               </Dropdown.Menu>
             </Dropdown>
           </li>
