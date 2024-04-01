@@ -67,7 +67,7 @@ export const ContactsUs = () => {
         {Array.isArray(mess) && mess.map((item, index) => (
             <tr key={item.id}>
                 <th scope="row">
-                {item.Id}</th> 
+                {item.id}</th> 
                 <td>{item.name}</td>
                 <td>{item.email}</td>
                 <td>{item.message}</td>
