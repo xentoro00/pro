@@ -192,7 +192,6 @@ app.get('/getStaff/:id', (req, res) => {
 
 
 app.post('/getStaff', (req, res) => {
-<<<<<<< Updated upstream
     const sql = "SELECT * FROM staffi";
 
     db.query(sql, (err, data) => {
@@ -208,15 +207,6 @@ app.post('/getStaff', (req, res) => {
 });
 
 
-=======
-    res.json(
-        getAllData(
-            ["*"], 
-            "staffi"
-        )
-    );
-})
->>>>>>> Stashed changes
 
 
 app.delete("/deleteStaff/:id", (req, res) => {
@@ -233,19 +223,7 @@ app.delete("/deleteStaff/:id", (req, res) => {
     });
 });
 
-app.delete("/editStaff/:id", (req, res) => {
-    const id = req.params.id;
-    const sqlDelete = "DELETE FROM staffi WHERE id = ?";
-  
-    db.query(sqlDelete, id, (err, result) => {
-        if (err) {
-            console.log(err);
-            return res.status(500).json({ error: "Internal server error" });
-        }
 
-        return res.status(200).json({ message: "User deleted successfully" });
-    });
-});
 
 
 
@@ -374,15 +352,6 @@ app.delete("/deleteAcc/:id", (req, res) => {
 });
 
 
-<<<<<<< Updated upstream
-=======
-app.post('/getUsers', (req, res) => {
-    res.json(getAllData(["Id", "name", "email"], "login"));
-})
-
-function getAllData([attributes], table){
-    const sql = `SELECT ${attributes.join(", ")} FROM ${table}`;
->>>>>>> Stashed changes
 
 app.post('/accountsacc', (req, res) => {
     const randomCode = Math.random().toString(36).substring(2, 6).toUpperCase();
@@ -399,7 +368,6 @@ app.post('/accountsacc', (req, res) => {
 
     db.query(sql, values, (err, data) => {
         if (err) {
-<<<<<<< Updated upstream
             console.error(err);
             return res.json("Error");
         }
@@ -407,17 +375,6 @@ app.post('/accountsacc', (req, res) => {
     });
 });
 
-=======
-            return "Error: " + err;
-        }
-        if (data.length > 0) {
-            return data;
-        } else {
-            return "failed";
-        }
-    })
-}
->>>>>>> Stashed changes
 
 
 app.listen(8080, () => {
