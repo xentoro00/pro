@@ -1,10 +1,20 @@
 const express = require("express");
 const mysql = require('mysql');
 const cors = require('cors');
+const session = require('express-session');
+const store = session.MemoryStore();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+app.use(session({
+    secret: 'your-secret-key', // This should be a long random string used to sign the session ID cookie
+    resave: false, // Forces the session to be saved back to the session store, even if the session was never modified during the request
+    saveUninitialized: false // Forces a session that is "uninitialized" to be saved to the store
+}));
+
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -13,8 +23,10 @@ const db = mysql.createConnection({
     database: "signup"
 })
 
-
-
+app.use((req, res, next) => {
+    req.session.user = {};
+    next();
+})
   app.post('/signup', (req, res) => {
     const banknumber = "2223" + Math.floor(1000 + Math.random() * 9000);
 
@@ -128,24 +140,40 @@ app.post('/login', (req, res) => {
         }
     })
 })
+// Middleware for authentication
+const isAuthenticated = (req, res, next) => {
+    console.log(req.session.user);
+};
 
+// Login endpoint
 app.post('/Alogin', (req, res) => {
-    const sql = "SELECT * FROM admin WHERE `email` = ?  AND  `password` = ?";
-   
-     
-    db.query(sql,[req.body.email,  req.body.password], (err,data) => {
-        if(err){
-            return res.json("Error");
-        }
-        if(data.length > 0){
-            return res.json("Succes");
+    // Assuming user authentication is successful
+    req.session.isLoggedIn = true;
+    req.session.username = 'username';
+    res.send('Succes');
+});
+
+app.get('/dashboard', (req, res) => {
+    if (req.session.isLoggedIn) {
+        console.log('Welcome to the dashboard, ' + req.session.username + '!');
+    } else {
+        console.log('You need to log in first.');
+    }
+});
 
 
-        } else {
-            return res.json("faile");
-        }
-    })
-})
+
+
+
+
+
+
+
+
+
+
+
+
 app.post('/Stafflogin', (req, res) => {
     const staff_number = "2223" + Math.floor(1000 + Math.random() * 9000);
 

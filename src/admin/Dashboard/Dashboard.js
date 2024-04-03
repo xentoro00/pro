@@ -6,6 +6,17 @@ import { Staff } from '../../Staff/Staff';
 
 export const Dashboard = () => {
 
+
+  // axios.get('http://localhost:8080/dashboard')
+  //   .then(res => {
+  //     if (res.data) {
+  //       console.log(true);
+  //     } else {
+  //       console.log(res.data);
+  //     }
+  //   })
+  //   .catch(err => console.log(err));
+
   const [numClients, setNumClients] = useState(0);
   const [numStaff, setNumStaff] = useState(0); 
 
