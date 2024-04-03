@@ -69,13 +69,24 @@ export default function Sidebar() {
             </Dropdown>
           </li>
          
-          <li>
-            <a href="#" className="nav-link link-dark">
-              <i className=" bi me-2 fas fa-money-bill-wave fa-1x text-gray-300" ></i>
+         
+            <Dropdown>
+              
+              <Dropdown.Toggle variant="link" id="dropdown-clients" className="nav-link link-dark">
+              <i className=" bi me-2 fas fa-money-bill-wave fa-1x text-gray-300 bg-light" ></i>
+                Finances
+            
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="/deposit">Deposit</Dropdown.Item>
+                <Dropdown.Item href="/widhdrawals">Withdrawals</Dropdown.Item>
+                <Dropdown.Item href="/transfer">Transfers</Dropdown.Item>
+                <Dropdown.Item href="/balance">Balance</Dropdown.Item>
 
-              Finances
-            </a>
-          </li>
+
+              </Dropdown.Menu>
+            </Dropdown>
+          
           <li>Advanced Modules</li>
           <li>
             <a href="#" className="nav-link link-dark">

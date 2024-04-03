@@ -28,6 +28,15 @@ function Login() {
             .catch(err => console.log(err));
     }
 
+    useEffect(() => {
+        axios.get('http://localhost:8080/logout')
+            .then(res => {
+                if (res.data === "logged_out") {
+                    navigate('/Alogin');
+                }
+            })
+            .catch(err => console.log(err));
+    }, []);
 
     return (
         <div>
