@@ -18,12 +18,21 @@ function Login() {
         event.preventDefault();
 
         axios.post('http://localhost:8080/Alogin', values)
-            .then(res => {
-                if (res.data === "Succes") {
-                    navigate('/dashboard');
-                } else {
-                    alert("No record existed");
-                }
+            .then(ress => {
+                // if (res.data === "Succes") {
+                axios.get('http://localhost:8080/dashboard')
+                    .then(res => {
+                        if (res.data) {
+                            console.log(true);
+                        } else {
+                            console.log(res.data);
+                            console.log(ress.data);
+                        }
+                    })
+                    .catch(err => console.log(err));
+                // } else {
+                //     alert("No record existed");
+                // }
             })
             .catch(err => console.log(err));
     }
