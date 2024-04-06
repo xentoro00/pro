@@ -71,6 +71,23 @@ app.post('/Alogin', (req, res) => {
         
     })
 })
+app.post('/login', (req, res) => {
+    const sql = "SELECT * FROM loginRegister WHERE email = ?  AND  password = ?";
+   
+     
+    db.query(sql,[req.body.email,  req.body.password], (err,result) => {
+        if(err) return res.json({Message:"Email or Password is incorrect!"});
+        
+        if(result.length > 0){
+            req.session.name = result[0].name;
+            console.log(req.session.name);
+            return res.json({Login: true})
+        } else {
+            return res.json({Login: false});
+        }
+        
+    })
+})
 
 
   app.post('/signup', (req, res) => {
@@ -88,13 +105,12 @@ app.post('/Alogin', (req, res) => {
         req.body.gender,
         req.body.phonenumber
     ]
-    db.query(sql, values, (err, data) => {
-        if (err) {
-            return res.json("Error");
-        }
-        return res.json(data);
-    });
-});
+    db.query(sql,[values], (err,result) => {
+        if(err) return res.json({Message:"Email or Password is incorrect!"});
+        return res.json(result);
+    })
+})
+
 app.post('/getUsers', (req, res) => {
     const sql = "SELECT * FROM loginRegister";
 
@@ -169,23 +185,23 @@ app.get('/getUsers/:id', (req, res) => {
 
 
 
-app.post('/login', (req, res) => {
-    const sql = "SELECT * FROM loginRegister WHERE `email` = ?  AND  `password` = ?";
+// app.post('/login', (req, res) => {
+//     const sql = "SELECT * FROM loginRegister WHERE `email` = ?  AND  `password` = ?";
    
      
-    db.query(sql,[req.body.email,  req.body.password], (err,data) => {
-        if(err){
-            return res.json("Error");
-        }
-        if(data.length > 0){
-            return res.json("Succes");
+//     db.query(sql,[req.body.email,  req.body.password], (err,data) => {
+//         if(err){
+//             return res.json("Error");
+//         }
+//         if(data.length > 0){
+//             return res.json("Succes");
 
 
-        } else {
-            return res.json("faile");
-        }
-    })
-})
+//         } else {
+//             return res.json("faile");
+//         }
+//     })
+// })
 
 
 app.post('/Stafflogin', (req, res) => {
