@@ -13,13 +13,24 @@ function Login() {
     const handleInput = (event) => {
         setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
     }
-
+    axios.defaults.withCredentials = true;
+    useEffect(() => {
+        axios.get('http://localhost:8080')
+            .then(res => {
+                if (res.data.valid) {
+                    navigate('/dashboard');
+                } else {
+                    navigate('/Stafflogin');
+                }
+            })
+            .catch(err => console.log(err));
+    }, []);
     const handleSubmit = (event) => {
         event.preventDefault();
 
         axios.post('http://localhost:8080/Stafflogin', values)
             .then(res => {
-                if (res.data === "Succes") {
+                if (res.data.Login) {
                     navigate('/dashboard');
                 } else {
                     alert("No record existed");

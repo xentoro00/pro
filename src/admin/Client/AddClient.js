@@ -40,7 +40,7 @@ function AddClient() {
         if (Object.keys(errors).length === 0) {
             axios.post('http://localhost:8080/signup', values)
                 .then(res => {
-                    navigate('/dashboard');
+                    navigate('/client');
                 })
                 .catch(err => console.log(err));
         }

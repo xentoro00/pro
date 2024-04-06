@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(cors({
     origin: ["http://localhost:3000"], 
-    methods: ["POST", "GET"],
+    methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
 }));
 app.use(express.json());
@@ -26,6 +26,7 @@ app.use(session({
 
 }))
 
+
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -36,7 +37,7 @@ const db = mysql.createConnection({
 
 app.get('/', (req,res) => {
     if(req.session.username){
-        return res.json({valid: true, username: req.session.username})
+        return res.json({ valid: true, username: req.session.username, role: req.session.role })
     } else {
         return res.json({valid:false})
     }
@@ -63,6 +64,7 @@ app.post('/Alogin', (req, res) => {
         
         if(result.length > 0){
             req.session.username = result[0].username;
+            req.session.role = "admin";
             console.log(req.session.username);
             return res.json({Login: true})
         } else {
@@ -72,15 +74,16 @@ app.post('/Alogin', (req, res) => {
     })
 })
 app.post('/login', (req, res) => {
-    const sql = "SELECT * FROM loginRegister WHERE email = ?  AND  password = ?";
+    const sql = "SELECT * FROM loginregister WHERE email = ?  AND  password = ?";
    
      
     db.query(sql,[req.body.email,  req.body.password], (err,result) => {
         if(err) return res.json({Message:"Email or Password is incorrect!"});
         
         if(result.length > 0){
-            req.session.name = result[0].name;
-            console.log(req.session.name);
+            req.session.username = result[0].name;
+            req.session.role = "user";
+            console.log(req.session.username);
             return res.json({Login: true})
         } else {
             return res.json({Login: false});
@@ -92,20 +95,20 @@ app.post('/login', (req, res) => {
 
   app.post('/signup', (req, res) => {
     const banknumber = "2223" + Math.floor(1000 + Math.random() * 9000);
-
+      const accountNumber = '';
     const sql = "INSERT INTO loginRegister (`name`,`lastname`,`banknumber`,`account`,`email`,`password`,`dateb`,`gender`,`phonenumber`)  VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
     const values = [
         req.body.name,
         req.body.lastname,
         banknumber, 
-        req.body.account,
+        accountNumber,
         req.body.email,
         req.body.password,
         req.body.dateb,  
         req.body.gender,
         req.body.phonenumber
     ]
-    db.query(sql,[values], (err,result) => {
+      db.query(sql, [...values], (err, result) => {
         if(err) return res.json({Message:"Email or Password is incorrect!"});
         return res.json(result);
     })
@@ -167,7 +170,7 @@ app.post('/getContactUs', (req, res) => {
 
 app.get('/getUsers/:id', (req, res) => {
     const userId = req.params.id;
-    const sql = "SELECT * FROM loginRegister WHERE id = ?";
+    const sql = "SELECT * FROM loginregister WHERE id = ?";
 
     db.query(sql, [userId], (err, data) => {
         if (err) {
@@ -207,6 +210,43 @@ app.get('/getUsers/:id', (req, res) => {
 app.post('/Stafflogin', (req, res) => {
     const staff_number = "2223" + Math.floor(1000 + Math.random() * 9000);
 
+    const sql = "SELECT * FROM staffi WHERE email = ?  AND  password = ?";
+
+    db.query(sql, [req.body.email, req.body.password], (err, result) => {
+        if (err) return res.json({ Message: "Email or Password is incorrect!" });
+
+        if (result.length > 0) {
+            req.session.username = result[0].name;
+            req.session.role = "staff";
+            console.log(req.session.username);
+            return res.json({ Login: true })
+        } else {
+            return res.json({ Login: false });
+        }
+
+    })
+})
+// app.post('/Alogin', (req, res) => {
+//     const sql = "SELECT * FROM admin WHERE email = ?  AND  password = ?";
+
+
+// db.query(sql,[req.body.email,  req.body.password], (err,result) => {
+//     if(err) return res.json({Message:"Email or Password is incorrect!"});
+
+//     if(result.length > 0){
+//         req.session.username = result[0].username;
+//         req.session.role = "admin";
+//         console.log(req.session.username);
+//         return res.json({Login: true})
+//     } else {
+//         return res.json({Login: false});
+//     }
+
+// })
+// })
+app.post('/addStaff', (req, res) => {
+    const staff_number = "2223" + Math.floor(1000 + Math.random() * 9000);
+
     const sql = "INSERT INTO staffi (`name`, `email`, `staff_number`, `gender`, `phone_number`, `password`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, ?)";
     const values = [
         req.body.name,
@@ -222,11 +262,15 @@ app.post('/Stafflogin', (req, res) => {
         if(err){
             return res.json("Error");
         }
-        return res.json(data);
+        if (result.length > 0) {
+            req.session.username = result[0].username;
+            req.session.role = "staff";
+            return res.json({ Login: true })
+        } else {
+            return res.json({ Login: false });
+        }
     })
 })
-
-
 app.get('/getStaff/:id', (req, res) => {
     const staffId = req.params.id;
     const sql = "SELECT * FROM stafii WHERE id = ?";
@@ -241,18 +285,6 @@ app.get('/getStaff/:id', (req, res) => {
         } else {
             return res.status(404).json({ error: "User not found" });
         }
-    });
-});
-
-app.get('/getStaff', (req, res) => {
-    const sql = "SELECT * FROM staffi";
-
-    db.query(sql, (err, data) => {
-        if (err) {
-            console.log(err);
-            return res.status(500).json({ error: "Internal server error" });
-        }
-        return res.json(data);
     });
 });
 
@@ -297,9 +329,9 @@ app.delete("/deleteStaff/:id", (req, res) => {
 
 app.delete("/deleteUsers/:id", (req, res) => {
     const id = req.params.id;
-    const sqlDelete = "DELETE FROM loginRegister WHERE id = ?";
+    const sql = "DELETE FROM loginRegister WHERE id = ?";
   
-    db.query(sqlDelete, id, (err, result) => {
+    db.query(sql, id, (err, result) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ error: "Internal server error" });

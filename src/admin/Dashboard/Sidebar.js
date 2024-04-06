@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dropdown } from 'react-bootstrap'; // Importoni Dropdown nga react-bootstrap
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -6,7 +6,24 @@ import axios from 'axios';
 
 export default function Sidebar() {
 
+  const [role, setRole] = useState('');
+  const [name, setName] = useState('');
   const navigate = useNavigate();
+
+  axios.defaults.withCredentials = true;
+  useEffect(() => {
+    axios.get('http://localhost:8080')
+      .then(res => {
+        if (res.data.valid) {
+          setName(res.data.username);
+          setRole(res.data.role);
+          console.log(res.data.role);
+        } else {
+          navigate('/login')
+        }
+      })
+      .catch(err => console.log(err))
+  }, [])
 
   const handleLogout = () => {
     axios.get('http://localhost:8080/logout')
@@ -23,8 +40,8 @@ export default function Sidebar() {
   };
   return (
     <div>
-      {/* Sidebar */}
       <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{ width: '300px', height: '100%' }}>
+
         <a href="/" className="d-flex align-items-center mb-3 link-dark text-decoration-none">
           <i className=" bi me-2 fas fa-university fa-2x text-gray-300" ></i>
 
@@ -32,25 +49,27 @@ export default function Sidebar() {
         </a>
         <hr />
         <ul className="nav nav-pills flex-column mb-auto">
-          <li>
-            <a href="/dashboard" className="nav-link link-dark">
-            <i className=" bi me-2 fas fa-dashboard fa-1x text-gray-300" ></i>
+          {role !== 'user' &&
+            <><li>
+              <a href="/dashboard" className="nav-link link-dark">
+              <i className=" bi me-2 fas fa-dashboard fa-1x text-gray-300"></i>
               Dashboard
             </a>
-          </li>
-          <li>
-            <Dropdown>
-              
-              <Dropdown.Toggle variant="link" id="dropdown-clients" className="nav-link link-dark">
-              <i className=" bi me-2 fas fa-user fa-1x text-gray-300 bg-light" ></i>
-                Clients
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="/addclient">Add Client</Dropdown.Item>
-                <Dropdown.Item href="/client">Manage Clients</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </li>
+          </li><li>
+              <Dropdown>
+
+                <Dropdown.Toggle variant="link" id="dropdown-clients" className="nav-link link-dark">
+                  <i className=" bi me-2 fas fa-user fa-1x text-gray-300 bg-light"></i>
+                  Clients
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="/addclient">Add Client</Dropdown.Item>
+                  <Dropdown.Item href="/client">Manage Clients</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              </li></>
+          }
+          {role !== 'staff' || role !== 'user' &&
           <li>
             <Dropdown>
               
@@ -64,30 +83,32 @@ export default function Sidebar() {
               </Dropdown.Menu>
             </Dropdown>
           </li>
-          <li>
-            <a href="/ContactUs" className="nav-link link-dark">
-              <i className=" bi me-2 fas fa-user fa-1x text-gray-300" ></i>
+          }
+
+          {role !== 'user' &&
+            <><li>
+              <a href="/ContactUs" className="nav-link link-dark">
+              <i className=" bi me-2 fas fa-user fa-1x text-gray-300"></i>
 
               ContactUs
             </a>
-          </li>
-          <li>
-            <Dropdown>
-              
-              <Dropdown.Toggle variant="link" id="dropdown-clients" className="nav-link link-dark">
-              <i className=" bi me-2 fas fa-user-secret fa-1x text-gray-300 bg-light" ></i>
-                Accounts
-            
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="/addacc">Add Acc</Dropdown.Item>
-                <Dropdown.Item href="/acc">Manage Acc</Dropdown.Item>
-                <Dropdown.Item href="/openacc">Open acc</Dropdown.Item>
+          </li><li>
+              <Dropdown>
 
-              </Dropdown.Menu>
-            </Dropdown>
-          </li>
-         
+                <Dropdown.Toggle variant="link" id="dropdown-clients" className="nav-link link-dark">
+                  <i className=" bi me-2 fas fa-user-secret fa-1x text-gray-300 bg-light"></i>
+                  Accounts
+
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="/addacc">Add Acc</Dropdown.Item>
+                  <Dropdown.Item href="/acc">Manage Acc</Dropdown.Item>
+                  <Dropdown.Item href="/openacc">Open acc</Dropdown.Item>
+
+                </Dropdown.Menu>
+              </Dropdown>
+              </li></>
+          }
           <li>
             <a href="#" className="nav-link link-dark">
               <i className=" bi me-2 fas fa-money-bill-wave fa-1x text-gray-300" ></i>
