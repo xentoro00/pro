@@ -22,7 +22,6 @@ import AddAcc from './admin/Accounts/AddAcc';
 import Acc from './admin/Accounts/Acc';
 import OpenAcc from './admin/Accounts/OpenAcc';
 import OpenAction from './admin/Accounts/OpenAction';
-import Auth from './admin/Dashboard/Auth';
 
 
 
@@ -58,8 +57,6 @@ function App() {
         <Route path="/acc" element={<Acc />} />
         <Route path="/OpenAcc" element={<OpenAcc />} />
         <Route path="/OpenAction" element={<OpenAction />} />
-        <Route path="/Auth" element={<Auth />} />
-
 
         
 

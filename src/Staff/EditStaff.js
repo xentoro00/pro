@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Validation from '../LoginSignup/SignupValidation';
 import axios from 'axios';
+// import Sidebar from './/Dashboard/Sidebar';
 
-function EditStaff({ id, onClose, getStaff }) {
+function EditClient({ id, onClose }) {
     const navigate = useNavigate();
     const [values, setValues] = useState({
         name: '',
@@ -23,7 +24,7 @@ function EditStaff({ id, onClose, getStaff }) {
             .catch(err => console.log(err));
     }, [id]);
 
-    const handleInput = (event) => {
+    const handeInput = (event) => {
         setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
     };
 
@@ -35,8 +36,6 @@ function EditStaff({ id, onClose, getStaff }) {
         if (Object.keys(errors).length === 0) {
             axios.put(`http://localhost:8080/updateStaff/${id}`, values)
                 .then(res => {
-                    getStaff(); 
-                    onClose(); 
                     navigate('/dashboard');
                 })
                 .catch(err => console.log(err));
@@ -55,35 +54,33 @@ function EditStaff({ id, onClose, getStaff }) {
                     </div>
                     <div className="modal-body">
                         <form onSubmit={handleSubmit}>
-                            <div className="form-group">
+                        <div className="form-group">
                                 <label>Name</label>
-                                <input type="text" placeholder='Enter name' name='name' value={values.name || ''} onChange={handleInput} className='form-control roundend-0' />
-                                {errors.name && <span className='text-danger'>{errors.name}</span>}                            
-                            </div>
-                            <div className="form-group">
+                                <input type="text" placeholder='Enter name' name='name' onChange={handeInput} className='form-control roundend-0' />
+                                 {errors.name && <span className='text-danger'>{errors.name}</span>}                            </div>
+                           <div className="form-group">
                                 <label>Email</label>
-                                <input type="email" placeholder='Enter email' name='email' value={values.email || ''} onChange={handleInput} className='form-control roundend-0' />
-                                {errors.email && <span className='text-danger'>{errors.email}</span>}                            
-                            </div>
-                            <div className="form-group">
-                                <label>Password</label>
-                                <input type="password" placeholder='Enter password' name='password' value={values.password || ''} onChange={handleInput} className='form-control roundend-0' />
-                                {errors.password && <span className='text-danger'>{errors.password}</span>}                            
-                            </div>
+                                <input type="email" placeholder='Enter email' name='email' onChange={handeInput} className='form-control roundend-0' />
+                                                        {errors.email && <span className='text-danger'>{errors.email}</span>}                            </div>
+                                                        <div className="form-group">
+                                <label>password</label>
+                                <input type="password" placeholder='Enter password' name='password' onChange={handeInput} className='form-control roundend-0' />
+                                                        {errors.password && <span className='text-danger'>{errors.password}</span>}                            </div>                        
+
+                             
                             <div className="form-group">
                                 <label>Gender</label>
-                                <select name="gender" value={values.gender || ''} onChange={handleInput} className="form-control rounded-0">
-                                    <option value="">Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                                {errors.gender && <span className="text-danger">{errors.gender}</span>}
+                                <select name="gender" onChange={handeInput} value={values.gender} className="form-control rounded-0">
+                                                            <option value="">Select Gender</option>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                        </select>
+                                                        {errors.gender && <span className="text-danger">{errors.gender}</span>}
                             </div>
                             <div className="form-group">
                                 <label>Phone Number</label>
-                                <input type="text" placeholder='Enter staff number' name='phone_number' value={values.phone_number || ''} onChange={handleInput} className='form-control roundend-0' />
-                            </div>
-                        </form>
+                                <input type="text" placeholder='Enter staff number' name='phone_number' onChange={handeInput} className='form-control roundend-0' />
+                            </div>                        </form>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" onClick={onClose}>Close</button>
@@ -95,4 +92,4 @@ function EditStaff({ id, onClose, getStaff }) {
     );
 };
 
-export default EditStaff;
+export default EditClient;

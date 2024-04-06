@@ -1,7 +1,26 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap'; // Importoni Dropdown nga react-bootstrap
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 export default function Sidebar() {
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    axios.get('http://localhost:8080/logout')
+      .then(res => {
+        if (res.data.success) {
+          navigate('/Alogin');
+        } else {
+          // Handle logout failure
+        }
+      })
+      .catch(err => {
+        // Handle errors
+      });
+  };
   return (
     <div>
       {/* Sidebar */}
@@ -69,24 +88,13 @@ export default function Sidebar() {
             </Dropdown>
           </li>
          
-         
-            <Dropdown>
-              
-              <Dropdown.Toggle variant="link" id="dropdown-clients" className="nav-link link-dark">
-              <i className=" bi me-2 fas fa-money-bill-wave fa-1x text-gray-300 bg-light" ></i>
-                Finances
-            
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="/deposit">Deposit</Dropdown.Item>
-                <Dropdown.Item href="/widhdrawals">Withdrawals</Dropdown.Item>
-                <Dropdown.Item href="/transfer">Transfers</Dropdown.Item>
-                <Dropdown.Item href="/balance">Balance</Dropdown.Item>
+          <li>
+            <a href="#" className="nav-link link-dark">
+              <i className=" bi me-2 fas fa-money-bill-wave fa-1x text-gray-300" ></i>
 
-
-              </Dropdown.Menu>
-            </Dropdown>
-          
+              Finances
+            </a>
+          </li>
           <li>Advanced Modules</li>
           <li>
             <a href="#" className="nav-link link-dark">
@@ -110,7 +118,7 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="/Alogin" className="nav-link link-dark">
+            <a href="#" className="nav-link link-dark" onClick={handleLogout}> 
               <i className=" bi me-2 fas fa-sign-out-alt fa-1x text-gray-300" ></i>
 
               Log Out

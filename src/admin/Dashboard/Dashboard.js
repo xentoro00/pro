@@ -3,22 +3,34 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Client } from '../Client/Client'; 
 import { Staff } from '../../Staff/Staff';
+import { useNavigate } from 'react-router-dom'
+
 
 export const Dashboard = () => {
 
-
-  // axios.get('http://localhost:8080/dashboard')
-  //   .then(res => {
-  //     if (res.data) {
-  //       console.log(true);
-  //     } else {
-  //       console.log(res.data);
-  //     }
-  //   })
-  //   .catch(err => console.log(err));
-
   const [numClients, setNumClients] = useState(0);
   const [numStaff, setNumStaff] = useState(0); 
+  const [name, setName] = useState('')
+  const navigate = useNavigate()
+  
+    useEffect( () => {
+      axios.get('http://localhost:8081')
+      .then (res => {
+        if(res.data.valid) {
+          setName(res.data.username);
+        } else {
+          navigate('/login')
+  
+        }
+  
+        
+      })
+      .catch(err => console.log(err))
+  
+  
+  
+  
+    }, [])
 
   useEffect(() => {
       axios.post('http://localhost:8080/getUsers')

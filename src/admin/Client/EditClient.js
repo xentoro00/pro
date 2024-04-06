@@ -4,7 +4,7 @@ import Validation from '../../LoginSignup/SignupValidation';
 import axios from 'axios';
 import Sidebar from '../Dashboard/Sidebar';
 
-function EditClient({ id, onClose, getUsers }) {
+function EditClient({ id, onClose }) {
     const navigate = useNavigate();
     const [values, setValues] = useState({
         name: '',
@@ -38,8 +38,6 @@ function EditClient({ id, onClose, getUsers }) {
         if (Object.keys(errors).length === 0) {
             axios.put(`http://localhost:8080/updateUsers/${id}`, values)
                 .then(res => {
-                    getUsers(); 
-                    onClose(); 
                     navigate('/dashboard');
                 })
                 .catch(err => console.log(err));
@@ -58,44 +56,40 @@ function EditClient({ id, onClose, getUsers }) {
                     </div>
                     <div className="modal-body">
                         <form onSubmit={handleSubmit}>
-                            <div className="form-group">
+                        <div className="form-group">
                                 <label>Name</label>
-                                <input type="text" placeholder='Enter name' name='name' value={values.name} onChange={handeInput} className='form-control roundend-0' />
-                                 {errors.name && <span className='text-danger'>{errors.name}</span>}                            
-                            </div>
+                                <input type="text" placeholder='Enter name' name='name' onChange={handeInput} className='form-control roundend-0' />
+                                 {errors.name && <span className='text-danger'>{errors.name}</span>}                            </div>
                             <div className="form-group">
                                 <label>Lastname</label>
-                                <input type="text" placeholder='Enter name' name='lastname' value={values.lastname} onChange={handeInput} className='form-control roundend-0' />
-                                {errors.lastname && <span className='text-danger'>{errors.lastname}</span>}                            
-                            </div>
+                                <input type="text" placeholder='Enter name' name='lastname' onChange={handeInput} className='form-control roundend-0' />
+                                                        {errors.lastname && <span className='text-danger'>{errors.lastname}</span>}                            </div>
                             <div className="form-group">
                                 <label>Email</label>
-                                <input type="email" placeholder='Enter email' name='email' value={values.email} onChange={handeInput} className='form-control roundend-0' />
-                                {errors.email && <span className='text-danger'>{errors.email}</span>}                            
-                            </div>
-                            <div className="form-group">
-                                <label>Password</label>
-                                <input type="password" placeholder='Enter password' name='password' value={values.password} onChange={handeInput} className='form-control roundend-0' />
-                                {errors.password && <span className='text-danger'>{errors.password}</span>}                            
-                            </div>
+                                <input type="email" placeholder='Enter email' name='email' onChange={handeInput} className='form-control roundend-0' />
+                                                        {errors.email && <span className='text-danger'>{errors.email}</span>}                            </div>
+                                                        <div className="form-group">
+                                <label>password</label>
+                                <input type="password" placeholder='Enter password' name='password' onChange={handeInput} className='form-control roundend-0' />
+                                                        {errors.password && <span className='text-danger'>{errors.password}</span>}                            </div>                        
+
                             <div className="form-group">
                                 <label>Birthday</label>
-                                <input type="date" name='dateb' value={values.dateb} className="form-control form-control-lg" placeholder="Enter Birthdate" onChange={handeInput} />
+                                <input type="date"  name='dateb' className="form-control form-control-lg" placeholder="Enter Birthdate" onChange={handeInput}  />
                             </div>
                             <div className="form-group">
                                 <label>Gender</label>
-                                <select name="gender" value={values.gender} onChange={handeInput} className="form-control rounded-0">
-                                    <option value="">Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                                {errors.gender && <span className="text-danger">{errors.gender}</span>}
+                                <select name="gender" onChange={handeInput} value={values.gender} className="form-control rounded-0">
+                                                            <option value="">Select Gender</option>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                        </select>
+                                                        {errors.gender && <span className="text-danger">{errors.gender}</span>}
                             </div>
                             <div className="form-group">
                                 <label>Phone Number</label>
-                                <input type="text" placeholder='Enter staff number' name='phonenumber' value={values.phonenumber} onChange={handeInput} className='form-control roundend-0' />
-                            </div>
-                        </form>
+                                <input type="text" placeholder='Enter staff number' name='phonenumber' onChange={handeInput} className='form-control roundend-0' />
+                            </div>                        </form>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" onClick={onClose}>Close</button>

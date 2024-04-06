@@ -1,20 +1,30 @@
 const express = require("express");
 const mysql = require('mysql');
 const cors = require('cors');
-const session = require('express-session');
-const store = session.MemoryStore();
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+
 
 const app = express();
-app.use(cors());
-app.use(express.json());
-
-app.use(express.urlencoded({ extended: true }));
-app.use(session({
-    secret: 'your-secret-key', // This should be a long random string used to sign the session ID cookie
-    resave: false, // Forces the session to be saved back to the session store, even if the session was never modified during the request
-    saveUninitialized: false // Forces a session that is "uninitialized" to be saved to the store
+app.use(cors({
+    origin: ["http://localhost:3000"], 
+    methods: ["POST", "GET"],
+    credentials: true
 }));
+app.use(express.json());
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        maxAge: 1000 * 60 * 60 * 24
+    }
 
+}))
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -23,10 +33,46 @@ const db = mysql.createConnection({
     database: "signup"
 })
 
-app.use((req, res, next) => {
-    req.session.user = {};
-    next();
+
+app.get('/', (req,res) => {
+    if(req.session.username){
+        return res.json({valid: true, username: req.session.username})
+    } else {
+        return res.json({valid:false})
+    }
+
 })
+app.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.log(err);
+            res.json({ success: false });
+        } else {
+            res.clearCookie('connect.sid'); 
+            res.json({ success: true });
+        }
+    });
+});
+
+app.post('/Alogin', (req, res) => {
+    const sql = "SELECT * FROM admin WHERE email = ?  AND  password = ?";
+   
+     
+    db.query(sql,[req.body.email,  req.body.password], (err,result) => {
+        if(err) return res.json({Message:"Email or Password is incorrect!"});
+        
+        if(result.length > 0){
+            req.session.username = result[0].username;
+            console.log(req.session.username);
+            return res.json({Login: true})
+        } else {
+            return res.json({Login: false});
+        }
+        
+    })
+})
+
+
   app.post('/signup', (req, res) => {
     const banknumber = "2223" + Math.floor(1000 + Math.random() * 9000);
 
@@ -140,38 +186,6 @@ app.post('/login', (req, res) => {
         }
     })
 })
-// Middleware for authentication
-const isAuthenticated = (req, res, next) => {
-    console.log(req.session.user);
-};
-
-// Login endpoint
-app.post('/Alogin', (req, res) => {
-    // Assuming user authentication is successful
-    req.session.isLoggedIn = true;
-    req.session.username = 'username';
-    res.send('Succes');
-});
-
-app.get('/dashboard', (req, res) => {
-    if (req.session.isLoggedIn) {
-        console.log('Welcome to the dashboard, ' + req.session.username + '!');
-    } else {
-        console.log('You need to log in first.');
-    }
-});
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 app.post('/Stafflogin', (req, res) => {
@@ -183,7 +197,7 @@ app.post('/Stafflogin', (req, res) => {
         req.body.email,
         staff_number,
         req.body.gender,
-        req.body.phone_number, 
+        req.body.phonenumber, 
         req.body.password,
         new Date() 
     ];
@@ -214,7 +228,17 @@ app.get('/getStaff/:id', (req, res) => {
     });
 });
 
+app.get('/getStaff', (req, res) => {
+    const sql = "SELECT * FROM staffi";
 
+    db.query(sql, (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+        return res.json(data);
+    });
+});
 
 
 
@@ -222,17 +246,18 @@ app.get('/getStaff/:id', (req, res) => {
 app.post('/getStaff', (req, res) => {
     const sql = "SELECT * FROM staffi";
 
+
     db.query(sql, (err, data) => {
         if (err) {
-            return res.status(500).json("Error"); 
+            return res.json("Error");
         }
         if (data.length > 0) {
             return res.json(data);
         } else {
             return res.json("faile");
         }
-    });
-});
+    })
+})
 
 
 
@@ -254,8 +279,6 @@ app.delete("/deleteStaff/:id", (req, res) => {
 
 
 
-
-
 app.delete("/deleteUsers/:id", (req, res) => {
     const id = req.params.id;
     const sqlDelete = "DELETE FROM loginRegister WHERE id = ?";
@@ -270,19 +293,6 @@ app.delete("/deleteUsers/:id", (req, res) => {
     });
 });
 
-app.delete("/deleteAccount/:id", (req, res) => {
-    const id = req.params.id;
-    const sqlDelete = "DELETE FROM loginRegister WHERE id = ?"; 
-
-    db.query(sqlDelete, id, (err, result) => {
-        if (err) {
-            console.log(err);
-            return res.status(500).json({ error: "Internal server error" });
-        }
-
-        return res.status(200).json({ message: "Account deleted successfully" });
-    });
-});
 
 
 
