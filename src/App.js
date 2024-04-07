@@ -21,7 +21,6 @@ import EditClient from './admin/Client/EditClient';
 import ContactForm from './ContactUs/ContactForm';
 import Page2 from './Home/Page2';
 
-import ContactForm from './ContactUs/ContactForm'
 import AddAcc from './admin/Accounts/AddAcc';
 import Acc from './admin/Accounts/Acc';
 import OpenAcc from './admin/Accounts/OpenAcc';
