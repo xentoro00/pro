@@ -30,7 +30,7 @@ function ContactForm() {
         if (errors.name === "" && errors.email === "") {
             axios.post('http://localhost:8080/contactUs', values)
                 .then(res => {
-                    navigate('/login');
+                  window.location.reload();
                 })
                 .catch(err => console.log(err));
         }

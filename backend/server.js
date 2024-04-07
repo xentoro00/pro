@@ -1,10 +1,31 @@
 const express = require("express");
 const mysql = require('mysql');
 const cors = require('cors');
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3000"], 
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true
+}));
 app.use(express.json());
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        maxAge: 1000 * 60 * 60 * 24
+    }
+
+}))
+
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -14,28 +35,85 @@ const db = mysql.createConnection({
 })
 
 
+app.get('/', (req,res) => {
+    if(req.session.username){
+        return res.json({ valid: true, username: req.session.username, role: req.session.role })
+    } else {
+        return res.json({valid:false})
+    }
+
+})
+app.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.log(err);
+            res.json({ success: false });
+        } else {
+            res.clearCookie('connect.sid'); 
+            res.json({ success: true });
+        }
+    });
+});
+
+app.post('/Alogin', (req, res) => {
+    const sql = "SELECT * FROM admin WHERE email = ?  AND  password = ?";
+   
+     
+    db.query(sql,[req.body.email,  req.body.password], (err,result) => {
+        if(err) return res.json({Message:"Email or Password is incorrect!"});
+        
+        if(result.length > 0){
+            req.session.username = result[0].username;
+            req.session.role = "admin";
+            console.log(req.session.username);
+            return res.json({Login: true})
+        } else {
+            return res.json({Login: false});
+        }
+        
+    })
+})
+app.post('/login', (req, res) => {
+    const sql = "SELECT * FROM loginregister WHERE email = ?  AND  password = ?";
+   
+     
+    db.query(sql,[req.body.email,  req.body.password], (err,result) => {
+        if(err) return res.json({Message:"Email or Password is incorrect!"});
+        
+        if(result.length > 0){
+            req.session.username = result[0].name;
+            req.session.role = "user";
+            console.log(req.session.username);
+            return res.json({Login: true})
+        } else {
+            return res.json({Login: false});
+        }
+        
+    })
+})
+
 
   app.post('/signup', (req, res) => {
     const banknumber = "2223" + Math.floor(1000 + Math.random() * 9000);
-
-    const sql = "INSERT INTO loginRegister (`name`,`lastname`,`banknumber`,`email`,`password`,`dateb`,`gender`,`phonenumber`)  VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+      const accountNumber = '';
+    const sql = "INSERT INTO loginRegister (`name`,`lastname`,`banknumber`,`account`,`email`,`password`,`dateb`,`gender`,`phonenumber`)  VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
     const values = [
         req.body.name,
         req.body.lastname,
         banknumber, 
+        accountNumber,
         req.body.email,
         req.body.password,
         req.body.dateb,  
         req.body.gender,
         req.body.phonenumber
     ]
-    db.query(sql, values, (err, data) => {
-        if (err) {
-            return res.json("Error");
-        }
-        return res.json(data);
-    });
-});
+      db.query(sql, [...values], (err, result) => {
+        if(err) return res.json({Message:"Email or Password is incorrect!"});
+        return res.json(result);
+    })
+})
+
 app.post('/getUsers', (req, res) => {
     const sql = "SELECT * FROM loginRegister";
 
@@ -51,6 +129,25 @@ app.post('/getUsers', (req, res) => {
         }
     })
 })
+app.post('/getAcc', (req, res) => {
+    const sql = "SELECT * FROM accountcategories";
+
+
+    db.query(sql, (err, data) => {
+        if (err) {
+            return res.json("Error");
+        }
+        if (data.length > 0) {
+            return res.json(data);
+        } else {
+            return res.json("faile");
+        }
+    })
+})
+
+
+
+
 
 app.post('/getContactUs', (req, res) => {
     const sql = "SELECT * FROM contactus";
@@ -73,7 +170,7 @@ app.post('/getContactUs', (req, res) => {
 
 app.get('/getUsers/:id', (req, res) => {
     const userId = req.params.id;
-    const sql = "SELECT * FROM loginRegister WHERE id = ?";
+    const sql = "SELECT * FROM loginregister WHERE id = ?";
 
     db.query(sql, [userId], (err, data) => {
         if (err) {
@@ -91,42 +188,63 @@ app.get('/getUsers/:id', (req, res) => {
 
 
 
-app.post('/login', (req, res) => {
-    const sql = "SELECT * FROM loginRegister WHERE `email` = ?  AND  `password` = ?";
+// app.post('/login', (req, res) => {
+//     const sql = "SELECT * FROM loginRegister WHERE `email` = ?  AND  `password` = ?";
    
      
-    db.query(sql,[req.body.email,  req.body.password], (err,data) => {
-        if(err){
-            return res.json("Error");
-        }
-        if(data.length > 0){
-            return res.json("Succes");
+//     db.query(sql,[req.body.email,  req.body.password], (err,data) => {
+//         if(err){
+//             return res.json("Error");
+//         }
+//         if(data.length > 0){
+//             return res.json("Succes");
 
 
-        } else {
-            return res.json("faile");
-        }
-    })
-})
-
-app.post('/Alogin', (req, res) => {
-    const sql = "SELECT * FROM admin WHERE `email` = ?  AND  `password` = ?";
-   
-     
-    db.query(sql,[req.body.email,  req.body.password], (err,data) => {
-        if(err){
-            return res.json("Error");
-        }
-        if(data.length > 0){
-            return res.json("Succes");
+//         } else {
+//             return res.json("faile");
+//         }
+//     })
+// })
 
 
-        } else {
-            return res.json("faile");
-        }
-    })
-})
 app.post('/Stafflogin', (req, res) => {
+    const staff_number = "2223" + Math.floor(1000 + Math.random() * 9000);
+
+    const sql = "SELECT * FROM staffi WHERE email = ?  AND  password = ?";
+
+    db.query(sql, [req.body.email, req.body.password], (err, result) => {
+        if (err) return res.json({ Message: "Email or Password is incorrect!" });
+
+        if (result.length > 0) {
+            req.session.username = result[0].name;
+            req.session.role = "staff";
+            console.log(req.session.username);
+            return res.json({ Login: true })
+        } else {
+            return res.json({ Login: false });
+        }
+
+    })
+})
+// app.post('/Alogin', (req, res) => {
+//     const sql = "SELECT * FROM admin WHERE email = ?  AND  password = ?";
+
+
+// db.query(sql,[req.body.email,  req.body.password], (err,result) => {
+//     if(err) return res.json({Message:"Email or Password is incorrect!"});
+
+//     if(result.length > 0){
+//         req.session.username = result[0].username;
+//         req.session.role = "admin";
+//         console.log(req.session.username);
+//         return res.json({Login: true})
+//     } else {
+//         return res.json({Login: false});
+//     }
+
+// })
+// })
+app.post('/addStaff', (req, res) => {
     const staff_number = "2223" + Math.floor(1000 + Math.random() * 9000);
 
     const sql = "INSERT INTO staffi (`name`, `email`, `staff_number`, `gender`, `phone_number`, `password`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -144,11 +262,15 @@ app.post('/Stafflogin', (req, res) => {
         if(err){
             return res.json("Error");
         }
-        return res.json(data);
+        if (result.length > 0) {
+            req.session.username = result[0].username;
+            req.session.role = "staff";
+            return res.json({ Login: true })
+        } else {
+            return res.json({ Login: false });
+        }
     })
 })
-
-
 app.get('/getStaff/:id', (req, res) => {
     const staffId = req.params.id;
     const sql = "SELECT * FROM stafii WHERE id = ?";
@@ -163,18 +285,6 @@ app.get('/getStaff/:id', (req, res) => {
         } else {
             return res.status(404).json({ error: "User not found" });
         }
-    });
-});
-
-app.get('/getStaff', (req, res) => {
-    const sql = "SELECT * FROM staffi";
-
-    db.query(sql, (err, data) => {
-        if (err) {
-            console.log(err);
-            return res.status(500).json({ error: "Internal server error" });
-        }
-        return res.json(data);
     });
 });
 
@@ -219,9 +329,9 @@ app.delete("/deleteStaff/:id", (req, res) => {
 
 app.delete("/deleteUsers/:id", (req, res) => {
     const id = req.params.id;
-    const sqlDelete = "DELETE FROM loginRegister WHERE id = ?";
+    const sql = "DELETE FROM loginRegister WHERE id = ?";
   
-    db.query(sqlDelete, id, (err, result) => {
+    db.query(sql, id, (err, result) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ error: "Internal server error" });
@@ -231,12 +341,15 @@ app.delete("/deleteUsers/:id", (req, res) => {
     });
 });
 
+
+
+
 app.put('/updateUsers/:id', (req, res) => {
     const userId = req.params.id;
-    const { name, lastname, email, password, dateb, gender, phonenumber } = req.body;
-    const sqlUpdate =  "UPDATE loginRegister SET name=?, lastname=?, email=?, password=?, dateb=?, gender=?, phonenumber=? WHERE id=?"
+    const { name, lastname, email, account, password, dateb, gender, phonenumber } = req.body;
+    const sqlUpdate =  "UPDATE loginRegister SET name=?, lastname=?, email=?, account=?, password=?, dateb=?, gender=?, phonenumber=? WHERE id=?"
 
-    db.query(sqlUpdate, [name, lastname, email, password, dateb, gender, phonenumber, userId], (err, result) => {
+    db.query(sqlUpdate, [name, lastname, email, account, password, dateb, gender, phonenumber, userId], (err, result) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ error: "Internal server error" });
@@ -246,12 +359,32 @@ app.put('/updateUsers/:id', (req, res) => {
     });
 });
 
+
+
+
+
 app.put('/updateStaff/:id', (req, res) => {
     const userId = req.params.id;
     const { name,  gender,  phone_number, email, password } = req.body;
     const sqlUpdate =  "UPDATE staffi SET name=?,  email=?, password=?, gender=?, phone_number=? WHERE id=?"
 
     db.query(sqlUpdate, [name,  email, password,  gender, phone_number, userId], (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+
+        return res.status(200).json({ message: "User updated successfully" });
+    });
+});
+
+
+app.put('/updateAcc/:id', (req, res) => {
+    const accId = req.params.id;
+    const { name,  ratings,  description } = req.body;
+    const sqlUpdate =  "UPDATE accountcategories SET name=?,  ratings=?, description=? WHERE id=?"
+
+    db.query(sqlUpdate, [name,  ratings, description, accId], (err, result) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ error: "Internal server error" });
@@ -290,9 +423,43 @@ app.delete("/deleteContacts/:id", (req, res) => {
         return res.status(200).json({ message: "User deleted successfully" });
     });
 });
+app.delete("/deleteAcc/:id", (req, res) => {
+    const id = req.params.id;
+    const sqlDelete = "DELETE FROM accountcategories WHERE id = ?";
+  
+    db.query(sqlDelete, id, (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+
+        return res.status(200).json({ message: "User deleted successfully" });
+    });
+});
 
 
 
+app.post('/accountsacc', (req, res) => {
+    const randomCode = Math.random().toString(36).substring(2, 6).toUpperCase();
+    
+    const code = "ACC-CAT-" + randomCode;
+
+    const sql = "INSERT INTO accountcategories (`name`, `ratings`, `code`, `description`)  VALUES (?, ?, ?, ?)";
+    const values = [
+        req.body.name,
+        req.body.ratings,
+        code,
+        req.body.description
+    ];
+
+    db.query(sql, values, (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.json("Error");
+        }
+        return res.json(data);
+    });
+});
 
 
 

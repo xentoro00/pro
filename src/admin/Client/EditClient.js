@@ -58,19 +58,19 @@ function EditClient({ id, onClose }) {
                         <form onSubmit={handleSubmit}>
                         <div className="form-group">
                                 <label>Name</label>
-                                <input type="text" placeholder='Enter name' name='name' onChange={handeInput} className='form-control roundend-0' />
+                                <input type="text" placeholder='Enter name' name='name' onChange={handeInput} className='form-control roundend-0' value={values.name} />
                                  {errors.name && <span className='text-danger'>{errors.name}</span>}                            </div>
                             <div className="form-group">
                                 <label>Lastname</label>
-                                <input type="text" placeholder='Enter name' name='lastname' onChange={handeInput} className='form-control roundend-0' />
+                                <input type="text" placeholder='Enter name' name='lastname' onChange={handeInput} className='form-control roundend-0' value={values.lastname} />
                                                         {errors.lastname && <span className='text-danger'>{errors.lastname}</span>}                            </div>
                             <div className="form-group">
                                 <label>Email</label>
-                                <input type="email" placeholder='Enter email' name='email' onChange={handeInput} className='form-control roundend-0' />
+                                <input type="email" placeholder='Enter email' name='email' onChange={handeInput} className='form-control roundend-0' value={values.email} />
                                                         {errors.email && <span className='text-danger'>{errors.email}</span>}                            </div>
                                                         <div className="form-group">
                                 <label>password</label>
-                                <input type="password" placeholder='Enter password' name='password' onChange={handeInput} className='form-control roundend-0' />
+                                <input type="password" placeholder='Enter password' name='password' onChange={handeInput} className='form-control roundend-0' value={values.password} />
                                                         {errors.password && <span className='text-danger'>{errors.password}</span>}                            </div>                        
 
                             <div className="form-group">
@@ -88,7 +88,7 @@ function EditClient({ id, onClose }) {
                             </div>
                             <div className="form-group">
                                 <label>Phone Number</label>
-                                <input type="text" placeholder='Enter staff number' name='phonenumber' onChange={handeInput} className='form-control roundend-0' />
+                                <input type="text" placeholder='Enter staff number' name='phonenumber' onChange={handeInput} className='form-control roundend-0' value={values.phonenumber} />
                             </div>                        </form>
                     </div>
                     <div className="modal-footer">

@@ -3,11 +3,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Client } from '../Client/Client'; 
 import { Staff } from '../../Staff/Staff';
+import { useNavigate } from 'react-router-dom'
+
 
 export const Dashboard = () => {
 
   const [numClients, setNumClients] = useState(0);
-  const [numStaff, setNumStaff] = useState(0); 
+  const [numStaff, setNumStaff] = useState(0);
+  const navigate = useNavigate()
+
+
 
   useEffect(() => {
       axios.post('http://localhost:8080/getUsers')

@@ -6,29 +6,46 @@ import Header from '../HeaderNav/Header';
 import Navbar from '../HeaderNav/Navbar';
 
 function Login() {
-    const [values, setValues] = useState({
-        email: '',
-        password: ''
-    });
-    const navigate = useNavigate();
+  const [values, setValues] = useState({
+      email: '',
+      password: ''
+  });
 
-    const handleInput = (event) => {
-        setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
-    }
+  const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+  const handleInput = (event) => {
+      setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
+  };
 
-        axios.post('http://localhost:8080/login', values)
-            .then(res => {
-                if (res.data === "Succes") {
-                    navigate('/dashboard');
-                } else {
-                    alert("No record existed");
-                }
-            })
-            .catch(err => console.log(err));
-    }
+  axios.defaults.withCredentials = true;
+  useEffect(() => {
+      axios.get('http://localhost:8080')
+          .then(res => {
+              if (res.data.valid) {
+                  navigate('/dashboard');
+              } else {
+                  navigate('/login');
+              }
+          })
+          .catch(err => console.log(err));
+  }, []);
+
+  const handleSubmit = (event) => {
+      event.preventDefault();
+
+    axios.defaults.withCredentials = true;
+      axios.post('http://localhost:8080/login', values)
+          .then(res => {
+            console.log(res.data)
+              if (res.data.Login) {
+                  navigate('/dashboard');
+              } else {
+                  alert("No record");
+              }
+              console.log(res);
+          })
+          .catch(err => console.log(err));
+  };
 
 
     return (

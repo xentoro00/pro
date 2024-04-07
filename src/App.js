@@ -17,8 +17,16 @@ import Addstaff from './Staff/Addstaff';
 import EditStaff from './Staff/EditStaff';
 import ContactUs from './ContactUs/ContactUs'
 import EditClient from './admin/Client/EditClient';
+
 import ContactForm from './ContactUs/ContactForm';
 import Page2 from './Home/Page2';
+
+import ContactForm from './ContactUs/ContactForm'
+import AddAcc from './admin/Accounts/AddAcc';
+import Acc from './admin/Accounts/Acc';
+import OpenAcc from './admin/Accounts/OpenAcc';
+import OpenAction from './admin/Accounts/OpenAction';
+
 
 
 
@@ -49,7 +57,27 @@ function App() {
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/editclient" element={<EditClient />} />
         <Route path="/ContactForm" element={<ContactForm />} />
+
         <Route path="/Page2" element={<Page2 />} />
+
+        <Route path="/AddAcc" element={<AddAcc />} />
+        <Route path="/acc" element={<Acc />} />
+        <Route path="/OpenAcc" element={<OpenAcc />} />
+        <Route path="/OpenAction" element={<OpenAction />} />
+
+        
+
+
+        
+
+
+        
+
+
+
+
+
+
 
 
 
