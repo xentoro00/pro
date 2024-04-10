@@ -20,6 +20,7 @@ import EditClient from './admin/Client/EditClient';
 
 import ContactForm from './ContactUs/ContactForm';
 import Page2 from './Home/Page2';
+import ContactUs2 from './ContactUs/ContactUs2';
 
 import AddAcc from './admin/Accounts/AddAcc';
 import Acc from './admin/Accounts/Acc';
@@ -55,6 +56,7 @@ function App() {
         <Route path="/acc" element={<Acc />} />
         <Route path="/OpenAcc" element={<OpenAcc />} />
         <Route path="/OpenAction" element={<OpenAction />} />
+        <Route path="/ContactUs2" element={<ContactUs2 />} />
         
 
 

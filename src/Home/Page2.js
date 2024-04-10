@@ -40,6 +40,7 @@ export const Page2 = () => {
     </ul>
   </div>
 </nav>
+
     <div className="container">
       <div className="flexbox">
         <h1 class="gateway">Gateway</h1>
