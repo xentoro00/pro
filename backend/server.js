@@ -37,7 +37,7 @@ const db = mysql.createConnection({
 
 app.get('/', (req,res) => {
     if(req.session.username){
-        return res.json({ valid: true, username: req.session.username, role: req.session.role })
+        return res.json({ valid: true, uId: req.session.uId, username: req.session.username, role: req.session.role })
     } else {
         return res.json({valid:false})
     }
@@ -63,6 +63,7 @@ app.post('/Alogin', (req, res) => {
         if(err) return res.json({Message:"Email or Password is incorrect!"});
         
         if(result.length > 0){
+            req.session.uId = result[0].id;
             req.session.username = result[0].username;
             req.session.role = "admin";
             console.log(req.session.username);
@@ -81,6 +82,7 @@ app.post('/login', (req, res) => {
         if(err) return res.json({Message:"Email or Password is incorrect!"});
         
         if(result.length > 0){
+            req.session.uId = result[0].id;
             req.session.username = result[0].name;
             req.session.role = "user";
             console.log(req.session.username);
@@ -168,9 +170,14 @@ app.post('/getContactUs', (req, res) => {
 
 
 
-app.get('/getUsers/:id', (req, res) => {
+app.get('/getUserData/:role/:id', (req, res) => {
+    const userRole = req.params.role;
     const userId = req.params.id;
-    const sql = "SELECT * FROM loginregister WHERE id = ?";
+    var tableName = '';
+    if (userRole == "user") tableName = `loginregister`
+    else if (userRole == "staff") tableName = 'staffi';
+    else tableName = 'admin';
+    const sql = `SELECT * FROM ${tableName} WHERE id = ?`;
 
     db.query(sql, [userId], (err, data) => {
         if (err) {

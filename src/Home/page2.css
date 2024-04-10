@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 * {
-  background-color: #0D0D0D;
-  color:white;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: weight;
   font-style: normal;
 }
+body{
+  height: 100vh;
+}
+
 .navbar-nav {
   display: flex;
   flex-direction: row !important; 
@@ -271,7 +273,8 @@
 }
 
 .contactus-img {
-  position: fixed;
+  position: absolute;
+
   bottom: 0;
   left: 0;
   height:600px;

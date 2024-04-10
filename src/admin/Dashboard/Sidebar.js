@@ -17,7 +17,6 @@ export default function Sidebar() {
         if (res.data.valid) {
           setName(res.data.username);
           setRole(res.data.role);
-          console.log(res.data.role);
         } else {
           navigate('/login')
         }
@@ -29,7 +28,7 @@ export default function Sidebar() {
     axios.get('http://localhost:8080/logout')
       .then(res => {
         if (res.data.success) {
-          navigate('/Alogin');
+          navigate('/');
         } else {
           // Handle logout failure
         }
@@ -69,7 +68,8 @@ export default function Sidebar() {
               </Dropdown>
               </li></>
           }
-          {role !== 'staff' || role !== 'user' &&
+
+          {role !== 'staff' && role !== 'user' &&
           <li>
             <Dropdown>
               
@@ -114,6 +114,12 @@ export default function Sidebar() {
               <i className=" bi me-2 fas fa-money-bill-wave fa-1x text-gray-300" ></i>
 
               Finances
+            </a>
+          </li>
+          <li>
+            <a href="/Profile" className="nav-link link-dark">
+              <i className=" bi me-2 fas fa-user fa-1x text-gray-300" ></i>
+              Profile
             </a>
           </li>
           <li>Advanced Modules</li>

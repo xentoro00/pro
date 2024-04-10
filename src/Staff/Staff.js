@@ -9,27 +9,14 @@ import EditStaff from './EditStaff';
 export const Staff = () => {
     const [staff, setStaff] = useState([]);
     const [numStaff, setNumStaff] = useState(0); 
-    const [editStaffId, setEditStaffId] = useState(null); 
-    const [role, setRole] = useState('');
-    const navigate = useNavigate();
+    const [editStaffId, setEditStaffId] = useState(null);
 
 
     useEffect(() => {
         getStaff();
     }, []);
 
-
-    useEffect(() => {
-        axios.get('http://localhost:8080')
-            .then(res => {
-                if (res.data.valid) {
-                    setRole(res.data.role);
-                } else {
-                    navigate('/login')
-                }
-            })
-            .catch(err => console.log(err))
-    }, [])
+    const navigate = useNavigate();
 
 
 

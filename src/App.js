@@ -26,6 +26,7 @@ import AddAcc from './admin/Accounts/AddAcc';
 import Acc from './admin/Accounts/Acc';
 import OpenAcc from './admin/Accounts/OpenAcc';
 import OpenAction from './admin/Accounts/OpenAction';
+import Profile from './admin/Profile/Profile';
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/editclient" element={<EditClient />} />
         <Route path="/ContactForm" element={<ContactForm />} />
+        <Route path="/Profile" element={<Profile />} />
 
         <Route path="/Page2" element={<Page2 />} />
 

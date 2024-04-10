@@ -23,9 +23,10 @@ export const ContactUs2 = () => {
       <li><a><img src={menuLogo}/></a></li>
     </ul>
   </div>
-</nav>
-<img src={footerImg} class="contactus-img"/>
+      </nav>
+      <main>
 
+        <img src={footerImg} class="contactus-img" />
   <div class="contactus-form">
     <form>
       <div class="form-group">
@@ -42,6 +43,7 @@ export const ContactUs2 = () => {
       </div>
     </form>
   </div>
+      </main>
 
 </>
   );
