@@ -11,29 +11,29 @@ export default function Sidebar() {
 
   axios.defaults.withCredentials = true;
   useEffect(() => {
-    axios.get('http://localhost:8080')
+    axios.get('http://localhost:8080/sessionTimeRemaining')
       .then(res => {
-        if (res.data.valid) {
-          setName(res.data.username);
-          setRole(res.data.role);
+        const { timeRemaining } = res.data;
+        if (timeRemaining = 0) {
+          handleLogout(); 
         } else {
-          navigate('/login')
+          setSessionTimeRemaining(timeRemaining);
         }
       })
       .catch(err => console.log(err));
-
+  
     const timer = setInterval(() => {
       setSessionTimeRemaining(prevTime => {
         if (prevTime > 0) {
           return prevTime - 1; 
         } else {
           clearInterval(timer); 
-          navigate('/login'); 
+          handleLogout(); 
           return 0;
         }
       });
     }, 1000);
-
+  
     return () => clearInterval(timer);
   }, []);
   

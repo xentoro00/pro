@@ -25,20 +25,6 @@ app.use(session({
     }
 
 }))
-function checkSession(req, res, next) {
-    if (req.session && req.session.username) {
-        const now = new Date().getTime();
-        const expireTime = req.session.cookie.maxAge;
-        const sessionExpire = req.session.lastActivity + expireTime;
-
-        if (now > sessionExpire) {
-            req.session.expired = true;
-        } else {
-            req.session.lastActivity = now; 
-        }
-    }
-    next();
-}
 
 app.get('/sessionTimeRemaining',  (req, res) => {
     if (req.session && req.session.username) {
@@ -77,14 +63,14 @@ db.on('error', (err) => {
 });
 
 
-app.get('/', checkSession, (req, res) => {
+app.get('/', (req, res) => {
     if(req.session.username){
         return res.json({ valid: true, uId: req.session.uId, username: req.session.username, role: req.session.role })
     } else {
         return res.json({ valid: false, sessionExpired: req.session.expired }); // Send session expiration status
     }
 });
-app.get('/logout', checkSession, (req, res) => {
+app.get('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
             console.log(err);
