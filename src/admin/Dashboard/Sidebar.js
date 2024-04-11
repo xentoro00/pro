@@ -6,10 +6,19 @@ import axios from 'axios';
 export default function Sidebar() {
   const [role, setRole] = useState('');
   const [name, setName] = useState('');
-  const [sessionTimeRemaining, setSessionTimeRemaining] = useState(15); 
+  const [sessionTimeRemaining, setSessionTimeRemaining] = useState(900);
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
+  useEffect(() => {
+    axios.get('http://localhost:8080')
+      .then(res => {
+        if (!res.data.valid) {
+          navigate('/login');
+        }
+      })
+      .catch(err => console.log(err))
+  }, [])
   useEffect(() => {
     axios.get('http://localhost:8080/sessionTimeRemaining')
       .then(res => {
@@ -52,7 +61,7 @@ export default function Sidebar() {
   const formatTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes} mins`;
   };
 
   const handleManageClick = (e) => {
