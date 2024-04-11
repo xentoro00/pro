@@ -56,7 +56,7 @@ function EditClient({ id, onClose }) {
                         <form onSubmit={handleSubmit}>
                         <div className="form-group">
                                 <label>Name</label>
-                                <input type="text" placeholder='Enter name' name='name' onChange={handeInput} className='form-control roundend-0' />
+                                <input type="text" placeholder='Enter name' name='name' onChange={handeInput} className='form-control roundend-0' value={values.name} />
                                  {errors.name && <span className='text-danger'>{errors.name}</span>}                            </div>
                            <div className="form-group">
                                 <label>Email</label>

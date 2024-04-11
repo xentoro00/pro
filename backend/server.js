@@ -21,11 +21,42 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         secure: false,
-        maxAge: 1000 * 60 * 60 * 24
+        maxAge: 1000 * 60 * 15 // 15 minutes
     }
 
 }))
+function checkSession(req, res, next) {
+    if (req.session && req.session.username) {
+        const now = new Date().getTime();
+        const expireTime = req.session.cookie.maxAge;
+        const sessionExpire = req.session.lastActivity + expireTime;
 
+        if (now > sessionExpire) {
+            req.session.expired = true;
+        } else {
+            req.session.lastActivity = now; 
+        }
+    }
+    next();
+}
+
+app.get('/sessionTimeRemaining',  (req, res) => {
+    if (req.session && req.session.username) {
+        const now = new Date().getTime();
+        const expireTime = req.session.cookie.maxAge;
+        const sessionExpire = req.session.lastActivity + expireTime;
+
+        if (now > sessionExpire) {
+            req.session.expired = true;
+            return res.json({ timeRemaining: 0 });
+        } else {
+            const timeRemaining = Math.ceil((sessionExpire - now) / 1000); 
+            return res.json({ timeRemaining });
+        }
+    } else {
+        return res.status(401).json({ error: "User session not found" });
+    }
+});
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -42,19 +73,18 @@ db.connect((err) => {
 });
 
 db.on('error', (err) => {
-    console.error('Gabim lidhjen ne databaze:', err);
+    console.error('Gabim lidhjen me databaze:', err);
 });
 
 
-app.get('/', (req,res) => {
+app.get('/', checkSession, (req, res) => {
     if(req.session.username){
         return res.json({ valid: true, uId: req.session.uId, username: req.session.username, role: req.session.role })
     } else {
-        return res.json({valid:false})
+        return res.json({ valid: false, sessionExpired: req.session.expired }); // Send session expiration status
     }
-
-})
-app.get('/logout', (req, res) => {
+});
+app.get('/logout', checkSession, (req, res) => {
     req.session.destroy(err => {
         if (err) {
             console.log(err);
