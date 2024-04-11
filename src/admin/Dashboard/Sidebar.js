@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function Sidebar() {
   const [role, setRole] = useState('');
   const [name, setName] = useState('');
-  const [sessionTimeRemaining, setSessionTimeRemaining] = useState(900); 
+  const [sessionTimeRemaining, setSessionTimeRemaining] = useState(15); 
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
@@ -37,16 +37,11 @@ export default function Sidebar() {
     return () => clearInterval(timer);
   }, []);
   
-
   const handleLogout = () => {
     axios.get('http://localhost:8080/logout')
       .then(res => {
         if (res.data.success) {
-          if (res.data.sessionExpired) {
-            navigate('/login');
-          } else {
-            navigate('/');
-          }
+          navigate('/login');
         } else {
         }
       })
