@@ -165,7 +165,7 @@ body{
   gap:20px;
 }
 .carusel-cards {
-  width:300px;
+  width:20em;
   height:450px;
   display: flex;
   flex-direction: column;
@@ -223,6 +223,7 @@ body{
 }
 
 .footer{
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   width:100%;
@@ -301,4 +302,22 @@ body{
   display: flex;
   background: none;
   width: 100px;
+}
+@media only screen and (max-width: 1350px) {
+  .carousel *{
+    font-size: 10px;
+  }
+}
+.carousel{
+  width: 1116px;
+}
+.carousel-control-next{
+  right: -75px !important;
+
+}
+.carousel-control-prev{
+  left: -75px !important;
+}
+.carousel-indicators{
+  bottom: -20px !important;
 }
