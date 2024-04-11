@@ -33,6 +33,17 @@ const db = mysql.createConnection({
     password: "",
     database: "signup"
 })
+db.connect((err) => {
+    if (err) {
+        console.error('DB not connect:', err);
+    } else {
+        console.log('DB: okey');
+    }
+});
+
+db.on('error', (err) => {
+    console.error('Gabim lidhjen ne databaze:', err);
+});
 
 
 app.get('/', (req,res) => {
@@ -111,7 +122,7 @@ app.post('/login', (req, res) => {
         req.body.phonenumber
     ]
       db.query(sql, [...values], (err, result) => {
-        if(err) return res.json({Message:"Email or Password is incorrect!"});
+        if(err) return res.json({Message:"Error!!"});
         return res.json(result);
     })
 })
@@ -281,6 +292,23 @@ app.post('/addStaff', (req, res) => {
 app.get('/getStaff/:id', (req, res) => {
     const staffId = req.params.id;
     const sql = "SELECT * FROM stafii WHERE id = ?";
+
+    db.query(sql, [staffId], (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+        if (data.length > 0) {
+            return res.json(data[0]); 
+        } else {
+            return res.status(404).json({ error: "User not found" });
+        }
+    });
+});
+
+app.get('/getUsers/:id', (req, res) => {
+    const staffId = req.params.id;
+    const sql = "SELECT * FROM loginregister WHERE id = ?";
 
     db.query(sql, [staffId], (err, data) => {
         if (err) {

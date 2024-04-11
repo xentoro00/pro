@@ -27,6 +27,7 @@ import Acc from './admin/Accounts/Acc';
 import OpenAcc from './admin/Accounts/OpenAcc';
 import OpenAction from './admin/Accounts/OpenAction';
 import Profile from './admin/Profile/Profile';
+import ManageAccIban from './admin/Accounts/ManageAccIban';
 
 
 function App() {
@@ -59,6 +60,10 @@ function App() {
         <Route path="/OpenAcc" element={<OpenAcc />} />
         <Route path="/OpenAction" element={<OpenAction />} />
         <Route path="/ContactUs2" element={<ContactUs2 />} />
+        <Route path="/ManageAccIban" element={<ManageAccIban />} />
+
+
+        
         
 
 
