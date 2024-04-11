@@ -20,8 +20,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: false,
-        maxAge: 1000 * 60 * 15 // 15 minutes
+        secure: false
     }
 
 }))
@@ -43,14 +42,14 @@ app.use(session({
 app.get('/sessionTimeRemaining',  (req, res) => {
     if (req.session && req.session.username) {
         const now = new Date().getTime();
-        const expireTime = req.session.cookie.maxAge;
-        const sessionExpire = req.session.lastActivity + expireTime;
-
-        if (now > sessionExpire) {
+        const expireTime = req.session.maxAge;
+        // const sessionExpire = req.session.lastActivity + expireTime;
+        if (now > expireTime) {
             req.session.expired = true;
             return res.json({ timeRemaining: 0 });
         } else {
-            const timeRemaining = Math.ceil((sessionExpire - now) / 1000); 
+            const timeRemaining = Math.round((expireTime - now) / 1000);
+            console.log(timeRemaining);
             return res.json({ timeRemaining });
         }
     } else {
@@ -97,8 +96,8 @@ app.get('/logout', (req, res) => {
 });
 app.post('/Alogin', (req, res) => {
     const sql = "SELECT * FROM admin WHERE email = ?  AND  password = ?";
-   
-     
+    const date = new Date();
+    expireDate = date.setMinutes(date.getMinutes() + 15)
     db.query(sql,[req.body.email,  req.body.password], (err,result) => {
         if(err) return res.json({Message:"Email or Password is incorrect!"});
         
@@ -106,6 +105,7 @@ app.post('/Alogin', (req, res) => {
             req.session.uId = result[0].id;
             req.session.username = result[0].username;
             req.session.role = "admin";
+            req.session.maxAge = + expireDate;
             console.log(req.session.username);
             return res.json({Login: true})
         } else {
@@ -232,28 +232,6 @@ app.get('/getUserData/:role/:id', (req, res) => {
     });
 });
 
-
-
-
-// app.post('/login', (req, res) => {
-//     const sql = "SELECT * FROM loginRegister WHERE `email` = ?  AND  `password` = ?";
-   
-     
-//     db.query(sql,[req.body.email,  req.body.password], (err,data) => {
-//         if(err){
-//             return res.json("Error");
-//         }
-//         if(data.length > 0){
-//             return res.json("Succes");
-
-
-//         } else {
-//             return res.json("faile");
-//         }
-//     })
-// })
-
-
 app.post('/Stafflogin', (req, res) => {
     const staff_number = "2223" + Math.floor(1000 + Math.random() * 9000);
 
@@ -273,49 +251,22 @@ app.post('/Stafflogin', (req, res) => {
 
     })
 })
-// app.post('/Alogin', (req, res) => {
-//     const sql = "SELECT * FROM admin WHERE email = ?  AND  password = ?";
-
-
-// db.query(sql,[req.body.email,  req.body.password], (err,result) => {
-//     if(err) return res.json({Message:"Email or Password is incorrect!"});
-
-//     if(result.length > 0){
-//         req.session.username = result[0].username;
-//         req.session.role = "admin";
-//         console.log(req.session.username);
-//         return res.json({Login: true})
-//     } else {
-//         return res.json({Login: false});
-//     }
-
-// })
-// })
 app.post('/addStaff', (req, res) => {
     const staff_number = "2223" + Math.floor(1000 + Math.random() * 9000);
-
-    const sql = "INSERT INTO staffi (`name`, `email`, `staff_number`, `gender`, `phone_number`, `password`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    const sql = "INSERT INTO staffi (`name`, `staff_number`, `gender`, `phone_number`, `email`, `password`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, ?)";
     const values = [
         req.body.name,
-        req.body.email,
         staff_number,
         req.body.gender,
-        req.body.phonenumber, 
+        req.body.phone_number,
+        req.body.email,
         req.body.password,
-        new Date() 
+        new Date()
     ];
     
-    db.query(sql, values, (err, data) => { 
-        if(err){
-            return res.json("Error");
-        }
-        if (result.length > 0) {
-            req.session.username = result[0].username;
-            req.session.role = "staff";
-            return res.json({ Login: true })
-        } else {
-            return res.json({ Login: false });
-        }
+    db.query(sql, [...values], (err, result) => {
+        if (err) return res.json({ Message: "Error!!" });
+        return res.json(result);
     })
 })
 app.get('/getStaff/:id', (req, res) => {
@@ -528,6 +479,6 @@ app.post('/accountsacc', (req, res) => {
 
 
 app.listen(8080, () => {
-    console.log("Server is runninf");
+    console.log("Server is runninff");
     });
 

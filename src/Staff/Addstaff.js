@@ -12,9 +12,8 @@ function Addstaff
 () {
     const [values, setValues] = useState({
         name: '',
-        staff_number: '',
         gender:'',
-        phonenumber:'',
+        phone_number: '',
         email: '',
         password: ''
 
@@ -31,10 +30,10 @@ function Addstaff
     }
 
     useEffect(() => {
-        console.log(errors);
+        console.log(values);
 
         if (errors.name === "" && errors.email === "" && errors.password === "") {
-            axios.post('http://localhost:8080/Stafflogin', values)
+            axios.post('http://localhost:8080/addStaff', values)
                 .then(res => {
                     navigate('/dashboard');
                 })
@@ -72,7 +71,7 @@ function Addstaff
                                             </div>
                                             <div className="col-md-6 form-group">
                                                 <label htmlFor="name">Staff Phone Number</label>
-                                                <input type="text" placeholder='Enter staff number' name='staff_number' onChange={handeInput} className='form-control roundend-0' />
+                                                        <input type="text" placeholder='Enter staff number' name='phone_number' onChange={handeInput} className='form-control roundend-0' />
                                             </div>
                                             <div className="col-md-6 form-group">
                                                 <label htmlFor="gender">Staff Gender</label>
