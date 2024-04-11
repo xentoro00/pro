@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 * {
+  background-color: #0D0D0D;
+  color: white;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: weight;
@@ -272,19 +274,31 @@ body{
   font-size: 15px;
 }
 
+.contact-us {
+  background-color: #0D0D0D;
+  position: relative;
+  width:100vh;
+  height:100vh;
+}
 .contactus-img {
-  position: absolute;
-
+  position: fixed;
   bottom: 0;
   left: 0;
-  height:600px;
+  height: 600px;
+  width: auto; 
 }
 .contactus-form {
   z-index: 999;
-  position: absolute;
-  width:500px;
+  position: fixed;
+  width:700px;
   height: fit-content;
   top:50%;
   left:50%;
   transform: translate(-50%, -50%);
+}
+
+.carousel a {
+  display: flex;
+  background: none;
+  width: 100px;
 }

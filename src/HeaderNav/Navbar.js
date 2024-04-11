@@ -1,35 +1,24 @@
 // Navbar.js
 import React, { useEffect } from 'react';
+import menuLogo from '../imgs/menu-logo.png';
 
 const Navbar = () => {
   return (
-    <nav>
-      <div className="left-nav">
-        <a href="/">
-          <img src="imgs/e-banking-favicon-black.png" alt="logo" width="250px" height="200px" />
-        </a>
-      </div>
-      <div className="middle-nav">
-        <ul>
-        <li><a className="hoverable" href="#">Home</a></li>
-      <li><a className="hoverable" href="#">Loans</a></li>
-      <li><a className="hoverable" href="#">About Us</a></li>
-      <li><a className="hoverable" href="#">Services</a></li>
-      <li><a className="hoverable" href="#">Pages</a></li>
-      <li><a className="hoverable" href="#">Blog</a></li>
-        </ul>
-      </div>
-
-      <div className="right-nav">
-        <div>
-            <a href="/login" class="btn yellow">
-                <span>Apply Now</span>
-                <ion-icon name="arrow-forward"></ion-icon>
-            </a>
-        </div>
-    
-      </div>
-    </nav>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <ul className="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Accounts</a></li>
+        <li className="dropdown">
+          <a href="#">Cards</a>
+        </li>
+        <li><a href="#">Education & Goals</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href=""><img src={menuLogo}/></a></li>
+      </ul>
+    </div>
+</nav>
   );
 }
 

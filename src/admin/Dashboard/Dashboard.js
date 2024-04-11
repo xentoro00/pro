@@ -4,8 +4,6 @@ import axios from 'axios';
 import { Client } from '../Client/Client'; 
 import { Staff } from '../../Staff/Staff';
 import { useNavigate } from 'react-router-dom'
-import { AuthProvider, useAuth } from './AuthContext';
-
 
 
 
