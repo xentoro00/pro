@@ -1,7 +1,7 @@
 import Sidebar from './Sidebar';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Client } from '../Client/Client'; 
+import { Client } from '../Client/Client';
 import { Staff } from '../../Staff/Staff';
 import { useNavigate } from 'react-router-dom'
 
@@ -25,21 +25,21 @@ export const Dashboard = () => {
 
 
   useEffect(() => {
-      axios.post('http://localhost:8080/getUsers')
-          .then(res => {
-              const fetchedUsers = res.data;
-              setNumClients(fetchedUsers.length);
-          })
-          .catch(err => console.log(err));
+    axios.post('http://localhost:8080/getUsers')
+      .then(res => {
+        const fetchedUsers = res.data;
+        setNumClients(fetchedUsers.length);
+      })
+      .catch(err => console.log(err));
 
-      axios.post('http://localhost:8080/getStaff')
-          .then(res => {
-              const fetchedStaff = res.data;
-              setNumStaff(fetchedStaff.length);
-          })
-          .catch(err => console.log(err));
+    axios.post('http://localhost:8080/getStaff')
+      .then(res => {
+        const fetchedStaff = res.data;
+        setNumStaff(fetchedStaff.length);
+      })
+      .catch(err => console.log(err));
   },
-   []);
+    []);
 
 
 
@@ -50,7 +50,7 @@ export const Dashboard = () => {
       <main style={{ display: 'flex', minHeight: '100vh' }}>
         <Sidebar />
 
-        <div className="container-fluid  " style={{  marginRight: '120px' }}>
+        <div className="container-fluid  " style={{ marginRight: '120px' }}>
           <div className="row justify-content-center">
             <header>
               <h1>Dashboard</h1>

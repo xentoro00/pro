@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Home/page2.css';
 
+import Navbar from '../HeaderNav/Navbar';
 import menuLogo from '../imgs/menu-logo.png';
 import footerImg from '../imgs/black&white-logo.png';
 
@@ -9,22 +10,9 @@ export const ContactUs2 = () => {
 
   return (
 <>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-  <ul className="nav navbar-nav">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Accounts</a></li>
-  <li className="dropdown">
-    <a href="#">Cards</a>
-  </li>
-  <li><a href="#">Education & Goals</a></li>
-</ul>
-<ul class="nav navbar-nav navbar-right">
-      <li><a><img src={menuLogo}/></a></li>
-    </ul>
-  </div>
-      </nav>
-      <main>
+ <Navbar/>
+      
+<div class="contact-us">
 
         <img src={footerImg} class="contactus-img" />
   <div class="contactus-form">
@@ -43,7 +31,7 @@ export const ContactUs2 = () => {
       </div>
     </form>
   </div>
-      </main>
+</div>
 
 </>
   );
