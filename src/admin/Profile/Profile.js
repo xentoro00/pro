@@ -94,8 +94,8 @@ export const Profile = () => {
 
                                 <div className="form-group">
                                     <label>Birthday</label>
-                                    <input type="date" name='dateb' className="form-control form-control-lg" placeholder="Enter Birthdate" onChange={handeInput} disabled value={values.dob.split('T')[0]} />
-                                </div>
+                                    <input type="date"  name='dateb' className="form-control form-control-lg" placeholder="Enter Birthdate" onChange={handeInput} disabled value={values.dob ? values.dob.split('T')[0] : ''} 
+/>                                </div>
                                 <div className="form-group">
                                     <label>Gender</label>
                                     <select name="gender" onChange={handeInput} value={values.gender} className="form-control rounded-0" disabled>

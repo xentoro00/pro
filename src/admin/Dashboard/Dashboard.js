@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Client } from '../Client/Client'; 
 import { Staff } from '../../Staff/Staff';
 import { useNavigate } from 'react-router-dom'
-import { AuthProvider, useAuth } from './AuthContext';
 
 
 
@@ -14,7 +13,6 @@ export const Dashboard = () => {
   const [numClients, setNumClients] = useState(0);
   const [numStaff, setNumStaff] = useState(0);
   const navigate = useNavigate()
-  // const { isAuthenticated } = useAuth();
   useEffect(() => {
     axios.get('http://localhost:8080')
       .then(res => {
@@ -43,11 +41,6 @@ export const Dashboard = () => {
   },
    []);
 
-  //  useEffect(() => {
-  //   if (!isAuthenticated) {
-  //     navigate('/login');
-  //   }
-  // }, [isAuthenticated, navigate]);
 
 
 
