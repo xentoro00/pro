@@ -26,7 +26,7 @@ export const Profile = () => {
         lastname: '',
         email: '',
         password: '',
-        dateb: '',
+        dateb: new Date(),
         gender: '',
         phonenumber: ''
     });
@@ -36,7 +36,6 @@ export const Profile = () => {
     useEffect(() => {
         axios.get(`http://localhost:8080/getUserData/${user.role}/${user.uId}`)
             .then(res => {
-                console.log(res.data);
                 setValues(res.data);
             })
             .catch(err => console.log(user));
@@ -52,7 +51,7 @@ export const Profile = () => {
         setErrors({});
 
         if (Object.keys(errors).length === 0) {
-            axios.put(`http://localhost:8080/updateUsers/${user.uId}`, values)
+            axios.put(`http://localhost:8080/updateUser/${user.role}/${user.uId}`, values)
                 .then(res => {
                     navigate('/dashboard');
                 })
@@ -94,7 +93,7 @@ export const Profile = () => {
 
                                 <div className="form-group">
                                     <label>Birthday</label>
-                                    <input type="date" name='dateb' className="form-control form-control-lg" placeholder="Enter Birthdate" onChange={handeInput} disabled value={values.dob.split('T')[0]} />
+                                    <input type="date" name='dateb' className="form-control form-control-lg" placeholder="Enter Birthdate" onChange={handeInput} />
                                 </div>
                                 <div className="form-group">
                                     <label>Gender</label>
@@ -107,7 +106,7 @@ export const Profile = () => {
                                 </div>
                                 <div className="form-group">
                                     <label>Phone Number</label>
-                                    <input type="text" placeholder='Enter phone number' name='phonenumber' onChange={handeInput} className='form-control roundend-0' value={values.nrTel} />
+                                    <input type="text" placeholder='Enter phone number' name='phonenumber' onChange={handeInput} className='form-control roundend-0' value={values.phonenumber} />
                                 </div>                        </form>
                         </div>
                         <div className="modal-footer">

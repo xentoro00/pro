@@ -39,6 +39,12 @@ app.use(session({
 //     next();
 // }
 
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "signup"
+})
 app.get('/sessionTimeRemaining',  (req, res) => {
     if (req.session && req.session.username) {
         const now = new Date().getTime();
@@ -57,12 +63,6 @@ app.get('/sessionTimeRemaining',  (req, res) => {
     }
 });
 
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "signup"
-})
 db.connect((err) => {
     if (err) {
         console.error('DB not connect:', err);
@@ -359,12 +359,18 @@ app.delete("/deleteUsers/:id", (req, res) => {
 
 
 
-app.put('/updateUsers/:id', (req, res) => {
+app.put('/updateUser/:role/:id', (req, res) => {
     const userId = req.params.id;
-    const { name, lastname, email, account, password, dateb, gender, phonenumber } = req.body;
-    const sqlUpdate =  "UPDATE loginRegister SET name=?, lastname=?, email=?, account=?, password=?, dateb=?, gender=?, phonenumber=? WHERE id=?"
+    const userRole = req.params.role;
+    var tableName = '';
+    if (userRole == "user") tableName = `loginregister`
+    else if (userRole == "staff") tableName = 'staffi';
+    else tableName = 'admin';
+    const { name, lastname, email, password, dob, gender, phonenumber } = req.body;
+    const sqlUpdate = `UPDATE ${tableName} SET name=?, lastname=?, email=?, password=?, dob=?, gender=?, phonenumber=? WHERE id=?`
+    console.log(tableName);
 
-    db.query(sqlUpdate, [name, lastname, email, account, password, dateb, gender, phonenumber, userId], (err, result) => {
+    db.query(sqlUpdate, [name, lastname, email, password, dob, gender, phonenumber, userId], (err, result) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ error: "Internal server error" });
