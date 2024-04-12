@@ -5,9 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 
 
+
 export const ContactsUs = () => {
     const [mess, setMess] = useState([]);
     const [numMess, setNumMess] = useState(0); 
+
 
 
     useEffect(() => {
@@ -39,6 +41,9 @@ export const ContactsUs = () => {
     };
 
   
+
+  
+
 
     return (
         <div> 
@@ -84,6 +89,7 @@ export const ContactsUs = () => {
                     </div> <div>Total message: {numMess}</div> 
                 </div>
             </main>
+
 
         </div>
     )

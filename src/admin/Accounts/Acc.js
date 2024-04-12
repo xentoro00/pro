@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Sidebar from '../Dashboard/Sidebar';
+import EditAcc from './EditAcc';
 
 export const Acc = () => {
     const [users, setUsers] = useState([]);
     const [numAcc, setNumClients] = useState(0);
-    const [editClientId, setEditClientId] = useState(null); 
+    const [editAccId, setEditAccId] = useState(null); 
 
     useEffect(() => {
         getAcc();
@@ -30,11 +31,11 @@ export const Acc = () => {
     };
 
     const handleEdit = (id) => {
-        setEditClientId(id); 
+        setEditAccId(id); 
     };
 
     const handleCloseEditModal = () => {
-        setEditClientId(null); 
+        setEditAccId(null); 
     };
 
     return (
@@ -68,6 +69,7 @@ export const Acc = () => {
                                             <td>{item.ratings}  %</td>
                                             <td>{item.code}</td>
                                             <td>
+                                            <button onClick={() => handleEdit(item.id)} className="btn btn-primary mr-2">Edit</button>
                                                 <button onClick={() => handleDelete(item.id)} className="btn btn-danger">Delete</button>
                                             </td>
                                         </tr>
@@ -78,8 +80,9 @@ export const Acc = () => {
                     </div><div>Total Acc: {numAcc}</div> 
                 </div>
             </main>
-            {/* {editClientId !== null && <EditAcc id={editClientId} onClose={handleCloseEditModal} />} */}
-        </div>
+            {editAccId !== null && <EditAcc id={editAccId} onClose={handleCloseEditModal} />}
+
+       </div>
     )
 }
 export default Acc

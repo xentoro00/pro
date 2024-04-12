@@ -24,26 +24,11 @@ app.use(session({
     }
 
 }))
-// function checkSession(req, res, next) {
-//     if (req.session && req.session.username) {
-//         const now = new Date().getTime();
-//         const expireTime = req.session.cookie.maxAge;
-//         const sessionExpire = req.session.lastActivity + expireTime;
-
-//         if (now > sessionExpire) {
-//             req.session.expired = true;
-//         } else {
-//             req.session.lastActivity = now; 
-//         }
-//     }
-//     next();
-// }
 
 app.get('/sessionTimeRemaining',  (req, res) => {
     if (req.session && req.session.username) {
         const now = new Date().getTime();
         const expireTime = req.session.maxAge;
-        // const sessionExpire = req.session.lastActivity + expireTime;
         if (now > expireTime) {
             req.session.expired = true;
             return res.json({ timeRemaining: 0 });
@@ -396,10 +381,10 @@ app.put('/updateStaff/:id', (req, res) => {
 
 app.put('/updateAcc/:id', (req, res) => {
     const accId = req.params.id;
-    const { name,  ratings,  description } = req.body;
-    const sqlUpdate =  "UPDATE accountcategories SET name=?,  ratings=?, description=? WHERE id=?"
+    const { name,  ratings } = req.body;
+    const sqlUpdate =  "UPDATE accountcategories SET name=?,  ratings=? WHERE id=?"
 
-    db.query(sqlUpdate, [name,  ratings, description, accId], (err, result) => {
+    db.query(sqlUpdate, [name,  ratings, accId], (err, result) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ error: "Internal server error" });

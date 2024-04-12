@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 export const Dashboard = () => {
 
   const [numClients, setNumClients] = useState(0);
+  const [numAcc, setNumAcc] = useState(0);
   const [numStaff, setNumStaff] = useState(0);
   const navigate = useNavigate()
   useEffect(() => {
@@ -29,6 +30,13 @@ export const Dashboard = () => {
       .then(res => {
         const fetchedUsers = res.data;
         setNumClients(fetchedUsers.length);
+      })
+      .catch(err => console.log(err));
+
+      axios.post('http://localhost:8080/getAcc')
+      .then(res => {
+        const fetchedAcc = res.data;
+        setNumAcc(fetchedAcc.length);
       })
       .catch(err => console.log(err));
 
@@ -86,6 +94,23 @@ export const Dashboard = () => {
                       </div>
                       <div className="col-auto">
                         <i className="fas fa-user fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-3 col-md-6 mb-4">
+                <div className="card border-left-primary shadow h-60 py-2">
+                  <div className="card-body">
+                    <div className="row no-gutters align-items-center">
+                      <div className="col mr-2">
+                        <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                          Account types
+                        </div>
+                        <div className="h5 mb-0 font-weight-bold text-gray-800">{numAcc}</div>
+                      </div>
+                      <div className="col-auto">
+                        <i className="fas fa-calendar fa-2x text-gray-300"></i>
                       </div>
                     </div>
                   </div>
@@ -159,23 +184,7 @@ export const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-primary shadow h-60 py-2">
-                  <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                      <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          Account types
-                        </div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800">3</div>
-                      </div>
-                      <div className="col-auto">
-                        <i className="fas fa-calendar fa-2x text-gray-300"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
               <div className="col-xl-3 col-md-6 mb-4">
                 <div className="card border-left-primary shadow h-80 py-3">
                   <div className="card-body">

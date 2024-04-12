@@ -29,7 +29,7 @@ import OpenAction from './admin/Accounts/OpenAction';
 import Profile from './admin/Profile/Profile';
 import ManageAccIban from './admin/Accounts/ManageAccIban';
 import Sidebar from './admin/Dashboard/Sidebar';
-// import AuthContext from './admin/Dashboard/AuthContext';
+import EditAcc from './admin/Accounts/EditAcc';
 
 
 
@@ -65,7 +65,8 @@ function App() {
         <Route path="/ContactUs2" element={<ContactUs2 />} />
         <Route path="/ManageAccIban" element={<ManageAccIban />} />
         <Route path="/Sidebar" element={<Sidebar/>} />
-        {/* <Route path="/AuthContext" element={<AuthContext/>} /> */}
+        <Route path="/EditAcc" element={<EditAcc/>} />
+
 
 
         
