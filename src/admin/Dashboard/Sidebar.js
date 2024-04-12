@@ -62,8 +62,7 @@ export default function Sidebar() {
   const formatTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
-    return `${minutes} mins`;
-  };
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;  };
 
   const handleManageClick = (e) => {
     e.preventDefault(); 

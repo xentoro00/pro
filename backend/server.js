@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 app.use(cors({
-    origin: ["http://localhost:3000"], 
+    origin: ["http://localhost:3000"],
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
 }));
@@ -24,20 +24,6 @@ app.use(session({
     }
 
 }))
-// function checkSession(req, res, next) {
-//     if (req.session && req.session.username) {
-//         const now = new Date().getTime();
-//         const expireTime = req.session.cookie.maxAge;
-//         const sessionExpire = req.session.lastActivity + expireTime;
-
-//         if (now > sessionExpire) {
-//             req.session.expired = true;
-//         } else {
-//             req.session.lastActivity = now; 
-//         }
-//     }
-//     next();
-// }
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -45,11 +31,10 @@ const db = mysql.createConnection({
     password: "",
     database: "signup"
 })
-app.get('/sessionTimeRemaining',  (req, res) => {
+app.get('/sessionTimeRemaining', (req, res) => {
     if (req.session && req.session.username) {
         const now = new Date().getTime();
         const expireTime = req.session.maxAge;
-        // const sessionExpire = req.session.lastActivity + expireTime;
         if (now > expireTime) {
             req.session.expired = true;
             return res.json({ timeRemaining: 0 });
@@ -76,8 +61,8 @@ db.on('error', (err) => {
 });
 
 
-app.get('/',  (req, res) => {
-    if(req.session.username){
+app.get('/', (req, res) => {
+    if (req.session.username) {
         return res.json({ valid: true, uId: req.session.uId, username: req.session.username, role: req.session.role })
     } else {
         return res.json({ valid: false, sessionExpired: req.session.expired }); // Send session expiration status
@@ -89,7 +74,7 @@ app.get('/logout', (req, res) => {
             console.log(err);
             res.json({ success: false });
         } else {
-            res.clearCookie('connect.sid'); 
+            res.clearCookie('connect.sid');
             res.json({ success: true });
         }
     });
@@ -98,60 +83,60 @@ app.post('/Alogin', (req, res) => {
     const sql = "SELECT * FROM admin WHERE email = ?  AND  password = ?";
     const date = new Date();
     expireDate = date.setMinutes(date.getMinutes() + 15)
-    db.query(sql,[req.body.email,  req.body.password], (err,result) => {
-        if(err) return res.json({Message:"Email or Password is incorrect!"});
-        
-        if(result.length > 0){
+    db.query(sql, [req.body.email, req.body.password], (err, result) => {
+        if (err) return res.json({ Message: "Email or Password is incorrect!" });
+
+        if (result.length > 0) {
             req.session.uId = result[0].id;
             req.session.username = result[0].username;
             req.session.role = "admin";
             req.session.maxAge = + expireDate;
             console.log(req.session.username);
-            return res.json({Login: true})
+            return res.json({ Login: true })
         } else {
-            return res.json({Login: false});
+            return res.json({ Login: false });
         }
-        
+
     })
 })
 app.post('/login', (req, res) => {
     const sql = "SELECT * FROM loginregister WHERE email = ?  AND  password = ?";
-   
-     
-    db.query(sql,[req.body.email,  req.body.password], (err,result) => {
-        if(err) return res.json({Message:"Email or Password is incorrect!"});
-        
-        if(result.length > 0){
+
+
+    db.query(sql, [req.body.email, req.body.password], (err, result) => {
+        if (err) return res.json({ Message: "Email or Password is incorrect!" });
+
+        if (result.length > 0) {
             req.session.uId = result[0].id;
             req.session.username = result[0].name;
             req.session.role = "user";
             console.log(req.session.username);
-            return res.json({Login: true})
+            return res.json({ Login: true })
         } else {
-            return res.json({Login: false});
+            return res.json({ Login: false });
         }
-        
+
     })
 })
 
 
-  app.post('/signup', (req, res) => {
+app.post('/signup', (req, res) => {
     const banknumber = "2223" + Math.floor(1000 + Math.random() * 9000);
-      const accountNumber = '';
+    const accountNumber = '';
     const sql = "INSERT INTO loginRegister (`name`,`lastname`,`banknumber`,`account`,`email`,`password`,`dateb`,`gender`,`phonenumber`)  VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
     const values = [
         req.body.name,
         req.body.lastname,
-        banknumber, 
+        banknumber,
         accountNumber,
         req.body.email,
         req.body.password,
-        req.body.dateb,  
+        req.body.dateb,
         req.body.gender,
         req.body.phonenumber
     ]
-      db.query(sql, [...values], (err, result) => {
-        if(err) return res.json({Message:"Error!!"});
+    db.query(sql, [...values], (err, result) => {
+        if (err) return res.json({ Message: "Error!!" });
         return res.json(result);
     })
 })
@@ -225,7 +210,7 @@ app.get('/getUserData/:role/:id', (req, res) => {
             return res.status(500).json({ error: "Internal server error" });
         }
         if (data.length > 0) {
-            return res.json(data[0]); 
+            return res.json(data[0]);
         } else {
             return res.status(404).json({ error: "User not found" });
         }
@@ -263,7 +248,7 @@ app.post('/addStaff', (req, res) => {
         req.body.password,
         new Date()
     ];
-    
+
     db.query(sql, [...values], (err, result) => {
         if (err) return res.json({ Message: "Error!!" });
         return res.json(result);
@@ -279,7 +264,7 @@ app.get('/getStaff/:id', (req, res) => {
             return res.status(500).json({ error: "Internal server error" });
         }
         if (data.length > 0) {
-            return res.json(data[0]); 
+            return res.json(data[0]);
         } else {
             return res.status(404).json({ error: "User not found" });
         }
@@ -296,7 +281,7 @@ app.get('/getUsers/:id', (req, res) => {
             return res.status(500).json({ error: "Internal server error" });
         }
         if (data.length > 0) {
-            return res.json(data[0]); 
+            return res.json(data[0]);
         } else {
             return res.status(404).json({ error: "User not found" });
         }
@@ -328,7 +313,7 @@ app.post('/getStaff', (req, res) => {
 app.delete("/deleteStaff/:id", (req, res) => {
     const id = req.params.id;
     const sqlDelete = "DELETE FROM staffi WHERE id = ?";
-  
+
     db.query(sqlDelete, id, (err, result) => {
         if (err) {
             console.log(err);
@@ -345,7 +330,7 @@ app.delete("/deleteStaff/:id", (req, res) => {
 app.delete("/deleteUsers/:id", (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM loginRegister WHERE id = ?";
-  
+
     db.query(sql, id, (err, result) => {
         if (err) {
             console.log(err);
@@ -386,10 +371,10 @@ app.put('/updateUser/:role/:id', (req, res) => {
 
 app.put('/updateStaff/:id', (req, res) => {
     const userId = req.params.id;
-    const { name,  gender,  phone_number, email, password } = req.body;
-    const sqlUpdate =  "UPDATE staffi SET name=?,  email=?, password=?, gender=?, phone_number=? WHERE id=?"
+    const { name, gender, phone_number, email, password } = req.body;
+    const sqlUpdate = "UPDATE staffi SET name=?,  email=?, password=?, gender=?, phone_number=? WHERE id=?"
 
-    db.query(sqlUpdate, [name,  email, password,  gender, phone_number, userId], (err, result) => {
+    db.query(sqlUpdate, [name, email, password, gender, phone_number, userId], (err, result) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ error: "Internal server error" });
@@ -402,10 +387,10 @@ app.put('/updateStaff/:id', (req, res) => {
 
 app.put('/updateAcc/:id', (req, res) => {
     const accId = req.params.id;
-    const { name,  ratings,  description } = req.body;
-    const sqlUpdate =  "UPDATE accountcategories SET name=?,  ratings=?, description=? WHERE id=?"
+    const { name, ratings } = req.body;
+    const sqlUpdate = "UPDATE accountcategories SET name=?,  ratings=? WHERE id=?"
 
-    db.query(sqlUpdate, [name,  ratings, description, accId], (err, result) => {
+    db.query(sqlUpdate, [name, ratings, accId], (err, result) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ error: "Internal server error" });
@@ -434,7 +419,7 @@ app.post('/contactUs', (req, res) => {
 app.delete("/deleteContacts/:id", (req, res) => {
     const id = req.params.id;
     const sqlDelete = "DELETE FROM contactus WHERE id = ?";
-  
+
     db.query(sqlDelete, id, (err, result) => {
         if (err) {
             console.log(err);
@@ -447,7 +432,7 @@ app.delete("/deleteContacts/:id", (req, res) => {
 app.delete("/deleteAcc/:id", (req, res) => {
     const id = req.params.id;
     const sqlDelete = "DELETE FROM accountcategories WHERE id = ?";
-  
+
     db.query(sqlDelete, id, (err, result) => {
         if (err) {
             console.log(err);
@@ -462,7 +447,7 @@ app.delete("/deleteAcc/:id", (req, res) => {
 
 app.post('/accountsacc', (req, res) => {
     const randomCode = Math.random().toString(36).substring(2, 6).toUpperCase();
-    
+
     const code = "ACC-CAT-" + randomCode;
 
     const sql = "INSERT INTO accountcategories (`name`, `ratings`, `code`, `description`)  VALUES (?, ?, ?, ?)";
@@ -486,5 +471,5 @@ app.post('/accountsacc', (req, res) => {
 
 app.listen(8080, () => {
     console.log("Server is runninff");
-    });
+});
 
